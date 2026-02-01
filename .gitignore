@@ -4,8 +4,8 @@
 *.dll
 *.so
 *.dylib
-typegen
-clientgen
+/typegen
+/clientgen
 
 # Test binary
 *.test

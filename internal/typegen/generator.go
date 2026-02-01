@@ -21,7 +21,7 @@ type Generator struct {
 
 // New creates a new Generator instance.
 func New() *Generator {
-	l := launcher.New().Headless(true)
+	l := launcher.New().Headless(true).NoSandbox(true)
 	browser := rod.New().ControlURL(l.MustLaunch()).MustConnect()
 	return &Generator{
 		browser:   browser,
@@ -230,7 +230,7 @@ func (g *Generator) expandNavigation(page *rod.Page) {
 
 // worker processes endpoints from the jobs channel.
 func (g *Generator) worker(id int, jobs <-chan APIEndpoint, results chan<- GenerateResult, pkgName, outputDir string) {
-	l := launcher.New().Headless(true)
+	l := launcher.New().Headless(true).NoSandbox(true)
 	browser := rod.New().ControlURL(l.MustLaunch()).MustConnect()
 	defer browser.MustClose()
 
