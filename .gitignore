@@ -4,6 +4,8 @@
 *.dll
 *.so
 *.dylib
+typegen
+clientgen
 
 # Test binary
 *.test
@@ -27,3 +29,9 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Temporary files
+tmp/
+
+# Kiro specs (development only)
+.kiro/
