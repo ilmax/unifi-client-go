@@ -1,0 +1,153 @@
+# UniFi SDK Release Workflow
+# This workflow generates Go types and client methods from UniFi API documentation
+# and creates a new release with the specified API version.
+
+name: Release SDK
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_version:
+        description: 'UniFi API Version (e.g., v9.1.120)'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate version format
+        run: |
+          if [[ ! "${{ inputs.api_version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Invalid version format. Expected format: vX.Y.Z (e.g., v9.1.120)"
+            exit 1
+          fi
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+
+      - name: Setup Chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Verify Chrome installation
+        run: |
+          which google-chrome || which chromium-browser || which chromium
+          google-chrome --version || chromium-browser --version || chromium --version
+
+      - name: Create release branch
+        run: |
+          git checkout -b release/${{ inputs.api_version }}
+
+      - name: Generate types
+        run: |
+          echo "Generating types from UniFi API documentation..."
+          go run ./cmd/typegen/main.go \
+            -discover "https://developer.ui.com/network/${{ inputs.api_version }}" \
+            -output-dir ./pkg \
+            -package network \
+            -workers 4
+
+      - name: Generate client methods
+        run: |
+          echo "Generating client methods..."
+          go run ./cmd/clientgen/main.go \
+            -input ./pkg \
+            -output ./pkg
+
+      - name: Format generated code
+        run: |
+          go fmt ./...
+
+      - name: Build
+        run: |
+          echo "Building all packages..."
+          go build ./...
+
+      - name: Test
+        run: |
+          echo "Running tests..."
+          go test ./...
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Commit changes
+        run: |
+          git add .
+          git diff --staged --quiet || git commit -m "Release ${{ inputs.api_version }}"
+
+      - name: Push release branch
+        run: |
+          git push origin release/${{ inputs.api_version }}
+
+      - name: Create tag
+        run: |
+          git tag -a ${{ inputs.api_version }} -m "Release ${{ inputs.api_version }}"
+          git push origin ${{ inputs.api_version }}
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.api_version }}
+          name: Release ${{ inputs.api_version }}
+          body: |
+            # UniFi SDK ${{ inputs.api_version }}
+            
+            UniFi SDK for API version ${{ inputs.api_version }}
+            
+            ## Installation
+            
+            ```bash
+            go get github.com/murasame29/unifi-go-sdk@${{ inputs.api_version }}
+            ```
+            
+            ## Usage
+            
+            ```go
+            package main
+            
+            import (
+                "context"
+                "log"
+                
+                "github.com/murasame29/unifi-go-sdk/unifi"
+            )
+            
+            func main() {
+                client, err := unifi.New(
+                    unifi.ConfigBaseURL("https://your-unifi-controller.com"),
+                    unifi.ConfigAPIKey("your-api-key"),
+                )
+                if err != nil {
+                    log.Fatal(err)
+                }
+                
+                ctx := context.Background()
+                // Use client to interact with UniFi API
+                _ = client
+                _ = ctx
+            }
+            ```
+            
+            ## Changes
+            
+            - Generated types from UniFi API ${{ inputs.api_version }} documentation
+            - Generated client methods for all API endpoints
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
