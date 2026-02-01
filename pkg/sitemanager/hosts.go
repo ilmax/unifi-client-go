@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/murasame29/unifi-go-sdk/pkg/errors"
+	"github.com/murasame29/unifi-client-go/pkg/errors"
 )
 
 // Host represents a UniFi console or controller.

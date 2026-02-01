@@ -12,10 +12,10 @@ UniFi API用のGo SDKです。UniFi APIドキュメントから自動生成さ�
 ## インストール
 
 ```bash
-go get github.com/murasame29/unifi-go-sdk@v9.1.120
+go get github.com/murasame29/unifi-client-go@v9.1.120
 ```
 
-バージョンはUniFi APIバージョンに対応しています。利用可能なバージョンは[Releases](https://github.com/murasame29/unifi-go-sdk/releases)を確認してください。
+バージョンはUniFi APIバージョンに対応しています。利用可能なバージョンは[Releases](https://github.com/murasame29/unifi-client-go/releases)を確認してください。
 
 ## 使用方法
 
@@ -30,7 +30,7 @@ import (
     "context"
     "log"
 
-    "github.com/murasame29/unifi-go-sdk/unifi"
+    "github.com/murasame29/unifi-client-go/unifi"
 )
 
 func main() {
@@ -62,8 +62,8 @@ import (
     "context"
     "log"
 
-    "github.com/murasame29/unifi-go-sdk/unifi"
-    "github.com/murasame29/unifi-go-sdk/pkg/network"
+    "github.com/murasame29/unifi-client-go/unifi"
+    "github.com/murasame29/unifi-client-go/pkg/network"
 )
 
 func main() {
@@ -162,7 +162,7 @@ unifi-go-sdk/
 SDKは`pkg/errors`パッケージでカスタムエラー型を提供しています：
 
 ```go
-import "github.com/murasame29/unifi-go-sdk/pkg/errors"
+import "github.com/murasame29/unifi-client-go/pkg/errors"
 
 // APIエラーのチェック
 if errors.Is(err, errors.ErrUnauthorized) {

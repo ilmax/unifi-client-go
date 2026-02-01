@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/murasame29/unifi-go-sdk/internal/typegen"
+	"github.com/murasame29/unifi-client-go/internal/typegen"
 )
 
 func main() {

@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/murasame29/unifi-go-sdk/internal/clientgen"
+	"github.com/murasame29/unifi-client-go/internal/clientgen"
 )
 
 func main() {

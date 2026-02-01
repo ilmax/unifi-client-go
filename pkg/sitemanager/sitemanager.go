@@ -2,8 +2,8 @@
 package sitemanager
 
 import (
-	"github.com/murasame29/unifi-go-sdk/internal/http"
-	"github.com/murasame29/unifi-go-sdk/pkg/config"
+	"github.com/murasame29/unifi-client-go/internal/http"
+	"github.com/murasame29/unifi-client-go/pkg/config"
 )
 
 const DefaultBaseURL = "https://api.ui.com"

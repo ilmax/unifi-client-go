@@ -10,9 +10,9 @@ import (
 	"testing"
 	"time"
 
-	pkgerrors "github.com/murasame29/unifi-go-sdk/pkg/errors"
+	pkgerrors "github.com/murasame29/unifi-client-go/pkg/errors"
 
-	"github.com/murasame29/unifi-go-sdk/pkg/config"
+	"github.com/murasame29/unifi-client-go/pkg/config"
 )
 
 // TestNewClient tests the NewClient function.

@@ -112,7 +112,7 @@ jobs:
             ## Installation
             
             ```bash
-            go get github.com/murasame29/unifi-go-sdk@${{ inputs.api_version }}
+            go get github.com/murasame29/unifi-client-go@${{ inputs.api_version }}
             ```
             
             ## Usage
@@ -124,7 +124,7 @@ jobs:
                 "context"
                 "log"
                 
-                "github.com/murasame29/unifi-go-sdk/unifi"
+                "github.com/murasame29/unifi-client-go/unifi"
             )
             
             func main() {

@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/murasame29/unifi-go-sdk/pkg/errors"
+	"github.com/murasame29/unifi-client-go/pkg/errors"
 )
 
 // SDWANConfig represents an SD-WAN configuration.
