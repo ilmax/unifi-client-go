@@ -12,10 +12,10 @@ Go SDK for the UniFi API. It provides auto-generated types and client methods ba
 ## Installation
 
 ```bash
-go get github.com/ilmax/unifi-client-go@v9.1.120
+go get github.com/ilmax/unifi-client-go@v0.1.0
 ```
 
-Versions correspond to UniFi API versions. See [Releases](https://github.com/ilmax/unifi-client-go/releases) for available versions.
+SDK versions are auto-incremented and independent from UniFi API versions. See [Releases](https://github.com/ilmax/unifi-client-go/releases) for available versions.
 
 ## Usage
 
@@ -149,12 +149,12 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 
 ### Workflow Steps
 
-1. Create a release branch (`release/vX.Y.Z`)
+1. Determine the next SDK version from [VERSION](VERSION) and create a release branch (`release/vX.Y.Z`)
 2. Generate types from the UniFi API documentation (`typegen`)
 3. Generate client methods (`clientgen`)
 4. Format, build, and test code
 5. Commit and push changes
-6. Create a version tag
+6. Create a version tag (SDK version)
 7. Create a GitHub release
 
 ## Error Handling
