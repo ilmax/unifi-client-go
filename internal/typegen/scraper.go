@@ -45,7 +45,7 @@ func (g *Generator) scrape(url string) (*APISchema, error) {
 		fmt.Println("Path:", schema.Path)
 
 		// Extract category from path
-		schema.Category = extractCategoryFromPath(schema.Path)
+		schema.Category = sanitizeGoPackageName(extractCategoryFromPath(schema.Path))
 		if schema.Category != "" {
 			fmt.Println("Category:", schema.Category)
 		}

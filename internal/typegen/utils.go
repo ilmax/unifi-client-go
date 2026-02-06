@@ -5,6 +5,40 @@ import (
 	"strings"
 )
 
+// sanitizeGoPackageName converts an arbitrary category name into a valid Go package name.
+// It lowercases, replaces separators with underscores, removes invalid characters,
+// collapses duplicate underscores, and prefixes when starting with a digit.
+func sanitizeGoPackageName(name string) string {
+	name = strings.ToLower(strings.TrimSpace(name))
+	if name == "" {
+		return "common"
+	}
+
+	// Common separators.
+	repl := strings.NewReplacer("-", "_", " ", "_", ".", "_", "/", "_")
+	name = repl.Replace(name)
+
+	// Keep only [a-z0-9_].
+	reInvalid := regexp.MustCompile(`[^a-z0-9_]+`)
+	name = reInvalid.ReplaceAllString(name, "")
+
+	// Collapse underscores and trim.
+	reUnderscores := regexp.MustCompile(`_+`)
+	name = reUnderscores.ReplaceAllString(name, "_")
+	name = strings.Trim(name, "_")
+
+	if name == "" {
+		return "common"
+	}
+
+	// Go identifiers can't start with a digit.
+	if name[0] >= '0' && name[0] <= '9' {
+		name = "pkg_" + name
+	}
+
+	return name
+}
+
 // sanitizeStructName removes spaces and invalid characters from struct names.
 func sanitizeStructName(name string) string {
 	re := regexp.MustCompile(`[^a-zA-Z0-9]+`)

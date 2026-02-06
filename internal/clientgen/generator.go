@@ -11,6 +11,30 @@ import (
 	"text/template"
 )
 
+func sanitizeGoPackageName(name string) string {
+	name = strings.ToLower(strings.TrimSpace(name))
+	if name == "" {
+		return "common"
+	}
+
+	repl := strings.NewReplacer("-", "_", " ", "_", ".", "_", "/", "_")
+	name = repl.Replace(name)
+
+	reInvalid := regexp.MustCompile(`[^a-z0-9_]+`)
+	name = reInvalid.ReplaceAllString(name, "")
+
+	reUnderscores := regexp.MustCompile(`_+`)
+	name = reUnderscores.ReplaceAllString(name, "_")
+	name = strings.Trim(name, "_")
+	if name == "" {
+		return "common"
+	}
+	if name[0] >= '0' && name[0] <= '9' {
+		name = "pkg_" + name
+	}
+	return name
+}
+
 // APISchema represents the extracted API schema for client generation.
 // This mirrors the structure from typegen package.
 type APISchema struct {
@@ -181,6 +205,7 @@ func (g *Generator) readSchemas() (map[string][]APISchema, error) {
 			if category == "" {
 				category = "common"
 			}
+			category = sanitizeGoPackageName(category)
 			schemasByCategory[category] = append(schemasByCategory[category], schema)
 		}
 
@@ -218,6 +243,7 @@ func (g *Generator) readSchemaFile(path string) ([]APISchema, error) {
 
 // generateCategoryClient generates the client code for a category and writes it to a file.
 func (g *Generator) generateCategoryClient(category string, schemas []APISchema) error {
+	category = sanitizeGoPackageName(category)
 	// Generate the client code
 	code, err := g.GenerateClientCode(schemas, category, category)
 	if err != nil {
