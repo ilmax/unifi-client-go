@@ -1,27 +1,27 @@
 # UniFi Go SDK
 
-UniFi API用のGo SDKです。UniFi APIドキュメントから自動生成された型とClientメソッドを提供します。
+Go SDK for the UniFi API. It provides auto-generated types and client methods based on the UniFi API documentation.
 
-## 特徴
+## Features
 
-- **自動生成**: UniFi APIドキュメントから型とClientメソッドを自動生成
-- **型安全**: 全てのAPIリクエスト/レスポンスに型定義
-- **標準ライブラリのみ**: 外部依存なし（`net/http`, `encoding/json`, `context`等のみ使用）
-- **Context対応**: 全てのAPIメソッドは `ctx context.Context` を第一引数に受け取る
+- **Auto-generated**: Types and client methods are generated from the UniFi API documentation
+- **Type-safe**: Strongly typed request and response models for all APIs
+- **Standard library only**: No external dependencies (uses only `net/http`, `encoding/json`, `context`, etc.)
+- **Context-first**: All API methods accept `ctx context.Context` as the first argument
 
-## インストール
+## Installation
 
 ```bash
-go get github.com/murasame29/unifi-client-go@v9.1.120
+go get github.com/ilmax/unifi-client-go@v9.1.120
 ```
 
-バージョンはUniFi APIバージョンに対応しています。利用可能なバージョンは[Releases](https://github.com/murasame29/unifi-client-go/releases)を確認してください。
+Versions correspond to UniFi API versions. See [Releases](https://github.com/ilmax/unifi-client-go/releases) for available versions.
 
-## 使用方法
+## Usage
 
-### Site Manager API（クラウドAPI）
+### Site Manager API (Cloud API)
 
-Site Manager APIはUniFiクラウドサービスを通じてデバイスを管理するためのAPIです。APIキーによる認証が必要です。
+The Site Manager API manages devices through UniFi cloud services. Authentication requires an API key.
 
 ```go
 package main
@@ -30,11 +30,11 @@ import (
     "context"
     "log"
 
-    "github.com/murasame29/unifi-client-go/unifi"
+    "github.com/ilmax/unifi-client-go/unifi"
 )
 
 func main() {
-    // Clientの初期化
+    // Initialize client
     client, err := unifi.New(
         unifi.ConfigAPIKey("your-api-key"),
     )
@@ -44,16 +44,16 @@ func main() {
 
     ctx := context.Background()
 
-    // Site Manager APIを使用
+    // Use Site Manager API
     // client.SiteManager.XXX(ctx, ...)
     _ = client
     _ = ctx
 }
 ```
 
-### Network API（ローカルコントローラー）
+### Network API (Local Controller)
 
-Network APIはローカルのUniFiコントローラー（UDM、Cloud Key等）と直接通信するためのAPIです。
+The Network API communicates directly with a local UniFi controller (UDM, Cloud Key, etc.).
 
 ```go
 package main
@@ -62,16 +62,16 @@ import (
     "context"
     "log"
 
-    "github.com/murasame29/unifi-client-go/unifi"
-    "github.com/murasame29/unifi-client-go/pkg/network"
+    "github.com/ilmax/unifi-client-go/unifi"
+    "github.com/ilmax/unifi-client-go/pkg/network"
 )
 
 func main() {
-    // Network Clientの初期化
+    // Initialize network client
     client, err := unifi.NewNetwork(network.Config{
         BaseURL:            "https://192.168.1.1:8443",
         Site:               "default",
-        InsecureSkipVerify: true, // 自己署名証明書の場合
+        InsecureSkipVerify: true, // For self-signed certificates
     })
     if err != nil {
         log.Fatal(err)
@@ -79,116 +79,116 @@ func main() {
 
     ctx := context.Background()
 
-    // Network APIを使用
+    // Use Network API
     // client.XXX(ctx, ...)
     _ = client
     _ = ctx
 }
 ```
 
-## ディレクトリ構造
+## Directory Structure
 
 ```
 unifi-go-sdk/
 ├── .github/
 │   └── workflows/
-│       └── release.yml          # リリースワークフロー
+│       └── release.yml          # Release workflow
 ├── unifi/
-│   └── unifi.go                 # メインClient
+│   └── unifi.go                 # Main client
 ├── pkg/
-│   ├── config/                  # 設定
-│   ├── errors/                  # カスタムエラー
-│   ├── network/                 # Network API（自動生成）
-│   │   ├── types.go             # 型定義
-│   │   └── network.go           # Clientメソッド
+│   ├── config/                  # Configuration
+│   ├── errors/                  # Custom errors
+│   ├── network/                 # Network API (generated)
+│   │   ├── types.go             # Type definitions
+│   │   └── network.go           # Client methods
 │   └── sitemanager/             # Site Manager API
 ├── internal/
-│   ├── http/                    # HTTPクライアント
-│   ├── typegen/                 # 型生成ツール
-│   └── clientgen/               # Clientメソッド生成ツール
+│   ├── http/                    # HTTP client
+│   ├── typegen/                 # Type generator
+│   └── clientgen/               # Client method generator
 ├── cmd/
-│   ├── typegen/                 # 型生成CLI
-│   └── clientgen/               # Clientメソッド生成CLI
+│   ├── typegen/                 # Type generator CLI
+│   └── clientgen/               # Client method generator CLI
 ├── go.mod
 └── README.md
 ```
 
-## 自動生成について
+## About Auto-Generation
 
-このSDKの型とClientメソッドは、UniFi APIドキュメントから自動生成されています。
+Types and client methods in this SDK are auto-generated from UniFi API documentation.
 
-### 生成される型
+### Generated Types
 
-- **Request型**: APIリクエストのボディ構造体
-- **Response型**: APIレスポンスの構造体
-- **共通型**: Voucher, Client, Site等の共通エンティティ
+- **Request types**: API request body structures
+- **Response types**: API response structures
+- **Shared types**: Common entities such as Voucher, Client, Site, etc.
 
-### 生成されるClientメソッド
+### Generated Client Methods
 
-各APIエンドポイントに対応するメソッドが生成されます：
+Methods are generated for each API endpoint:
 
-| HTTPメソッド | エンドポイント名 | 生成されるメソッド |
-|-------------|-----------------|-------------------|
-| GET (list)  | List Clients    | ListClients       |
-| GET (single)| Get Client      | GetClient         |
-| POST        | Create Voucher  | CreateVoucher     |
-| PUT         | Update Device   | UpdateDevice      |
-| DELETE      | Delete Voucher  | DeleteVoucher     |
+| HTTP Method | Endpoint Name | Generated Method |
+|-------------|---------------|------------------|
+| GET (list)  | List Clients  | ListClients      |
+| GET (single)| Get Client    | GetClient        |
+| POST        | Create Voucher| CreateVoucher    |
+| PUT         | Update Device | UpdateDevice     |
+| DELETE      | Delete Voucher| DeleteVoucher    |
 
-## リリースワークフロー
+## Release Workflow
 
-新しいAPIバージョンのSDKをリリースするには、GitHub Actionsの`workflow_dispatch`を使用します。
+To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 
-### 手動リリース手順
+### Manual Release Steps
 
-1. GitHubリポジトリの「Actions」タブを開く
-2. 「Release SDK」ワークフローを選択
-3. 「Run workflow」をクリック
-4. `api_version`にUniFi APIバージョン（例: `v9.1.120`）を入力
-5. 「Run workflow」をクリックして実行
+1. Open the "Actions" tab in the GitHub repository
+2. Select the "Release SDK" workflow
+3. Click "Run workflow"
+4. Enter the UniFi API version (e.g. `v9.1.120`) in `api_version`
+5. Click "Run workflow" to execute
 
-### ワークフローの処理内容
+### Workflow Steps
 
-1. リリースブランチ（`release/vX.Y.Z`）を作成
-2. UniFi APIドキュメントから型を生成（`typegen`）
-3. Clientメソッドを生成（`clientgen`）
-4. コードをフォーマット・ビルド・テスト
-5. 変更をコミット・プッシュ
-6. バージョンタグを作成
-7. GitHubリリースを作成
+1. Create a release branch (`release/vX.Y.Z`)
+2. Generate types from the UniFi API documentation (`typegen`)
+3. Generate client methods (`clientgen`)
+4. Format, build, and test code
+5. Commit and push changes
+6. Create a version tag
+7. Create a GitHub release
 
-## エラーハンドリング
+## Error Handling
 
-SDKは`pkg/errors`パッケージでカスタムエラー型を提供しています：
+The SDK provides custom error types in `pkg/errors`:
 
 ```go
-import "github.com/murasame29/unifi-client-go/pkg/errors"
+import "github.com/ilmax/unifi-client-go/pkg/errors"
 
-// APIエラーのチェック
+// Check API errors
 if errors.Is(err, errors.ErrUnauthorized) {
-    // 認証エラー
+    // Authentication error
 }
 
 if errors.Is(err, errors.ErrNotFound) {
-    // リソースが見つからない
+    // Resource not found
 }
 
-// APIErrorの詳細を取得
+// Get details of APIError
 var apiErr *errors.APIError
 if errors.As(err, &apiErr) {
     log.Printf("Status: %d, Message: %s", apiErr.StatusCode, apiErr.Message)
 }
 ```
 
-## 設定オプション
+## Configuration Options
 
 ### Site Manager API
 
 ```go
 client, err := unifi.New(
-    unifi.ConfigAPIKey("your-api-key"),           // APIキー（必須）
-    unifi.ConfigBaseURL("https://api.ui.com"),    // ベースURL（オプション）
-    unifi.ConfigUserAgent("my-app/1.0"),          // User-Agent（オプション）
+    unifi.ConfigAPIKey("your-api-key"),           // API key (required)
+    unifi.ConfigBaseURL("https://api.ui.com"),    // Base URL (optional)
+    unifi.ConfigUserAgent("my-app/1.0"),          // User-Agent (optional)
 )
 ```
 
@@ -196,16 +196,16 @@ client, err := unifi.New(
 
 ```go
 client, err := unifi.NewNetwork(network.Config{
-    BaseURL:            "https://192.168.1.1:8443", // コントローラーURL（必須）
-    Site:               "default",                   // サイト名（デフォルト: "default"）
-    Timeout:            30 * time.Second,            // タイムアウト（デフォルト: 30秒）
-    InsecureSkipVerify: true,                        // TLS検証スキップ（自己署名証明書用）
+    BaseURL:            "https://192.168.1.1:8443", // Controller URL (required)
+    Site:               "default",                   // Site name (default: "default")
+    Timeout:            30 * time.Second,            // Timeout (default: 30s)
+    InsecureSkipVerify: true,                        // Skip TLS verification for self-signed certs
 })
 ```
 
-## 開発
+## Development
 
-### 型生成ツールの実行
+### Run the type generator
 
 ```bash
 go run ./cmd/typegen/main.go \
@@ -215,7 +215,7 @@ go run ./cmd/typegen/main.go \
     -workers 4
 ```
 
-### Clientメソッド生成ツールの実行
+### Run the client generator
 
 ```bash
 go run ./cmd/clientgen/main.go \

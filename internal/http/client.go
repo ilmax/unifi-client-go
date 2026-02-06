@@ -9,8 +9,8 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/murasame29/unifi-client-go/pkg/config"
-	"github.com/murasame29/unifi-client-go/pkg/errors"
+	"github.com/ilmax/unifi-client-go/pkg/config"
+	"github.com/ilmax/unifi-client-go/pkg/errors"
 )
 
 // Client is the HTTP client for UniFi APIs.

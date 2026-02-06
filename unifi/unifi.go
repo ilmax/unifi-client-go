@@ -2,10 +2,10 @@
 package unifi
 
 import (
-	"github.com/murasame29/unifi-client-go/pkg/config"
-	"github.com/murasame29/unifi-client-go/pkg/errors"
-	"github.com/murasame29/unifi-client-go/pkg/network"
-	"github.com/murasame29/unifi-client-go/pkg/sitemanager"
+	"github.com/ilmax/unifi-client-go/pkg/config"
+	"github.com/ilmax/unifi-client-go/pkg/errors"
+	"github.com/ilmax/unifi-client-go/pkg/network"
+	"github.com/ilmax/unifi-client-go/pkg/sitemanager"
 )
 
 // UniFi is a collection of UniFi APIs.

@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/murasame29/unifi-client-go/pkg/sitemanager"
-	"github.com/murasame29/unifi-client-go/unifi"
+	"github.com/ilmax/unifi-client-go/pkg/sitemanager"
+	"github.com/ilmax/unifi-client-go/unifi"
 )
 
 func main() {

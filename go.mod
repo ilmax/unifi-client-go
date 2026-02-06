@@ -1,4 +1,4 @@
-module github.com/murasame29/unifi-client-go
+module github.com/ilmax/unifi-client-go
 
 go 1.25.0
 

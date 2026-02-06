@@ -6,7 +6,7 @@ import (
 	"net/url"
 	"time"
 
-	"github.com/murasame29/unifi-client-go/pkg/errors"
+	"github.com/ilmax/unifi-client-go/pkg/errors"
 )
 
 // ISPMetricsInterval represents the interval for ISP metrics data.

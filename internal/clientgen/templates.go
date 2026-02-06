@@ -11,7 +11,7 @@ import (
 	"fmt"
 {{- end}}
 
-	"github.com/murasame29/unifi-client-go/internal/http"
+	"github.com/ilmax/unifi-client-go/internal/http"
 )
 
 // {{.ClientName}} provides access to the {{.ClientName}} API.
