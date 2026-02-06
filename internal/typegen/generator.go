@@ -1,9 +1,11 @@
 package typegen
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -113,6 +115,52 @@ func (g *Generator) GenerateAll(baseURL, pkgName, outputDir string, workers int)
 	var allResults []GenerateResult
 	for result := range results {
 		allResults = append(allResults, result)
+	}
+
+	// Write schema JSON files for clientgen.
+	// clientgen expects one or more files ending in *_schema.json containing APISchema objects.
+	if outputDir != "" {
+		schemasByCategory := make(map[string][]APISchema)
+		for _, r := range allResults {
+			if r.Error != nil || r.Schema == nil {
+				continue
+			}
+
+			schema := *r.Schema
+			category := strings.TrimSpace(schema.Category)
+			if category == "" {
+				category = extractCategoryFromPath(schema.Path)
+			}
+			if category == "" {
+				category = "common"
+			}
+			schema.Category = category
+			schemasByCategory[category] = append(schemasByCategory[category], schema)
+		}
+
+		for category := range schemasByCategory {
+			sort.Slice(schemasByCategory[category], func(i, j int) bool {
+				return schemasByCategory[category][i].Endpoint < schemasByCategory[category][j].Endpoint
+			})
+		}
+
+		for category, schemas := range schemasByCategory {
+			categoryDir := filepath.Join(outputDir, category)
+			if err := os.MkdirAll(categoryDir, 0755); err != nil {
+				return nil, fmt.Errorf("failed to create schema output directory %s: %w", categoryDir, err)
+			}
+
+			data, err := json.MarshalIndent(schemas, "", "  ")
+			if err != nil {
+				return nil, fmt.Errorf("failed to marshal schemas for category %s: %w", category, err)
+			}
+
+			schemaPath := filepath.Join(categoryDir, "types_schema.json")
+			if err := os.WriteFile(schemaPath, append(data, '\n'), 0644); err != nil {
+				return nil, fmt.Errorf("failed to write schema file %s: %w", schemaPath, err)
+			}
+			fmt.Printf("Written: %s\n", schemaPath)
+		}
 	}
 
 	// Print summary of categories
@@ -257,6 +305,7 @@ func (g *Generator) worker(id int, jobs <-chan APIEndpoint, results chan<- Gener
 
 		result := GenerateResult{
 			Endpoint: endpoint,
+			Schema:   schema,
 			Code:     code,
 			Error:    err,
 		}

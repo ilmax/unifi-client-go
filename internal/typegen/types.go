@@ -11,6 +11,7 @@ type APIEndpoint struct {
 // GenerateResult holds the result of generating types for an endpoint.
 type GenerateResult struct {
 	Endpoint APIEndpoint
+	Schema   *APISchema
 	Code     string
 	Error    error
 }
