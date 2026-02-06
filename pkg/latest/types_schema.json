@@ -1,0 +1,173 @@
+[
+  {
+    "Endpoint": "Get Latest Adopted Device Statistics",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/devices/{deviceId}/statistics/latest",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "deviceId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "uptimeSec",
+          "Type": "integer",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "lastHeartbeatAt",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "nextHeartbeatAt",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "loadAverage1Min",
+          "Type": "number",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "loadAverage5Min",
+          "Type": "number",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "loadAverage15Min",
+          "Type": "number",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "cpuUtilizationPct",
+          "Type": "number",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "memoryUtilizationPct",
+          "Type": "number",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uplink",
+          "Type": "object (Latest statistics for a device uplink interface)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "txRateBps",
+              "Type": "integer",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "rxRateBps",
+              "Type": "integer",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "interfaces",
+          "Type": "object (Latest statistics for device interfaces)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "radios",
+              "Type": "Array of object (Latest statistics for wireless radio)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "frequencyGHz",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "txRetriesPct",
+                  "Type": "number",
+                  "Description": "",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "latest"
+  }
+]

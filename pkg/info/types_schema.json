@@ -1,0 +1,25 @@
+[
+  {
+    "Endpoint": "Get Application Info",
+    "Method": "GET",
+    "Path": "/v1/info",
+    "Description": "",
+    "PathParams": null,
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "applicationVersion",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "info"
+  }
+]

@@ -1,0 +1,602 @@
+[
+  {
+    "Endpoint": "Execute Client Action",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/clients/{clientId}/actions",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "clientId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "AUTHORIZE_GUEST_ACCESS",
+            "UNAUTHORIZE_GUEST_ACCESS"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "timeLimitMinutes",
+          "Type": "integer",
+          "Description": "(Optional) how long (in minutes) the guest will be authorized to access the network. If not specified, the default limit is used from the site settings",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dataUsageLimitMBytes",
+          "Type": "integer",
+          "Description": "(Optional) data usage limit in megabytes",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "rxRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) download rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "txRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) upload rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "AUTHORIZE_GUEST_ACCESS",
+            "UNAUTHORIZE_GUEST_ACCESS"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "revokedAuthorization",
+          "Type": "object (Guest authorization details)",
+          "Description": "(Optional) Revoked authorization in case the guest was already authorized at the time of this request",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "authorizedAt",
+              "Type": "string",
+              "Description": "Timestamp when the guest has been authorized",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizationMethod",
+              "Type": "string",
+              "Description": "Guest authorization method (API, Voucher etc)",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expiresAt",
+              "Type": "string",
+              "Description": "Timestamp when the guest will get automatically unauthorized",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "dataUsageLimitMBytes",
+              "Type": "integer",
+              "Description": "(Optional) data usage limit in megabytes",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "rxRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) download rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "txRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) upload rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "usage",
+              "Type": "object (Guest authorization usage details)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "durationSec",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "rxBytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "txBytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "bytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "grantedAuthorization",
+          "Type": "object (Guest authorization details)",
+          "Description": "Granted guest authorization",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "authorizedAt",
+              "Type": "string",
+              "Description": "Timestamp when the guest has been authorized",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizationMethod",
+              "Type": "string",
+              "Description": "Guest authorization method (API, Voucher etc)",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expiresAt",
+              "Type": "string",
+              "Description": "Timestamp when the guest will get automatically unauthorized",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "dataUsageLimitMBytes",
+              "Type": "integer",
+              "Description": "(Optional) data usage limit in megabytes",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "rxRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) download rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "txRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) upload rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "usage",
+              "Type": "object (Guest authorization usage details)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "durationSec",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "rxBytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "txBytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "bytes",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "clients"
+  },
+  {
+    "Endpoint": "Get Connected Client Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/clients/{clientId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "clientId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "WIRED",
+            "WIRELESS",
+            "VPN",
+            "TELEPORT"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "connectedAt",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "ipAddress",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "access",
+          "Type": "object (Local client access details)",
+          "Description": "Represents the type of network access and/or any applicable authorization status the client is using. - **Wired clients** may have direct access without additional authorization. - **Wireless clients** can be connected via a protected network or an open network that may require additional authorization (e.g., a guest portal). - **VPN clients** may have different authorization mechanisms. Currently, the only two supported access types are `GUEST` (used for wired and wireless guest clients) and `DEFAULT` (a placeholder, which might be refined in the future releases, used for all other clients). Filtering is possible by `access.type`, for example `access.type.eq('GUEST')` to list guest clients.",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEFAULT",
+                "GUEST"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "macAddress",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uplinkDeviceId",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "clients"
+  },
+  {
+    "Endpoint": "List Connected Clients",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/clients",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Client overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "WIRED",
+                "WIRELESS",
+                "VPN",
+                "TELEPORT"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "connectedAt",
+              "Type": "string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "ipAddress",
+              "Type": "string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "access",
+              "Type": "object (Local client access overview)",
+              "Description": "Represents the type of network access and/or any applicable authorization status the client is using. - **Wired clients** may have direct access without additional authorization. - **Wireless clients** can be connected via a protected network or an open network that may require additional authorization (e.g., a guest portal). - **VPN clients** may have different authorization mechanisms. Currently, the only two supported access types are `GUEST` (used for wired and wireless guest clients) and `DEFAULT` (a placeholder, which might be refined in the future releases, used for all other clients). Filtering is possible by `access.type`, for example `access.type.eq('GUEST')` to list guest clients.",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "DEFAULT",
+                    "GUEST"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "macAddress",
+              "Type": "string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "uplinkDeviceId",
+              "Type": "string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "clients"
+  }
+]

@@ -1,0 +1,2813 @@
+[
+  {
+    "Endpoint": "Create Wifi Broadcast",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/wifi/broadcasts",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "STANDARD",
+            "IOT_OPTIMIZED"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "network",
+          "Type": "object (Wifi network reference)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "NATIVE",
+                "SPECIFIC"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "securityConfiguration",
+          "Type": "object (Wifi security configuration detailObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "OPEN",
+                "WPA2_PERSONAL",
+                "WPA3_PERSONAL",
+                "WPA2_WPA3_PERSONAL",
+                "WPA2_ENTERPRISE",
+                "WPA3_ENTERPRISE",
+                "WPA2_WPA3_ENTERPRISE"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "radiusConfiguration",
+              "Type": "object (IntegrationWifiNonEnterpriseRadiusConfigurationDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "profileId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "nasId",
+                  "Type": "object (Wifi Radius NAS ID configuration)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "type",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": [
+                        "DERIVED",
+                        "USER_DEFINED"
+                      ],
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "source",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": false,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                },
+                {
+                  "Name": "macAuthenticationConfiguration",
+                  "Type": "object (IntegrationWifiRadiusMacAuthenticationConfigurationDto)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "macAddressFormat",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingDeviceFilter",
+          "Type": "object (Broadcasting device filter)",
+          "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES",
+                "DEVICE_TAGS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mdnsProxyConfiguration",
+          "Type": "object (mDNS filtering configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "mode",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "AUTO",
+                "CUSTOM"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastFilteringPolicy",
+          "Type": "object (Multicast filtering policy)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "ALLOW",
+                "BLOCK"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceMacAddressFilter",
+              "Type": "Array of string",
+              "Description": "List of multicast source MAC addresses allowed. Multicast traffic from gateways is always allowed.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastToUnicastConversionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "clientIsolationEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "hideName",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uapsdEnabled",
+          "Type": "boolean",
+          "Description": "Indicates whether Unscheduled Automatic Power Save Delivery (U-APSD) is enabled",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "basicDataRateKbpsByFrequencyGHz",
+          "Type": "object (IntegrationWifiBasicDataRateConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "clientFilteringPolicy",
+          "Type": "object (IntegrationWifiClientFilteringPolicyDto)",
+          "Description": "Client connection filtering policy. Allow/restrict access to the WiFi network based on client device MAC addresses.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddressFilter",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "blackoutScheduleConfiguration",
+          "Type": "object (Integration blackout schedule configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "days",
+              "Type": "Array of object (Blackout schedule configuration per day)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "ALL_DAY",
+                    "TIME_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "day",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingFrequenciesGHz",
+          "Type": "Array of string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        },
+        {
+          "Name": "hotspotConfiguration",
+          "Type": "object (Wifi hotspot configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "CAPTIVE_PORTAL",
+                "PASSPOINT"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mloEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bandSteeringEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "arpProxyEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bssTransitionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dtimPeriodByFrequencyGHzOverride",
+          "Type": "object (IntegrationWifiDtimPeriodConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "6",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "STANDARD",
+            "IOT_OPTIMIZED"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or derived or orchestrated entity metadata)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "network",
+          "Type": "object (Wifi network reference)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "NATIVE",
+                "SPECIFIC"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "securityConfiguration",
+          "Type": "object (Wifi security configuration detailObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "OPEN",
+                "WPA2_PERSONAL",
+                "WPA3_PERSONAL",
+                "WPA2_WPA3_PERSONAL",
+                "WPA2_ENTERPRISE",
+                "WPA3_ENTERPRISE",
+                "WPA2_WPA3_ENTERPRISE"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "radiusConfiguration",
+              "Type": "object (IntegrationWifiNonEnterpriseRadiusConfigurationDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "profileId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "nasId",
+                  "Type": "object (Wifi Radius NAS ID configuration)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "type",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": [
+                        "DERIVED",
+                        "USER_DEFINED"
+                      ],
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "source",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": false,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                },
+                {
+                  "Name": "macAuthenticationConfiguration",
+                  "Type": "object (IntegrationWifiRadiusMacAuthenticationConfigurationDto)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "macAddressFormat",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingDeviceFilter",
+          "Type": "object (Broadcasting device filter)",
+          "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES",
+                "DEVICE_TAGS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mdnsProxyConfiguration",
+          "Type": "object (mDNS filtering configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "mode",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "AUTO",
+                "CUSTOM"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastFilteringPolicy",
+          "Type": "object (Multicast filtering policy)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "ALLOW",
+                "BLOCK"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceMacAddressFilter",
+              "Type": "Array of string",
+              "Description": "List of multicast source MAC addresses allowed. Multicast traffic from gateways is always allowed.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastToUnicastConversionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "clientIsolationEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "hideName",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uapsdEnabled",
+          "Type": "boolean",
+          "Description": "Indicates whether Unscheduled Automatic Power Save Delivery (U-APSD) is enabled",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "basicDataRateKbpsByFrequencyGHz",
+          "Type": "object (IntegrationWifiBasicDataRateConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "clientFilteringPolicy",
+          "Type": "object (IntegrationWifiClientFilteringPolicyDto)",
+          "Description": "Client connection filtering policy. Allow/restrict access to the WiFi network based on client device MAC addresses.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddressFilter",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "blackoutScheduleConfiguration",
+          "Type": "object (Integration blackout schedule configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "days",
+              "Type": "Array of object (Blackout schedule configuration per day)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "ALL_DAY",
+                    "TIME_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "day",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingFrequenciesGHz",
+          "Type": "Array of string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        },
+        {
+          "Name": "hotspotConfiguration",
+          "Type": "object (Wifi hotspot configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "CAPTIVE_PORTAL",
+                "PASSPOINT"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mloEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bandSteeringEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "arpProxyEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bssTransitionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dtimPeriodByFrequencyGHzOverride",
+          "Type": "object (IntegrationWifiDtimPeriodConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "6",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "broadcasts"
+  },
+  {
+    "Endpoint": "Delete Wifi Broadcast",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/wifi/broadcasts/{wifiBroadcastId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "wifiBroadcastId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null
+    },
+    "Category": "broadcasts"
+  },
+  {
+    "Endpoint": "Get Wifi Broadcast Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/wifi/broadcasts/{wifiBroadcastId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "wifiBroadcastId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "STANDARD",
+            "IOT_OPTIMIZED"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or derived or orchestrated entity metadata)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "network",
+          "Type": "object (Wifi network reference)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "NATIVE",
+                "SPECIFIC"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "securityConfiguration",
+          "Type": "object (Wifi security configuration detailObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "OPEN",
+                "WPA2_PERSONAL",
+                "WPA3_PERSONAL",
+                "WPA2_WPA3_PERSONAL",
+                "WPA2_ENTERPRISE",
+                "WPA3_ENTERPRISE",
+                "WPA2_WPA3_ENTERPRISE"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "radiusConfiguration",
+              "Type": "object (IntegrationWifiNonEnterpriseRadiusConfigurationDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "profileId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "nasId",
+                  "Type": "object (Wifi Radius NAS ID configuration)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "type",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": [
+                        "DERIVED",
+                        "USER_DEFINED"
+                      ],
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "source",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": false,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                },
+                {
+                  "Name": "macAuthenticationConfiguration",
+                  "Type": "object (IntegrationWifiRadiusMacAuthenticationConfigurationDto)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "macAddressFormat",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingDeviceFilter",
+          "Type": "object (Broadcasting device filter)",
+          "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES",
+                "DEVICE_TAGS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mdnsProxyConfiguration",
+          "Type": "object (mDNS filtering configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "mode",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "AUTO",
+                "CUSTOM"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastFilteringPolicy",
+          "Type": "object (Multicast filtering policy)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "ALLOW",
+                "BLOCK"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceMacAddressFilter",
+              "Type": "Array of string",
+              "Description": "List of multicast source MAC addresses allowed. Multicast traffic from gateways is always allowed.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastToUnicastConversionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "clientIsolationEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "hideName",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uapsdEnabled",
+          "Type": "boolean",
+          "Description": "Indicates whether Unscheduled Automatic Power Save Delivery (U-APSD) is enabled",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "basicDataRateKbpsByFrequencyGHz",
+          "Type": "object (IntegrationWifiBasicDataRateConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "clientFilteringPolicy",
+          "Type": "object (IntegrationWifiClientFilteringPolicyDto)",
+          "Description": "Client connection filtering policy. Allow/restrict access to the WiFi network based on client device MAC addresses.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddressFilter",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "blackoutScheduleConfiguration",
+          "Type": "object (Integration blackout schedule configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "days",
+              "Type": "Array of object (Blackout schedule configuration per day)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "ALL_DAY",
+                    "TIME_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "day",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingFrequenciesGHz",
+          "Type": "Array of string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        },
+        {
+          "Name": "hotspotConfiguration",
+          "Type": "object (Wifi hotspot configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "CAPTIVE_PORTAL",
+                "PASSPOINT"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mloEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bandSteeringEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "arpProxyEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bssTransitionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dtimPeriodByFrequencyGHzOverride",
+          "Type": "object (IntegrationWifiDtimPeriodConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "6",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "broadcasts"
+  },
+  {
+    "Endpoint": "List Wifi Broadcasts",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/wifi/broadcasts",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Wifi broadcast overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "STANDARD",
+                "IOT_OPTIMIZED"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "enabled",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "metadata",
+              "Type": "object (User or derived or orchestrated entity metadata)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "origin",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "USER_DEFINED",
+                    "DERIVED",
+                    "ORCHESTRATED"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "network",
+              "Type": "object (Wifi network reference)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "NATIVE",
+                    "SPECIFIC"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "securityConfiguration",
+              "Type": "object (Wifi security configuration overview)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "OPEN",
+                    "WPA2_PERSONAL",
+                    "WPA3_PERSONAL",
+                    "WPA2_WPA3_PERSONAL",
+                    "WPA2_ENTERPRISE",
+                    "WPA3_ENTERPRISE",
+                    "WPA2_WPA3_ENTERPRISE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "broadcastingDeviceFilter",
+              "Type": "object (Broadcasting device filter)",
+              "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "DEVICES",
+                    "DEVICE_TAGS"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "deviceIds",
+                  "Type": "Array of string",
+                  "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": true
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "broadcastingFrequenciesGHz",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            },
+            {
+              "Name": "hotspotConfiguration",
+              "Type": "object (IntegrationWifiHotspotConfigurationOverviewDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "broadcasts"
+  },
+  {
+    "Endpoint": "Update Wifi Broadcast",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/wifi/broadcasts/{wifiBroadcastId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "wifiBroadcastId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "STANDARD",
+            "IOT_OPTIMIZED"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "network",
+          "Type": "object (Wifi network reference)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "NATIVE",
+                "SPECIFIC"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "securityConfiguration",
+          "Type": "object (Wifi security configuration detailObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "OPEN",
+                "WPA2_PERSONAL",
+                "WPA3_PERSONAL",
+                "WPA2_WPA3_PERSONAL",
+                "WPA2_ENTERPRISE",
+                "WPA3_ENTERPRISE",
+                "WPA2_WPA3_ENTERPRISE"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "radiusConfiguration",
+              "Type": "object (IntegrationWifiNonEnterpriseRadiusConfigurationDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "profileId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "nasId",
+                  "Type": "object (Wifi Radius NAS ID configuration)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "type",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": [
+                        "DERIVED",
+                        "USER_DEFINED"
+                      ],
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "source",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": false,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                },
+                {
+                  "Name": "macAuthenticationConfiguration",
+                  "Type": "object (IntegrationWifiRadiusMacAuthenticationConfigurationDto)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "macAddressFormat",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingDeviceFilter",
+          "Type": "object (Broadcasting device filter)",
+          "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES",
+                "DEVICE_TAGS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mdnsProxyConfiguration",
+          "Type": "object (mDNS filtering configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "mode",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "AUTO",
+                "CUSTOM"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastFilteringPolicy",
+          "Type": "object (Multicast filtering policy)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "ALLOW",
+                "BLOCK"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceMacAddressFilter",
+              "Type": "Array of string",
+              "Description": "List of multicast source MAC addresses allowed. Multicast traffic from gateways is always allowed.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastToUnicastConversionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "clientIsolationEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "hideName",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uapsdEnabled",
+          "Type": "boolean",
+          "Description": "Indicates whether Unscheduled Automatic Power Save Delivery (U-APSD) is enabled",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "basicDataRateKbpsByFrequencyGHz",
+          "Type": "object (IntegrationWifiBasicDataRateConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "clientFilteringPolicy",
+          "Type": "object (IntegrationWifiClientFilteringPolicyDto)",
+          "Description": "Client connection filtering policy. Allow/restrict access to the WiFi network based on client device MAC addresses.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddressFilter",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "blackoutScheduleConfiguration",
+          "Type": "object (Integration blackout schedule configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "days",
+              "Type": "Array of object (Blackout schedule configuration per day)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "ALL_DAY",
+                    "TIME_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "day",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingFrequenciesGHz",
+          "Type": "Array of string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        },
+        {
+          "Name": "hotspotConfiguration",
+          "Type": "object (Wifi hotspot configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "CAPTIVE_PORTAL",
+                "PASSPOINT"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mloEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bandSteeringEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "arpProxyEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bssTransitionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dtimPeriodByFrequencyGHzOverride",
+          "Type": "object (IntegrationWifiDtimPeriodConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "6",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "STANDARD",
+            "IOT_OPTIMIZED"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or derived or orchestrated entity metadata)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "network",
+          "Type": "object (Wifi network reference)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "NATIVE",
+                "SPECIFIC"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "securityConfiguration",
+          "Type": "object (Wifi security configuration detailObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "OPEN",
+                "WPA2_PERSONAL",
+                "WPA3_PERSONAL",
+                "WPA2_WPA3_PERSONAL",
+                "WPA2_ENTERPRISE",
+                "WPA3_ENTERPRISE",
+                "WPA2_WPA3_ENTERPRISE"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "radiusConfiguration",
+              "Type": "object (IntegrationWifiNonEnterpriseRadiusConfigurationDto)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "profileId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "nasId",
+                  "Type": "object (Wifi Radius NAS ID configuration)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "type",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": [
+                        "DERIVED",
+                        "USER_DEFINED"
+                      ],
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "source",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": false,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                },
+                {
+                  "Name": "macAuthenticationConfiguration",
+                  "Type": "object (IntegrationWifiRadiusMacAuthenticationConfigurationDto)",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "macAddressFormat",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingDeviceFilter",
+          "Type": "object (Broadcasting device filter)",
+          "Description": "Defines the custom scope of devices that will broadcast this WiFi network. If null, the WiFi network will be broadcast by all Access Point capable devices.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES",
+                "DEVICE_TAGS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Access Point capable device IDs to which the WiFi broadcast applies.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mdnsProxyConfiguration",
+          "Type": "object (mDNS filtering configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "mode",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "AUTO",
+                "CUSTOM"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastFilteringPolicy",
+          "Type": "object (Multicast filtering policy)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "ALLOW",
+                "BLOCK"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceMacAddressFilter",
+              "Type": "Array of string",
+              "Description": "List of multicast source MAC addresses allowed. Multicast traffic from gateways is always allowed.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "multicastToUnicastConversionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "clientIsolationEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "hideName",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uapsdEnabled",
+          "Type": "boolean",
+          "Description": "Indicates whether Unscheduled Automatic Power Save Delivery (U-APSD) is enabled",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "basicDataRateKbpsByFrequencyGHz",
+          "Type": "object (IntegrationWifiBasicDataRateConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "clientFilteringPolicy",
+          "Type": "object (IntegrationWifiClientFilteringPolicyDto)",
+          "Description": "Client connection filtering policy. Allow/restrict access to the WiFi network based on client device MAC addresses.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddressFilter",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "blackoutScheduleConfiguration",
+          "Type": "object (Integration blackout schedule configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "days",
+              "Type": "Array of object (Blackout schedule configuration per day)",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "ALL_DAY",
+                    "TIME_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "day",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "broadcastingFrequenciesGHz",
+          "Type": "Array of string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        },
+        {
+          "Name": "hotspotConfiguration",
+          "Type": "object (Wifi hotspot configuration)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "CAPTIVE_PORTAL",
+                "PASSPOINT"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "mloEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bandSteeringEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "arpProxyEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "bssTransitionEnabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dtimPeriodByFrequencyGHzOverride",
+          "Type": "object (IntegrationWifiDtimPeriodConfigurationDto)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "5",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "6",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "2.4",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "broadcasts"
+  }
+]
