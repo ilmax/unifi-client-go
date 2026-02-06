@@ -1,0 +1,632 @@
+[
+  {
+    "Endpoint": "Delete Voucher",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/hotspot/vouchers/{voucherId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "voucherId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "vouchersDeleted",
+          "Type": "integer",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "vouchers"
+  },
+  {
+    "Endpoint": "Delete Vouchers",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/hotspot/vouchers",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "vouchersDeleted",
+          "Type": "integer",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "vouchers"
+  },
+  {
+    "Endpoint": "Generate Vouchers",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/hotspot/vouchers",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "Number of vouchers to generate",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Voucher note, duplicated across all generated vouchers",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "authorizedGuestLimit",
+          "Type": "integer",
+          "Description": "(Optional) limit for how many different guests can use the same voucher to authorize network access",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "timeLimitMinutes",
+          "Type": "integer",
+          "Description": "How long (in minutes) the voucher will provide access to the network since authorization of the first guest. Subsequently connected guests, if allowed, will share the same expiration time.",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dataUsageLimitMBytes",
+          "Type": "integer",
+          "Description": "(Optional) data usage limit in megabytes",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "rxRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) download rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "txRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) upload rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "vouchers",
+          "Type": "Array of object (Hotspot voucher details)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "createdAt",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "Voucher note, may contain duplicate values across multiple vouchers",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "code",
+              "Type": "string",
+              "Description": "Secret code to active the voucher using the Hotspot portal",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizedGuestLimit",
+              "Type": "integer",
+              "Description": "(Optional) limit for how many different guests can use the same voucher to authorize network access",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizedGuestCount",
+              "Type": "integer",
+              "Description": "For how many guests the voucher has been used to authorize network access",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "activatedAt",
+              "Type": "string",
+              "Description": "(Optional) timestamp when the voucher has been activated (authorization time of the first guest)",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expiresAt",
+              "Type": "string",
+              "Description": "(Optional) timestamp when the voucher will become expired. All guests using the voucher will be unauthorized from network access",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expired",
+              "Type": "boolean",
+              "Description": "Whether the voucher has been expired and can no longer be used to authorize network access",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "timeLimitMinutes",
+              "Type": "integer",
+              "Description": "How long (in minutes) the voucher will provide access to the network since authorization of the first guest. Subsequently connected guests, if allowed, will share the same expiration time.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "dataUsageLimitMBytes",
+              "Type": "integer",
+              "Description": "(Optional) data usage limit in megabytes",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "rxRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) download rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "txRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) upload rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "vouchers"
+  },
+  {
+    "Endpoint": "Get Voucher Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/hotspot/vouchers/{voucherId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "voucherId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "createdAt",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Voucher note, may contain duplicate values across multiple vouchers",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "code",
+          "Type": "string",
+          "Description": "Secret code to active the voucher using the Hotspot portal",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "authorizedGuestLimit",
+          "Type": "integer",
+          "Description": "(Optional) limit for how many different guests can use the same voucher to authorize network access",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "authorizedGuestCount",
+          "Type": "integer",
+          "Description": "For how many guests the voucher has been used to authorize network access",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "activatedAt",
+          "Type": "string",
+          "Description": "(Optional) timestamp when the voucher has been activated (authorization time of the first guest)",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "expiresAt",
+          "Type": "string",
+          "Description": "(Optional) timestamp when the voucher will become expired. All guests using the voucher will be unauthorized from network access",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "expired",
+          "Type": "boolean",
+          "Description": "Whether the voucher has been expired and can no longer be used to authorize network access",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "timeLimitMinutes",
+          "Type": "integer",
+          "Description": "How long (in minutes) the voucher will provide access to the network since authorization of the first guest. Subsequently connected guests, if allowed, will share the same expiration time.",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dataUsageLimitMBytes",
+          "Type": "integer",
+          "Description": "(Optional) data usage limit in megabytes",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "rxRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) download rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "txRateLimitKbps",
+          "Type": "integer",
+          "Description": "(Optional) upload rate limit in kilobits per second",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "vouchers"
+  },
+  {
+    "Endpoint": "List Vouchers",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/hotspot/vouchers",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Hotspot voucher details)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "createdAt",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "Voucher note, may contain duplicate values across multiple vouchers",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "code",
+              "Type": "string",
+              "Description": "Secret code to active the voucher using the Hotspot portal",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizedGuestLimit",
+              "Type": "integer",
+              "Description": "(Optional) limit for how many different guests can use the same voucher to authorize network access",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "authorizedGuestCount",
+              "Type": "integer",
+              "Description": "For how many guests the voucher has been used to authorize network access",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "activatedAt",
+              "Type": "string",
+              "Description": "(Optional) timestamp when the voucher has been activated (authorization time of the first guest)",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expiresAt",
+              "Type": "string",
+              "Description": "(Optional) timestamp when the voucher will become expired. All guests using the voucher will be unauthorized from network access",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "expired",
+              "Type": "boolean",
+              "Description": "Whether the voucher has been expired and can no longer be used to authorize network access",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "timeLimitMinutes",
+              "Type": "integer",
+              "Description": "How long (in minutes) the voucher will provide access to the network since authorization of the first guest. Subsequently connected guests, if allowed, will share the same expiration time.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "dataUsageLimitMBytes",
+              "Type": "integer",
+              "Description": "(Optional) data usage limit in megabytes",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "rxRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) download rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "txRateLimitKbps",
+              "Type": "integer",
+              "Description": "(Optional) upload rate limit in kilobits per second",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "vouchers"
+  }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "Endpoint": "List DPI Categories",
+    "Method": "GET",
+    "Path": "/v1/dpi/categories",
+    "Description": "",
+    "PathParams": null,
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (DPI category)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "categories"
+  }
+]

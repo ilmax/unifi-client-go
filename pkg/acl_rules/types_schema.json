@@ -1,0 +1,1080 @@
+[
+  {
+    "Endpoint": "Create ACL Rule",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/acl-rules",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "IPV4",
+            "MAC"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "ACL rule name",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "ACL rule description",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "ACL rule action",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enforcingDeviceFilter",
+          "Type": "object (ACL rule device filter)",
+          "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "index",
+          "Type": "integer",
+          "Description": "ACL rule index. Lower index has higher priority",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "sourceFilter",
+          "Type": "object (IP ACL rule endpoint)",
+          "Description": "Traffic source filter",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "IP_ADDRESSES_OR_SUBNETS",
+                "NETWORKS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "ipAddressesOrSubnets",
+              "Type": "Array of string",
+              "Description": "IP addresses or subnets",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            },
+            {
+              "Name": "portFilter",
+              "Type": "Array of integer",
+              "Description": "Ports this ACL rule will be applied to. If null, all the rule will be applied to all ports.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "destinationFilter",
+          "Type": "object (IP ACL rule endpoint)",
+          "Description": "Traffic destination filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "protocolFilter",
+          "Type": "Array of string",
+          "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "IPV4",
+            "MAC"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "ACL rule name",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "ACL rule description",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "ACL rule action",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enforcingDeviceFilter",
+          "Type": "object (ACL rule device filter)",
+          "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "index",
+          "Type": "integer",
+          "Description": "ACL rule index. Lower index has higher priority",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "sourceFilter",
+          "Type": "any",
+          "Description": "Traffic source filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "destinationFilter",
+          "Type": "any",
+          "Description": "Traffic destination filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (Entity metadata)",
+          "Description": "Only user-defined rules can be deleted or modified",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "protocolFilter",
+          "Type": "Array of string",
+          "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "acl_rules"
+  },
+  {
+    "Endpoint": "Delete ACL Rule",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/acl-rules/{aclRuleId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "aclRuleId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null
+    },
+    "Category": "acl_rules"
+  },
+  {
+    "Endpoint": "Get ACL Rule",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/acl-rules/{aclRuleId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "aclRuleId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "IPV4",
+            "MAC"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "ACL rule name",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "ACL rule description",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "ACL rule action",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enforcingDeviceFilter",
+          "Type": "object (ACL rule device filter)",
+          "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "index",
+          "Type": "integer",
+          "Description": "ACL rule index. Lower index has higher priority",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "sourceFilter",
+          "Type": "any",
+          "Description": "Traffic source filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "destinationFilter",
+          "Type": "any",
+          "Description": "Traffic destination filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (Entity metadata)",
+          "Description": "Only user-defined rules can be deleted or modified",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "protocolFilter",
+          "Type": "Array of string",
+          "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "acl_rules"
+  },
+  {
+    "Endpoint": "List ACL Rules",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/acl-rules",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (ACL ruleObject)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "IPV4",
+                "MAC"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "enabled",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "ACL rule name",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "description",
+              "Type": "string",
+              "Description": "ACL rule description",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "action",
+              "Type": "string",
+              "Description": "ACL rule action",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "enforcingDeviceFilter",
+              "Type": "object (ACL rule device filter)",
+              "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "DEVICES"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "deviceIds",
+                  "Type": "Array of string",
+                  "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": true
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "index",
+              "Type": "integer",
+              "Description": "ACL rule index. Lower index has higher priority",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "sourceFilter",
+              "Type": "any",
+              "Description": "Traffic source filter",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "destinationFilter",
+              "Type": "any",
+              "Description": "Traffic destination filter",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "metadata",
+              "Type": "object (Entity metadata)",
+              "Description": "Only user-defined rules can be deleted or modified",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "origin",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "USER_DEFINED",
+                    "SYSTEM_DEFINED",
+                    "DERIVED",
+                    "ORCHESTRATED"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            },
+            {
+              "Name": "protocolFilter",
+              "Type": "Array of string",
+              "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "acl_rules"
+  },
+  {
+    "Endpoint": "Update ACL Rule",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/acl-rules/{aclRuleId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "aclRuleId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "IPV4",
+            "MAC"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "ACL rule name",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "ACL rule description",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "ACL rule action",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enforcingDeviceFilter",
+          "Type": "object (ACL rule device filter)",
+          "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "index",
+          "Type": "integer",
+          "Description": "ACL rule index. Lower index has higher priority",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "sourceFilter",
+          "Type": "object (IP ACL rule endpoint)",
+          "Description": "Traffic source filter",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "IP_ADDRESSES_OR_SUBNETS",
+                "NETWORKS"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "ipAddressesOrSubnets",
+              "Type": "Array of string",
+              "Description": "IP addresses or subnets",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            },
+            {
+              "Name": "portFilter",
+              "Type": "Array of integer",
+              "Description": "Ports this ACL rule will be applied to. If null, all the rule will be applied to all ports.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "destinationFilter",
+          "Type": "object (IP ACL rule endpoint)",
+          "Description": "Traffic destination filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "protocolFilter",
+          "Type": "Array of string",
+          "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "IPV4",
+            "MAC"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "ACL rule name",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "description",
+          "Type": "string",
+          "Description": "ACL rule description",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "ACL rule action",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enforcingDeviceFilter",
+          "Type": "object (ACL rule device filter)",
+          "Description": "IDs of the Switch-capable devices used to enforce the ACL rule. When null, the rule will be provisioned to all switches on the site.",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "DEVICES"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "deviceIds",
+              "Type": "Array of string",
+              "Description": "List of Switch capable device IDs to which the ACL rule will be provisioned.",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "index",
+          "Type": "integer",
+          "Description": "ACL rule index. Lower index has higher priority",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "sourceFilter",
+          "Type": "any",
+          "Description": "Traffic source filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "destinationFilter",
+          "Type": "any",
+          "Description": "Traffic destination filter",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (Entity metadata)",
+          "Description": "Only user-defined rules can be deleted or modified",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "DERIVED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "protocolFilter",
+          "Type": "Array of string",
+          "Description": "Protocols this ACL rule will be applied to. When null, the rule will be applied to all protocols.",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "acl_rules"
+  }
+]

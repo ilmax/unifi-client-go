@@ -1,0 +1,90 @@
+[
+  {
+    "Endpoint": "List WAN Interfaces",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/wans",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (WAN overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "wans"
+  }
+]

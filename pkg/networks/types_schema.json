@@ -1,0 +1,665 @@
+[
+  {
+    "Endpoint": "Create Network",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/networks",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Delete Network",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Get Network Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "List Networks",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/networks",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Network overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "management",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "UNMANAGED",
+                "GATEWAY",
+                "SWITCH"
+              ],
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "enabled",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "vlanId",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "metadata",
+              "Type": "object (User or system defined or orchestrated entity metadata)",
+              "Description": "Orchestrated or System-defined configurable network support",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "origin",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "USER_DEFINED",
+                    "SYSTEM_DEFINED",
+                    "ORCHESTRATED"
+                  ],
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": false
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Update Network",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "networks"
+  }
+]

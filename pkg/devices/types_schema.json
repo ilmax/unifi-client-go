@@ -1,0 +1,563 @@
+[
+  {
+    "Endpoint": "Execute Adopted Device Action",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/devices/{deviceId}/actions",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "deviceId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "RESTART"
+          ],
+          "Children": null,
+          "IsArray": false
+        }
+      ]
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": null
+    },
+    "Category": "devices"
+  },
+  {
+    "Endpoint": "Get Adopted Device Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/devices/{deviceId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      },
+      {
+        "Name": "deviceId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "macAddress",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "ipAddress",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "model",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "supported",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "state",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "firmwareVersion",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "firmwareUpdatable",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "adoptedAt",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "provisionedAt",
+          "Type": "string",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "configurationId",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "uplink",
+          "Type": "object (Device uplink interface overview)",
+          "Description": "Uplink interface is device's connection to the parent device in the network topology",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "deviceId",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "features",
+          "Type": "object (Device features)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "switching",
+              "Type": "any",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "accessPoint",
+              "Type": "any",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            }
+          ],
+          "IsArray": false
+        },
+        {
+          "Name": "interfaces",
+          "Type": "object (Device physical interfaces)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "ports",
+              "Type": "Array of object (Port overview)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "idx",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "state",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "connector",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "maxSpeedMbps",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "speedMbps",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "poe",
+                  "Type": "object (Port PoE overview)",
+                  "Description": "",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": [
+                    {
+                      "Name": "standard",
+                      "Type": "string",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "type",
+                      "Type": "integer",
+                      "Description": "",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "enabled",
+                      "Type": "boolean",
+                      "Description": "Whether the PoE feature is enabled on the port",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    },
+                    {
+                      "Name": "state",
+                      "Type": "string",
+                      "Description": "Whether the port currently supplies power to the (connected) device.",
+                      "Required": true,
+                      "Enum": null,
+                      "Children": null,
+                      "IsArray": false
+                    }
+                  ],
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            },
+            {
+              "Name": "radios",
+              "Type": "Array of object (Wireless radio overview)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "wlanStandard",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "frequencyGHz",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "channelWidthMHz",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                },
+                {
+                  "Name": "channel",
+                  "Type": "integer",
+                  "Description": "",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false
+                }
+              ],
+              "IsArray": true
+            }
+          ],
+          "IsArray": false
+        }
+      ]
+    },
+    "Category": "devices"
+  },
+  {
+    "Endpoint": "List Adopted Devices",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/devices",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Adopted device overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "macAddress",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "ipAddress",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "model",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "state",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "supported",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "firmwareVersion",
+              "Type": "string",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "firmwareUpdatable",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false
+            },
+            {
+              "Name": "features",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            },
+            {
+              "Name": "interfaces",
+              "Type": "Array of string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true
+            }
+          ],
+          "IsArray": true
+        }
+      ]
+    },
+    "Category": "devices"
+  }
+]
