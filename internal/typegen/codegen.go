@@ -40,8 +40,13 @@ func generateCode(schema *APISchema, pkgName string) string {
 		writeStructWithCommonTypes(&sb, endpointName+"Request", schema.Request.Properties, nestedTypes, endpointName, usedCommonTypes)
 	}
 
+	// Always emit a response type since clientgen always references <Endpoint>Response.
+	// Some endpoints legitimately have an empty response body.
 	if schema.Response != nil && len(schema.Response.Properties) > 0 {
 		writeStructWithCommonTypes(&sb, endpointName+"Response", schema.Response.Properties, nestedTypes, endpointName, usedCommonTypes)
+	} else {
+		fmt.Fprintf(&sb, "// %sResponse represents the API response for %s.\n", endpointName, schema.Endpoint)
+		fmt.Fprintf(&sb, "type %sResponse struct {}\n\n", endpointName)
 	}
 
 	processed := make(map[string]bool)

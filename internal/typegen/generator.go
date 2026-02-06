@@ -117,6 +117,37 @@ func (g *Generator) GenerateAll(baseURL, pkgName, outputDir string, workers int)
 		allResults = append(allResults, result)
 	}
 
+	// Ensure every generated package has the shared common types available.
+	// This avoids cross-package imports and keeps generated packages self-contained.
+	if outputDir != "" {
+		categorySet := make(map[string]bool)
+		for _, r := range allResults {
+			if r.Error != nil || r.Schema == nil {
+				continue
+			}
+			cat := strings.TrimSpace(r.Schema.Category)
+			if cat == "" {
+				cat = extractCategoryFromPath(r.Schema.Path)
+			}
+			cat = sanitizeGoPackageName(cat)
+			if cat != "" {
+				categorySet[cat] = true
+			}
+		}
+
+		for cat := range categorySet {
+			catDir := filepath.Join(outputDir, cat)
+			if err := os.MkdirAll(catDir, 0755); err != nil {
+				return nil, fmt.Errorf("failed to create category directory %s: %w", catDir, err)
+			}
+			commonCode := generateCommonTypesCode(cat)
+			commonPath := filepath.Join(catDir, "common_types.go")
+			if err := os.WriteFile(commonPath, []byte(commonCode), 0644); err != nil {
+				return nil, fmt.Errorf("failed to write common types for category %s: %w", cat, err)
+			}
+		}
+	}
+
 	// Write schema JSON files for clientgen.
 	// clientgen expects one or more files ending in *_schema.json containing APISchema objects.
 	if outputDir != "" {
