@@ -461,7 +461,7 @@ func TestSchemaToMethodInfo(t *testing.T) {
 		Category: "clients",
 	}
 
-	method := gen.schemaToMethodInfo(schema)
+	method := gen.schemaToMethodInfo(&schema)
 
 	if method.Name != "ListClients" {
 		t.Errorf("method.Name = %q, want %q", method.Name, "ListClients")
