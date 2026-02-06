@@ -1,0 +1,1193 @@
+[
+  {
+    "Endpoint": "Create Traffic Matching List",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/traffic-matching-lists",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "PORTS",
+            "IPV4_ADDRESSES",
+            "IPV6_ADDRESSES"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "items",
+          "Type": "Array of object (Port matching)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORT_NUMBER",
+                "PORT_NUMBER_RANGE"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "value",
+              "Type": "integer",
+              "Description": "Port number",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "type",
+      "Variants": {
+        "IPV4_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv4 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET",
+                  "IP_ADDRESS_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv4 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "IPV6_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv6 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv6 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "PORTS": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (Port matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PORT_NUMBER",
+                  "PORT_NUMBER_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "integer",
+                "Description": "Port number",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "PORTS",
+            "IPV4_ADDRESSES",
+            "IPV6_ADDRESSES"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "items",
+          "Type": "Array of object (Port matching)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORT_NUMBER",
+                "PORT_NUMBER_RANGE"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "value",
+              "Type": "integer",
+              "Description": "Port number",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "traffic_matching_lists"
+  },
+  {
+    "Endpoint": "Delete Traffic Matching List",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/traffic-matching-lists/{trafficMatchingListId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "trafficMatchingListId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null,
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "traffic_matching_lists"
+  },
+  {
+    "Endpoint": "Get Traffic Matching List",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/traffic-matching-lists/{trafficMatchingListId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "trafficMatchingListId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "PORTS",
+            "IPV4_ADDRESSES",
+            "IPV6_ADDRESSES"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "items",
+          "Type": "Array of object (Port matching)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORT_NUMBER",
+                "PORT_NUMBER_RANGE"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "value",
+              "Type": "integer",
+              "Description": "Port number",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "type",
+      "Variants": {
+        "IPV4_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv4 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET",
+                  "IP_ADDRESS_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv4 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "IPV6_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv6 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv6 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "PORTS": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (Port matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PORT_NUMBER",
+                  "PORT_NUMBER_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "integer",
+                "Description": "Port number",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Category": "traffic_matching_lists"
+  },
+  {
+    "Endpoint": "List Traffic Matching Lists",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/traffic-matching-lists",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Traffic matching list)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORTS",
+                "IPV4_ADDRESSES",
+                "IPV6_ADDRESSES"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "items",
+              "Type": "Array of object (Port matching)",
+              "Description": "",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "type",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "PORT_NUMBER",
+                    "PORT_NUMBER_RANGE"
+                  ],
+                  "Children": null,
+                  "IsArray": false,
+                  "IsObject": false
+                },
+                {
+                  "Name": "value",
+                  "Type": "integer",
+                  "Description": "Port number",
+                  "Required": false,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false,
+                  "IsObject": false
+                }
+              ],
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "traffic_matching_lists"
+  },
+  {
+    "Endpoint": "Update Traffic Matching List",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/traffic-matching-lists/{trafficMatchingListId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "trafficMatchingListId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "PORTS",
+            "IPV4_ADDRESSES",
+            "IPV6_ADDRESSES"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "items",
+          "Type": "Array of object (Port matching)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORT_NUMBER",
+                "PORT_NUMBER_RANGE"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "value",
+              "Type": "integer",
+              "Description": "Port number",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "type",
+      "Variants": {
+        "IPV4_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv4 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET",
+                  "IP_ADDRESS_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv4 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "IPV6_ADDRESSES": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (IPv6 matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "IP_ADDRESS",
+                  "SUBNET"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "string",
+                "Description": "IPv6 address",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ],
+        "PORTS": [
+          {
+            "Name": "type",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "PORTS",
+              "IPV4_ADDRESSES",
+              "IPV6_ADDRESSES"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "items",
+            "Type": "Array of object (Port matching)",
+            "Description": "",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "type",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PORT_NUMBER",
+                  "PORT_NUMBER_RANGE"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "value",
+                "Type": "integer",
+                "Description": "Port number",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": true,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "type",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "PORTS",
+            "IPV4_ADDRESSES",
+            "IPV6_ADDRESSES"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "items",
+          "Type": "Array of object (Port matching)",
+          "Description": "",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "type",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "PORT_NUMBER",
+                "PORT_NUMBER_RANGE"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "value",
+              "Type": "integer",
+              "Description": "Port number",
+              "Required": false,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "traffic_matching_lists"
+  }
+]

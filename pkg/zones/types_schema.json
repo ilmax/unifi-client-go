@@ -1,0 +1,485 @@
+[
+  {
+    "Endpoint": "Create Custom Firewall Zone",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/firewall/zones",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of a firewall zone",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "networkIds",
+          "Type": "Array of any",
+          "Description": "List of Network IDs",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of a firewall zone",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "networkIds",
+          "Type": "Array of any",
+          "Description": "List of Network IDs",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined entity metadata)",
+          "Description": "System-defined configurable zones support configuring only attached networks",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "zones"
+  },
+  {
+    "Endpoint": "Delete Custom Firewall Zone",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/firewall/zones/{firewallZoneId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "firewallZoneId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null,
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "zones"
+  },
+  {
+    "Endpoint": "Get Firewall Zone",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/firewall/zones/{firewallZoneId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "firewallZoneId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of a firewall zone",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "networkIds",
+          "Type": "Array of any",
+          "Description": "List of Network IDs",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined entity metadata)",
+          "Description": "System-defined configurable zones support configuring only attached networks",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "zones"
+  },
+  {
+    "Endpoint": "List Firewall Zones",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/firewall/zones",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Firewall zone)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "Name of a firewall zone",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "networkIds",
+              "Type": "Array of any",
+              "Description": "List of Network IDs",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            },
+            {
+              "Name": "metadata",
+              "Type": "object (User or system defined entity metadata)",
+              "Description": "System-defined configurable zones support configuring only attached networks",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "origin",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "USER_DEFINED",
+                    "SYSTEM_DEFINED"
+                  ],
+                  "Children": null,
+                  "IsArray": false,
+                  "IsObject": false
+                }
+              ],
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "zones"
+  },
+  {
+    "Endpoint": "Update Firewall Zone",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/firewall/zones/{firewallZoneId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "firewallZoneId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of a firewall zone",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "networkIds",
+          "Type": "Array of any",
+          "Description": "List of Network IDs",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "Name of a firewall zone",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "networkIds",
+          "Type": "Array of any",
+          "Description": "List of Network IDs",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": true,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined entity metadata)",
+          "Description": "System-defined configurable zones support configuring only attached networks",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "zones"
+  }
+]

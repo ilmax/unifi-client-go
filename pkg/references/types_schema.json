@@ -1,0 +1,91 @@
+[
+  {
+    "Endpoint": "Get Network References",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}/references",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "referenceResources",
+          "Type": "Array of object (Network reference resource)",
+          "Description": "List of network reference resources",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "resourceType",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "referenceCount",
+              "Type": "integer",
+              "Description": "Number of references of this type",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "references",
+              "Type": "Array of object (Network reference detail)",
+              "Description": "List of references, present only if resourceType has API model defined",
+              "Required": false,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "referenceId",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": null,
+                  "Children": null,
+                  "IsArray": false,
+                  "IsObject": false
+                }
+              ],
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "references"
+  }
+]

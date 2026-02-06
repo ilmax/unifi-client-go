@@ -1,0 +1,66 @@
+[
+  {
+    "Endpoint": "Execute Port Action",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/devices/{deviceId}/interfaces/ports/{portIdx}/actions",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "portIdx",
+        "Type": "integer",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "deviceId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "action",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "POWER_CYCLE"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": null,
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "ports"
+  }
+]

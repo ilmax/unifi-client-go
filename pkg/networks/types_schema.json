@@ -1,0 +1,3444 @@
+[
+  {
+    "Endpoint": "Create Network",
+    "Method": "POST",
+    "Path": "/v1/sites/{siteId}/networks",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "management",
+      "Variants": {
+        "GATEWAY": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "zoneId",
+            "Type": "string",
+            "Description": "Firewall zone ID associated with this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "internetAccessEnabled",
+            "Type": "boolean",
+            "Description": "Whether the internet access is allowed for the device on this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "mdnsForwardingEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network should participate in mDNS traffic forwarding.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Gateway Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Gateway Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pingConflictDetectionEnabled",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pxeConfiguration",
+                    "Type": "object (PXE Configuration)",
+                    "Description": "Pre execution environment configuration for network boot",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "serverIpAddress",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "filename",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ntpServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Network Time Protocol (NTP) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "option43Value",
+                    "Type": "string",
+                    "Description": "Custom DHCP option (43) — the value MUST be the UniFi Network application's host IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "tftpServerAddress",
+                    "Type": "string",
+                    "Description": "Trivial File Transfer Protocol (TFTP) server address — accepts a hostname, URL or IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "timeOffsetSeconds",
+                    "Type": "integer",
+                    "Description": "Time offset in seconds from UTC.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wpadUrl",
+                    "Type": "string",
+                    "Description": "Web Proxy Auto-Discovery (WPAD) URL.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "winsServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Windows Internet Name Service (WINS) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "natOutboundIpAddressConfiguration",
+                "Type": "Array of object (WAN NAT Outbound Configuration)",
+                "Description": "List of NAT Outbound Configurations defining which IP addresses are used for NAT translation. This array must contain all WAN interfaces with `static` or `PPPoE` IPv4 connection configuration.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "type",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "AUTO",
+                      "STATIC"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wanInterfaceId",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressSelectionMode",
+                    "Type": "string",
+                    "Description": "IP address selection mode which determines how the IP address will be selected from the group of IP addresses to translate the traffic on network using NAT.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv6Configuration",
+            "Type": "object (Network IPv6 Configuration)",
+            "Description": "Details about IPv6 configuration for this Network. If this field is omitted or null then IPv6 is not configured on this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "interfaceType",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PREFIX_DELEGATION",
+                  "STATIC"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "clientAddressAssignment",
+                "Type": "object (IPv6 Client Address Assignment)",
+                "Description": "Client Address Assignment",
+                "Required": true,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "dhcpConfiguration",
+                    "Type": "object (DHCP Configuration for IPv6 Network)",
+                    "Description": "IPv6 DHCP configuration for this network. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration. If this field is null, SLAAC must be enabled.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "ipAddressSuffixRange",
+                        "Type": "object (IntegrationIpv6AddressSuffixRangeSelectorDto)",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": [
+                          {
+                            "Name": "start",
+                            "Type": "string",
+                            "Description": "Start suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          },
+                          {
+                            "Name": "stop",
+                            "Type": "string",
+                            "Description": "End suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          }
+                        ],
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "leaseTimeSeconds",
+                        "Type": "integer",
+                        "Description": "The lease time in seconds for IP addresses in this range.",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "slaacEnabled",
+                    "Type": "boolean",
+                    "Description": "Allows devices to obtain IPv6 addresses via SLAAC (Stateless Address Autoconfiguration) without DHCPv6. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "routerAdvertisement",
+                "Type": "object (Router advertisement Configuration)",
+                "Description": "Router advertisement. Without it, hosts will not autoconfigure addresses and will lack a default route even with DHCPv6.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "priority",
+                    "Type": "string",
+                    "Description": "Router advertisement priority.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "dnsServerIpAddressesOverride",
+                "Type": "Array of string",
+                "Description": "The IPv6 DNS server addresses assigned to this Network. If none are specified, they will be selected automatically.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixDelegationWanInterfaceId",
+                "Type": "string",
+                "Description": "ID of the WAN interface from which the prefix is delegated.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "SWITCH": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "deviceId",
+            "Type": "string",
+            "Description": "ID of the L3 switching capable device that manages this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Switch Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Switch Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "UNMANAGED": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Delete Network",
+    "Method": "DELETE",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": null,
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Get Network Details",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "management",
+      "Variants": {
+        "GATEWAY": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "metadata",
+            "Type": "object (User or system defined or orchestrated entity metadata)",
+            "Description": "Orchestrated or System-defined configurable network support",
+            "Required": true,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "origin",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "USER_DEFINED",
+                  "SYSTEM_DEFINED",
+                  "ORCHESTRATED"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "zoneId",
+            "Type": "string",
+            "Description": "Firewall zone ID associated with this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "internetAccessEnabled",
+            "Type": "boolean",
+            "Description": "Whether the internet access is allowed for the device on this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "mdnsForwardingEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network should participate in mDNS traffic forwarding.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Gateway Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Gateway Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pingConflictDetectionEnabled",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pxeConfiguration",
+                    "Type": "object (PXE Configuration)",
+                    "Description": "Pre execution environment configuration for network boot",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "serverIpAddress",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "filename",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ntpServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Network Time Protocol (NTP) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "option43Value",
+                    "Type": "string",
+                    "Description": "Custom DHCP option (43) — the value MUST be the UniFi Network application's host IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "tftpServerAddress",
+                    "Type": "string",
+                    "Description": "Trivial File Transfer Protocol (TFTP) server address — accepts a hostname, URL or IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "timeOffsetSeconds",
+                    "Type": "integer",
+                    "Description": "Time offset in seconds from UTC.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wpadUrl",
+                    "Type": "string",
+                    "Description": "Web Proxy Auto-Discovery (WPAD) URL.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "winsServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Windows Internet Name Service (WINS) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "natOutboundIpAddressConfiguration",
+                "Type": "Array of object (WAN NAT Outbound Configuration)",
+                "Description": "List of NAT Outbound Configurations defining which IP addresses are used for NAT translation. This array must contain all WAN interfaces with `static` or `PPPoE` IPv4 connection configuration.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "type",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "AUTO",
+                      "STATIC"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wanInterfaceId",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressSelectionMode",
+                    "Type": "string",
+                    "Description": "IP address selection mode which determines how the IP address will be selected from the group of IP addresses to translate the traffic on network using NAT.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv6Configuration",
+            "Type": "object (Network IPv6 Configuration)",
+            "Description": "Details about IPv6 configuration for this Network. If this field is omitted or null then IPv6 is not configured on this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "interfaceType",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PREFIX_DELEGATION",
+                  "STATIC"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "clientAddressAssignment",
+                "Type": "object (IPv6 Client Address Assignment)",
+                "Description": "Client Address Assignment",
+                "Required": true,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "dhcpConfiguration",
+                    "Type": "object (DHCP Configuration for IPv6 Network)",
+                    "Description": "IPv6 DHCP configuration for this network. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration. If this field is null, SLAAC must be enabled.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "ipAddressSuffixRange",
+                        "Type": "object (IntegrationIpv6AddressSuffixRangeSelectorDto)",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": [
+                          {
+                            "Name": "start",
+                            "Type": "string",
+                            "Description": "Start suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          },
+                          {
+                            "Name": "stop",
+                            "Type": "string",
+                            "Description": "End suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          }
+                        ],
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "leaseTimeSeconds",
+                        "Type": "integer",
+                        "Description": "The lease time in seconds for IP addresses in this range.",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "slaacEnabled",
+                    "Type": "boolean",
+                    "Description": "Allows devices to obtain IPv6 addresses via SLAAC (Stateless Address Autoconfiguration) without DHCPv6. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "routerAdvertisement",
+                "Type": "object (Router advertisement Configuration)",
+                "Description": "Router advertisement. Without it, hosts will not autoconfigure addresses and will lack a default route even with DHCPv6.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "priority",
+                    "Type": "string",
+                    "Description": "Router advertisement priority.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "dnsServerIpAddressesOverride",
+                "Type": "Array of string",
+                "Description": "The IPv6 DNS server addresses assigned to this Network. If none are specified, they will be selected automatically.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixDelegationWanInterfaceId",
+                "Type": "string",
+                "Description": "ID of the WAN interface from which the prefix is delegated.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "SWITCH": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "metadata",
+            "Type": "object (User or system defined or orchestrated entity metadata)",
+            "Description": "Orchestrated or System-defined configurable network support",
+            "Required": true,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "origin",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "USER_DEFINED",
+                  "SYSTEM_DEFINED",
+                  "ORCHESTRATED"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "deviceId",
+            "Type": "string",
+            "Description": "ID of the L3 switching capable device that manages this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Switch Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Switch Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "UNMANAGED": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "id",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "metadata",
+            "Type": "object (User or system defined or orchestrated entity metadata)",
+            "Description": "Orchestrated or System-defined configurable network support",
+            "Required": true,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "origin",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "USER_DEFINED",
+                  "SYSTEM_DEFINED",
+                  "ORCHESTRATED"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "List Networks",
+    "Method": "GET",
+    "Path": "/v1/sites/{siteId}/networks",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": null,
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "offset",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "limit",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "count",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "totalCount",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "data",
+          "Type": "Array of object (Network overview)",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "management",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "UNMANAGED",
+                "GATEWAY",
+                "SWITCH"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "id",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "name",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "enabled",
+              "Type": "boolean",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "vlanId",
+              "Type": "integer",
+              "Description": "",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            },
+            {
+              "Name": "metadata",
+              "Type": "object (User or system defined or orchestrated entity metadata)",
+              "Description": "Orchestrated or System-defined configurable network support",
+              "Required": true,
+              "Enum": null,
+              "Children": [
+                {
+                  "Name": "origin",
+                  "Type": "string",
+                  "Description": "",
+                  "Required": true,
+                  "Enum": [
+                    "USER_DEFINED",
+                    "SYSTEM_DEFINED",
+                    "ORCHESTRATED"
+                  ],
+                  "Children": null,
+                  "IsArray": false,
+                  "IsObject": false
+                }
+              ],
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": true,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "networks"
+  },
+  {
+    "Endpoint": "Update Network",
+    "Method": "PUT",
+    "Path": "/v1/sites/{siteId}/networks/{networkId}",
+    "Description": "",
+    "PathParams": [
+      {
+        "Name": "networkId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      },
+      {
+        "Name": "siteId",
+        "Type": "string",
+        "Description": "",
+        "Required": true,
+        "Enum": null,
+        "Children": null,
+        "IsArray": false,
+        "IsObject": false
+      }
+    ],
+    "Request": {
+      "Name": "Request",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "management",
+      "Variants": {
+        "GATEWAY": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "zoneId",
+            "Type": "string",
+            "Description": "Firewall zone ID associated with this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "internetAccessEnabled",
+            "Type": "boolean",
+            "Description": "Whether the internet access is allowed for the device on this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "mdnsForwardingEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network should participate in mDNS traffic forwarding.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Gateway Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Gateway Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pingConflictDetectionEnabled",
+                    "Type": "boolean",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "pxeConfiguration",
+                    "Type": "object (PXE Configuration)",
+                    "Description": "Pre execution environment configuration for network boot",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "serverIpAddress",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "filename",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ntpServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Network Time Protocol (NTP) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "option43Value",
+                    "Type": "string",
+                    "Description": "Custom DHCP option (43) — the value MUST be the UniFi Network application's host IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "tftpServerAddress",
+                    "Type": "string",
+                    "Description": "Trivial File Transfer Protocol (TFTP) server address — accepts a hostname, URL or IP address.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "timeOffsetSeconds",
+                    "Type": "integer",
+                    "Description": "Time offset in seconds from UTC.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wpadUrl",
+                    "Type": "string",
+                    "Description": "Web Proxy Auto-Discovery (WPAD) URL.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "winsServerIpAddresses",
+                    "Type": "Array of string",
+                    "Description": "Windows Internet Name Service (WINS) server IP addresses.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "natOutboundIpAddressConfiguration",
+                "Type": "Array of object (WAN NAT Outbound Configuration)",
+                "Description": "List of NAT Outbound Configurations defining which IP addresses are used for NAT translation. This array must contain all WAN interfaces with `static` or `PPPoE` IPv4 connection configuration.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "type",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "AUTO",
+                      "STATIC"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "wanInterfaceId",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressSelectionMode",
+                    "Type": "string",
+                    "Description": "IP address selection mode which determines how the IP address will be selected from the group of IP addresses to translate the traffic on network using NAT.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv6Configuration",
+            "Type": "object (Network IPv6 Configuration)",
+            "Description": "Details about IPv6 configuration for this Network. If this field is omitted or null then IPv6 is not configured on this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "interfaceType",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": [
+                  "PREFIX_DELEGATION",
+                  "STATIC"
+                ],
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "clientAddressAssignment",
+                "Type": "object (IPv6 Client Address Assignment)",
+                "Description": "Client Address Assignment",
+                "Required": true,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "dhcpConfiguration",
+                    "Type": "object (DHCP Configuration for IPv6 Network)",
+                    "Description": "IPv6 DHCP configuration for this network. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration. If this field is null, SLAAC must be enabled.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "ipAddressSuffixRange",
+                        "Type": "object (IntegrationIpv6AddressSuffixRangeSelectorDto)",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": [
+                          {
+                            "Name": "start",
+                            "Type": "string",
+                            "Description": "Start suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          },
+                          {
+                            "Name": "stop",
+                            "Type": "string",
+                            "Description": "End suffix of the DHCPv6 address pool.",
+                            "Required": true,
+                            "Enum": null,
+                            "Children": null,
+                            "IsArray": false,
+                            "IsObject": false
+                          }
+                        ],
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "leaseTimeSeconds",
+                        "Type": "integer",
+                        "Description": "The lease time in seconds for IP addresses in this range.",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "slaacEnabled",
+                    "Type": "boolean",
+                    "Description": "Allows devices to obtain IPv6 addresses via SLAAC (Stateless Address Autoconfiguration) without DHCPv6. At least one addressing method must be active: either enable SLAAC or provide DHCP configuration.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "routerAdvertisement",
+                "Type": "object (Router advertisement Configuration)",
+                "Description": "Router advertisement. Without it, hosts will not autoconfigure addresses and will lack a default route even with DHCPv6.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "priority",
+                    "Type": "string",
+                    "Description": "Router advertisement priority.",
+                    "Required": true,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "dnsServerIpAddressesOverride",
+                "Type": "Array of string",
+                "Description": "The IPv6 DNS server addresses assigned to this Network. If none are specified, they will be selected automatically.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixDelegationWanInterfaceId",
+                "Type": "string",
+                "Description": "ID of the WAN interface from which the prefix is delegated.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "SWITCH": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "isolationEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is isolated from all other networks.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "cellularBackupEnabled",
+            "Type": "boolean",
+            "Description": "Whether this network is allowed to use cellular data when WAN connection(s) are down.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "deviceId",
+            "Type": "string",
+            "Description": "ID of the L3 switching capable device that manages this network.",
+            "Required": false,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "ipv4Configuration",
+            "Type": "object (Switch Managed IPv4 Configuration)",
+            "Description": "Details about IPv4 configuration for this Network.",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "autoScaleEnabled",
+                "Type": "boolean",
+                "Description": "Whether the Network can automatically scale its subnet size based on the number of active DHCP leases.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "hostIpAddress",
+                "Type": "string",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "prefixLength",
+                "Type": "integer",
+                "Description": "",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": false,
+                "IsObject": false
+              },
+              {
+                "Name": "additionalHostIpSubnets",
+                "Type": "Array of string",
+                "Description": "Additional host IP subnets assigned to this VLAN.",
+                "Required": false,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              },
+              {
+                "Name": "dhcpConfiguration",
+                "Type": "object (Switch Managed IPv4 DHCP Configuration)",
+                "Description": "IPv4 DHCP configuration for this network. If this field is omitted or null, DHCP is not working and hosts must get an address statically or from another server in this broadcast domain.",
+                "Required": false,
+                "Enum": null,
+                "Children": [
+                  {
+                    "Name": "mode",
+                    "Type": "string",
+                    "Description": "",
+                    "Required": true,
+                    "Enum": [
+                      "SERVER",
+                      "RELAY"
+                    ],
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "ipAddressRange",
+                    "Type": "object (IP address range)",
+                    "Description": "",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": [
+                      {
+                        "Name": "start",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      },
+                      {
+                        "Name": "stop",
+                        "Type": "string",
+                        "Description": "",
+                        "Required": true,
+                        "Enum": null,
+                        "Children": null,
+                        "IsArray": false,
+                        "IsObject": false
+                      }
+                    ],
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "gatewayIpAddressOverride",
+                    "Type": "string",
+                    "Description": "Gateway IP address provided to DHCP clients. If null, the default gateway will be assigned.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "dnsServerIpAddressesOverride",
+                    "Type": "Array of string",
+                    "Description": "List of DNS servers assigned to client devices by the DHCP server. If none are specified, they will be selected automatically.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": true,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "leaseTimeSeconds",
+                    "Type": "integer",
+                    "Description": "The lease time in seconds for addresses in this range.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  },
+                  {
+                    "Name": "domainName",
+                    "Type": "string",
+                    "Description": "Domain name that can be used to access network in the browser.",
+                    "Required": false,
+                    "Enum": null,
+                    "Children": null,
+                    "IsArray": false,
+                    "IsObject": false
+                  }
+                ],
+                "IsArray": false,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ],
+        "UNMANAGED": [
+          {
+            "Name": "management",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": [
+              "UNMANAGED",
+              "GATEWAY",
+              "SWITCH"
+            ],
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "name",
+            "Type": "string",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "enabled",
+            "Type": "boolean",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "vlanId",
+            "Type": "integer",
+            "Description": "",
+            "Required": true,
+            "Enum": null,
+            "Children": null,
+            "IsArray": false,
+            "IsObject": false
+          },
+          {
+            "Name": "dhcpGuarding",
+            "Type": "object (Network DHCP Guarding)",
+            "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+            "Required": false,
+            "Enum": null,
+            "Children": [
+              {
+                "Name": "trustedDhcpServerIpAddresses",
+                "Type": "Array of string",
+                "Description": "List of trusted DHCP server IP addresses.",
+                "Required": true,
+                "Enum": null,
+                "Children": null,
+                "IsArray": true,
+                "IsObject": false
+              }
+            ],
+            "IsArray": false,
+            "IsObject": false
+          }
+        ]
+      }
+    },
+    "Response": {
+      "Name": "Response",
+      "Properties": [
+        {
+          "Name": "management",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": [
+            "UNMANAGED",
+            "GATEWAY",
+            "SWITCH"
+          ],
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "id",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "name",
+          "Type": "string",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "enabled",
+          "Type": "boolean",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "vlanId",
+          "Type": "integer",
+          "Description": "",
+          "Required": true,
+          "Enum": null,
+          "Children": null,
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "metadata",
+          "Type": "object (User or system defined or orchestrated entity metadata)",
+          "Description": "Orchestrated or System-defined configurable network support",
+          "Required": true,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "origin",
+              "Type": "string",
+              "Description": "",
+              "Required": true,
+              "Enum": [
+                "USER_DEFINED",
+                "SYSTEM_DEFINED",
+                "ORCHESTRATED"
+              ],
+              "Children": null,
+              "IsArray": false,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        },
+        {
+          "Name": "dhcpGuarding",
+          "Type": "object (Network DHCP Guarding)",
+          "Description": "DHCP Guarding settings for this Network. If this field is omitted or null, the feature is disabled",
+          "Required": false,
+          "Enum": null,
+          "Children": [
+            {
+              "Name": "trustedDhcpServerIpAddresses",
+              "Type": "Array of string",
+              "Description": "List of trusted DHCP server IP addresses.",
+              "Required": true,
+              "Enum": null,
+              "Children": null,
+              "IsArray": true,
+              "IsObject": false
+            }
+          ],
+          "IsArray": false,
+          "IsObject": false
+        }
+      ],
+      "VariantDiscriminator": "",
+      "Variants": null
+    },
+    "Category": "networks"
+  }
+]
