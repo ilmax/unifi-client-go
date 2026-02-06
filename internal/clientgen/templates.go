@@ -28,13 +28,13 @@ func New{{.ClientName}}(client *http.Client) *{{.ClientName}} {
 {{range .Methods}}
 // {{.Name}} {{if .Description}}{{.Description}}{{else}}calls the {{.EndpointName}} endpoint.{{end}}
 // {{.HTTPMethod}} {{.Path}}
-func (c *{{$.ClientName}}) {{.Name}}(ctx context.Context{{range .PathParams}}, {{. | toCamelCase}} string{{end}}{{if .HasRequestBody}}, req *{{.RequestType}}{{end}}) (*{{.ResponseType}}, error) {
+func (c *{{$.ClientName}}) {{.Name}}(ctx context.Context{{range .PathParams}}, {{. | toCamelCase}} string{{end}}{{if .HasRequestBody}}, req {{.RequestParam}}{{end}}) ({{.ResponseParam}}, error) {
 {{- if .PathParams}}
 	path := fmt.Sprintf("{{formatPath .PathParams .Path}}"{{range .PathParams}}, {{. | toCamelCase}}{{end}})
 {{- else}}
 	path := "{{.Path}}"
 {{- end}}
-	var result {{.ResponseType}}
+	var result {{.ResponseVar}}
 {{- if eq .HTTPMethod "GET"}}
 	if err := c.client.Get(ctx, path, &result); err != nil {
 		return nil, err
@@ -52,7 +52,7 @@ func (c *{{$.ClientName}}) {{.Name}}(ctx context.Context{{range .PathParams}}, {
 		return nil, err
 	}
 {{- end}}
-	return &result, nil
+	return {{if eq .ResponseParam "any"}}result{{else}}&result{{end}}, nil
 }
 {{end}}`
 
@@ -60,13 +60,13 @@ func (c *{{$.ClientName}}) {{.Name}}(ctx context.Context{{range .PathParams}}, {
 // This is used when generating methods individually.
 const methodTemplateStr = `// {{.Name}} {{if .Description}}{{.Description}}{{else}}calls the {{.EndpointName}} endpoint.{{end}}
 // {{.HTTPMethod}} {{.Path}}
-func (c *Client) {{.Name}}(ctx context.Context{{range .PathParams}}, {{. | toCamelCase}} string{{end}}{{if .HasRequestBody}}, req *{{.RequestType}}{{end}}) (*{{.ResponseType}}, error) {
+func (c *Client) {{.Name}}(ctx context.Context{{range .PathParams}}, {{. | toCamelCase}} string{{end}}{{if .HasRequestBody}}, req {{.RequestParam}}{{end}}) ({{.ResponseParam}}, error) {
 {{- if .PathParams}}
 	path := fmt.Sprintf("{{formatPath .PathParams .Path}}"{{range .PathParams}}, {{. | toCamelCase}}{{end}})
 {{- else}}
 	path := "{{.Path}}"
 {{- end}}
-	var result {{.ResponseType}}
+	var result {{.ResponseVar}}
 {{- if eq .HTTPMethod "GET"}}
 	if err := c.client.Get(ctx, path, &result); err != nil {
 		return nil, err
@@ -84,6 +84,6 @@ func (c *Client) {{.Name}}(ctx context.Context{{range .PathParams}}, {{. | toCam
 		return nil, err
 	}
 {{- end}}
-	return &result, nil
+	return {{if eq .ResponseParam "any"}}result{{else}}&result{{end}}, nil
 }
 `

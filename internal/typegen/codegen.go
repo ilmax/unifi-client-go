@@ -2,6 +2,7 @@ package typegen
 
 import (
 	"fmt"
+	"sort"
 	"strings"
 )
 
@@ -14,11 +15,19 @@ func generateCode(schema *APISchema, pkgName string) string {
 	fmt.Fprintf(&sb, "// Method: %s %s\n\n", schema.Method, schema.Path)
 	fmt.Fprintf(&sb, "package %s\n\n", pkgName)
 
+	helper := buildVariantHelperInfo(schema)
 	needsTime := needsTimeImport(schema)
 	needsJson := needsJsonImport(schema)
+	needsFmt := helper != nil
+	if helper != nil {
+		needsJson = true
+	}
 
-	if needsTime || needsJson {
+	if needsTime || needsJson || needsFmt {
 		sb.WriteString("import (\n")
+		if needsFmt {
+			sb.WriteString("\t\"fmt\"\n")
+		}
 		if needsJson {
 			sb.WriteString("\t\"encoding/json\"\n")
 		}
@@ -36,14 +45,59 @@ func generateCode(schema *APISchema, pkgName string) string {
 		writeStructWithCommonTypes(&sb, endpointName+"PathParams", schema.PathParams, nestedTypes, endpointName, usedCommonTypes)
 	}
 
-	if schema.Request != nil && len(schema.Request.Properties) > 0 {
-		writeStructWithCommonTypes(&sb, endpointName+"Request", schema.Request.Properties, nestedTypes, endpointName, usedCommonTypes)
+	if schema.Request != nil {
+		if len(schema.Request.Variants) > 1 {
+			sharedProps, perVariant := splitVariantProperties(schema.Request.Variants)
+			variantKeys := sortedVariantKeys(schema.Request.Variants)
+
+			for _, key := range variantKeys {
+				variantProps := mergeProperties(sharedProps, perVariant[key])
+				if len(variantProps) == 0 {
+					continue
+				}
+				writeStructWithCommonTypes(&sb, endpointName+"Request"+variantSuffix(key), variantProps, nestedTypes, endpointName, usedCommonTypes)
+			}
+		} else if len(schema.Request.Properties) > 0 {
+			writeStructWithCommonTypes(&sb, endpointName+"Request", schema.Request.Properties, nestedTypes, endpointName, usedCommonTypes)
+		}
 	}
 
 	// Always emit a response type since clientgen always references <Endpoint>Response.
 	// Some endpoints legitimately have an empty response body.
-	if schema.Response != nil && len(schema.Response.Properties) > 0 {
-		writeStructWithCommonTypes(&sb, endpointName+"Response", schema.Response.Properties, nestedTypes, endpointName, usedCommonTypes)
+	if schema.Response != nil {
+		requestHasVariants := schema.Request != nil && len(schema.Request.Variants) > 1
+		responseHasVariants := len(schema.Response.Variants) > 1
+
+		if responseHasVariants || (requestHasVariants && len(schema.Response.Properties) > 0) {
+			var sharedProps []Property
+			var perVariant map[string][]Property
+			var variantKeys []string
+
+			if responseHasVariants {
+				sharedProps, perVariant = splitVariantProperties(schema.Response.Variants)
+				variantKeys = sortedVariantKeys(schema.Response.Variants)
+			} else {
+				sharedProps = schema.Response.Properties
+				perVariant = make(map[string][]Property)
+				variantKeys = sortedVariantKeys(schema.Request.Variants)
+				for _, key := range variantKeys {
+					perVariant[key] = nil
+				}
+			}
+
+			for _, key := range variantKeys {
+				variantProps := mergeProperties(sharedProps, perVariant[key])
+				if len(variantProps) == 0 {
+					continue
+				}
+				writeStructWithCommonTypes(&sb, endpointName+"Response"+variantSuffix(key), variantProps, nestedTypes, endpointName, usedCommonTypes)
+			}
+		} else if len(schema.Response.Properties) > 0 {
+			writeStructWithCommonTypes(&sb, endpointName+"Response", schema.Response.Properties, nestedTypes, endpointName, usedCommonTypes)
+		} else {
+			fmt.Fprintf(&sb, "// %sResponse represents the API response for %s.\n", endpointName, schema.Endpoint)
+			fmt.Fprintf(&sb, "type %sResponse struct {}\n\n", endpointName)
+		}
 	} else {
 		fmt.Fprintf(&sb, "// %sResponse represents the API response for %s.\n", endpointName, schema.Endpoint)
 		fmt.Fprintf(&sb, "type %sResponse struct {}\n\n", endpointName)
@@ -75,6 +129,9 @@ func generateCode(schema *APISchema, pkgName string) string {
 	}
 
 	writeEnums(&sb, endpointName, schema)
+	if helper != nil {
+		writeVariantHelper(&sb, helper)
+	}
 
 	return sb.String()
 }
@@ -84,6 +141,14 @@ func needsTimeImport(schema *APISchema) bool {
 	if schema.Response != nil && len(schema.Response.Properties) > 0 {
 		if !isPaginatedResponse(schema.Response.Properties) {
 			if matchCommonType(schema.Response.Properties) != "" {
+				if schema.Response != nil {
+					for _, variantProps := range schema.Response.Variants {
+						if hasTimeInProps(variantProps) {
+							return true
+						}
+					}
+				}
+
 				hasTimeInOther := false
 				for _, prop := range schema.PathParams {
 					lowerName := strings.ToLower(prop.Name)
@@ -127,6 +192,13 @@ func needsJsonImport(schema *APISchema) bool {
 	if schema.Response != nil && len(schema.Response.Properties) > 0 {
 		if !isPaginatedResponse(schema.Response.Properties) {
 			if matchCommonType(schema.Response.Properties) != "" {
+				if schema.Response != nil {
+					for _, variantProps := range schema.Response.Variants {
+						if hasJsonRawMessageInProps(variantProps) {
+							return true
+						}
+					}
+				}
 				return hasJsonRawMessageInProps(schema.PathParams) ||
 					(schema.Request != nil && hasJsonRawMessageInProps(schema.Request.Properties))
 			}
@@ -158,17 +230,48 @@ func hasJsonRawMessageInProps(props []Property) bool {
 	return false
 }
 
+func hasTimeInProps(props []Property) bool {
+	for _, prop := range props {
+		if len(prop.Children) > 0 {
+			if matchCommonType(prop.Children) != "" {
+				continue
+			}
+			if hasTimeInProps(prop.Children) {
+				return true
+			}
+			continue
+		}
+
+		lowerName := strings.ToLower(prop.Name)
+		if strings.HasSuffix(lowerName, "at") || strings.HasSuffix(lowerName, "_at") {
+			return true
+		}
+	}
+	return false
+}
+
 // collectAllProperties collects all properties from schema including nested ones.
 func collectAllProperties(schema *APISchema) []Property {
 	var all []Property
 	all = append(all, schema.PathParams...)
 	if schema.Request != nil {
-		all = append(all, flattenPropertiesSkipCommon(schema.Request.Properties)...)
+		all = append(all, collectSchemaObjectProperties(schema.Request)...)
 	}
 	if schema.Response != nil {
-		all = append(all, flattenPropertiesSkipCommon(schema.Response.Properties)...)
+		all = append(all, collectSchemaObjectProperties(schema.Response)...)
 	}
 	return all
+}
+
+func collectSchemaObjectProperties(obj *SchemaObject) []Property {
+	var props []Property
+	props = append(props, flattenPropertiesSkipCommon(obj.Properties)...)
+	if len(obj.Variants) > 0 {
+		for _, variantProps := range obj.Variants {
+			props = append(props, flattenPropertiesSkipCommon(variantProps)...)
+		}
+	}
+	return props
 }
 
 // flattenPropertiesSkipCommon flattens properties but skips children of common types.
@@ -297,16 +400,22 @@ func collectNestedTypes(props []Property, nestedTypes map[string][]Property, pre
 
 // writeEnums writes enum type definitions.
 func writeEnums(sb *strings.Builder, prefix string, schema *APISchema) {
-	var enumProps []Property
+	uniqueEnums := make(map[string]Property)
 	if schema.Request != nil {
-		for _, p := range schema.Request.Properties {
-			if len(p.Enum) > 0 {
-				enumProps = append(enumProps, p)
+		for _, prop := range collectEnumProperties(schema.Request.Properties) {
+			uniqueEnums[strings.ToLower(prop.Name)] = prop
+		}
+		for _, variantProps := range schema.Request.Variants {
+			for _, prop := range collectEnumProperties(variantProps) {
+				nameKey := strings.ToLower(prop.Name)
+				if _, exists := uniqueEnums[nameKey]; !exists {
+					uniqueEnums[nameKey] = prop
+				}
 			}
 		}
 	}
 
-	for _, prop := range enumProps {
+	for _, prop := range uniqueEnums {
 		enumTypeName := prefix + toPascalCase(prop.Name)
 		fmt.Fprintf(sb, "// %s represents the %s enum values.\n", enumTypeName, prop.Name)
 		fmt.Fprintf(sb, "type %s string\n\n", enumTypeName)
@@ -317,4 +426,187 @@ func writeEnums(sb *strings.Builder, prefix string, schema *APISchema) {
 		}
 		sb.WriteString(")\n\n")
 	}
+}
+
+type variantHelperInfo struct {
+	EndpointName    string
+	Discriminator   string
+	VariantKeys     []string
+	ResponseTypeFor func(string) string
+}
+
+func buildVariantHelperInfo(schema *APISchema) *variantHelperInfo {
+	if schema == nil || schema.Response == nil {
+		return nil
+	}
+
+	endpointName := sanitizeStructName(schema.Endpoint)
+	responseHasVariants := len(schema.Response.Variants) > 1
+	requestHasVariants := schema.Request != nil && len(schema.Request.Variants) > 1
+
+	if !responseHasVariants && !(requestHasVariants && len(schema.Response.Properties) > 0) {
+		return nil
+	}
+
+	discriminator := schema.Response.VariantDiscriminator
+	keys := []string{}
+	if responseHasVariants {
+		keys = sortedVariantKeys(schema.Response.Variants)
+	}
+
+	if discriminator == "" && schema.Request != nil {
+		discriminator = schema.Request.VariantDiscriminator
+		if len(keys) == 0 {
+			keys = sortedVariantKeys(schema.Request.Variants)
+		}
+	}
+
+	if discriminator == "" || len(keys) == 0 {
+		return nil
+	}
+
+	return &variantHelperInfo{
+		EndpointName:  endpointName,
+		Discriminator: discriminator,
+		VariantKeys:   keys,
+		ResponseTypeFor: func(value string) string {
+			return endpointName + "Response" + variantSuffix(value)
+		},
+	}
+}
+
+func writeVariantHelper(sb *strings.Builder, helper *variantHelperInfo) {
+	if helper == nil {
+		return
+	}
+
+	envelopeName := helper.EndpointName + "VariantEnvelope"
+	funcName := "Decode" + helper.EndpointName + "Response"
+
+	fmt.Fprintf(sb, "type %s struct {\n\t%s string `json:\"%s\"`\n}\n\n", envelopeName, toPascalCase(helper.Discriminator), helper.Discriminator)
+
+	fmt.Fprintf(sb, "// %s decodes a variant response based on the %s field.\n", funcName, helper.Discriminator)
+	fmt.Fprintf(sb, "func %s(data []byte) (any, error) {\n", funcName)
+	fmt.Fprintf(sb, "\tvar env %s\n", envelopeName)
+	sb.WriteString("\tif err := json.Unmarshal(data, &env); err != nil {\n\t\treturn nil, err\n\t}\n\n")
+
+	fmt.Fprintf(sb, "\tswitch env.%s {\n", toPascalCase(helper.Discriminator))
+	for _, key := range helper.VariantKeys {
+		responseType := helper.ResponseTypeFor(key)
+		fmt.Fprintf(sb, "\tcase \"%s\":\n", key)
+		fmt.Fprintf(sb, "\t\tvar out %s\n", responseType)
+		sb.WriteString("\t\treturn &out, json.Unmarshal(data, &out)\n")
+	}
+	fmt.Fprintf(sb, "\tdefault:\n\t\treturn nil, fmt.Errorf(\"unknown %s value: %%s\", env.%s)\n\t}\n", helper.Discriminator, toPascalCase(helper.Discriminator))
+	sb.WriteString("}\n\n")
+}
+
+func collectEnumProperties(props []Property) []Property {
+	var enums []Property
+	for _, p := range props {
+		if len(p.Enum) > 0 {
+			enums = append(enums, p)
+		}
+	}
+	return enums
+}
+
+func splitVariantProperties(variants map[string][]Property) ([]Property, map[string][]Property) {
+	keys := sortedVariantKeys(variants)
+	if len(keys) == 0 {
+		return nil, map[string][]Property{}
+	}
+
+	baseProps := variants[keys[0]]
+	var shared []Property
+	for _, prop := range baseProps {
+		if propertyInAllVariants(prop, variants) {
+			shared = append(shared, prop)
+		}
+	}
+
+	perVariant := make(map[string][]Property, len(keys))
+	for _, key := range keys {
+		props := variants[key]
+		var uniques []Property
+		for _, prop := range props {
+			if !propertyInList(prop, shared) {
+				uniques = append(uniques, prop)
+			}
+		}
+		perVariant[key] = uniques
+	}
+
+	return shared, perVariant
+}
+
+func mergeVariantProperties(shared []Property, perVariant map[string][]Property, keys []string) []Property {
+	var merged []Property
+	merged = append(merged, shared...)
+
+	seen := make(map[string]bool)
+	for _, prop := range merged {
+		seen[strings.ToLower(prop.Name)] = true
+	}
+
+	for _, key := range keys {
+		for _, prop := range perVariant[key] {
+			nameKey := strings.ToLower(prop.Name)
+			if seen[nameKey] {
+				continue
+			}
+			merged = append(merged, prop)
+			seen[nameKey] = true
+		}
+	}
+
+	return merged
+}
+
+func mergeProperties(left []Property, right []Property) []Property {
+	merged := append([]Property{}, left...)
+	seen := make(map[string]bool)
+	for _, prop := range merged {
+		seen[strings.ToLower(prop.Name)] = true
+	}
+	for _, prop := range right {
+		nameKey := strings.ToLower(prop.Name)
+		if seen[nameKey] {
+			continue
+		}
+		merged = append(merged, prop)
+		seen[nameKey] = true
+	}
+	return merged
+}
+
+func propertyInAllVariants(prop Property, variants map[string][]Property) bool {
+	for _, props := range variants {
+		if !propertyInList(prop, props) {
+			return false
+		}
+	}
+	return true
+}
+
+func propertyInList(prop Property, props []Property) bool {
+	for _, candidate := range props {
+		if propertyEqual(prop, candidate) {
+			return true
+		}
+	}
+	return false
+}
+
+func sortedVariantKeys(variants map[string][]Property) []string {
+	keys := make([]string, 0, len(variants))
+	for key := range variants {
+		keys = append(keys, key)
+	}
+	sort.Strings(keys)
+	return keys
+}
+
+func variantSuffix(value string) string {
+	return toPascalCase(strings.ToLower(value))
 }

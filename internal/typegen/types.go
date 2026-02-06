@@ -30,8 +30,10 @@ type APISchema struct {
 
 // SchemaObject represents a JSON schema object.
 type SchemaObject struct {
-	Name       string
-	Properties []Property
+	Name                 string
+	Properties           []Property
+	VariantDiscriminator string
+	Variants             map[string][]Property
 }
 
 // Property represents a property in a schema.
@@ -43,6 +45,7 @@ type Property struct {
 	Enum        []string
 	Children    []Property // Nested properties for object types
 	IsArray     bool       // Whether this is an array of the type
+	IsObject    bool       // Whether this is an object type
 }
 
 // propertyRowInfo holds extracted info from a property row for hierarchy building.

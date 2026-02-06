@@ -50,8 +50,10 @@ type APISchema struct {
 
 // SchemaObject represents a JSON schema object.
 type SchemaObject struct {
-	Name       string
-	Properties []Property
+	Name                 string
+	Properties           []Property
+	VariantDiscriminator string
+	Variants             map[string][]Property
 }
 
 // Property represents a property in a schema.
@@ -74,7 +76,10 @@ type MethodInfo struct {
 	PathParams     []string // Path parameter names
 	HasRequestBody bool     // Whether the method has a request body
 	RequestType    string   // Request type name
+	RequestParam   string   // Request parameter type (e.g., *FooRequest, any)
 	ResponseType   string   // Response type name
+	ResponseParam  string   // Response return type (e.g., *FooResponse, any)
+	ResponseVar    string   // Response variable type (e.g., FooResponse, any)
 	EndpointName   string   // Original endpoint name for type references
 }
 
@@ -334,13 +339,28 @@ func (g *Generator) schemaToMethodInfo(schema *APISchema) MethodInfo {
 		pathParams = append(pathParams, p.Name)
 	}
 
-	hasRequestBody := schema.Request != nil && len(schema.Request.Properties) > 0
+	requestHasVariants := schema.Request != nil && len(schema.Request.Variants) > 1
+	responseHasVariants := schema.Response != nil && (len(schema.Response.Variants) > 1 || (len(schema.Response.Properties) > 0 && requestHasVariants))
+	hasRequestBody := schema.Request != nil && (len(schema.Request.Properties) > 0 || requestHasVariants)
+
 	requestType := ""
+	requestParam := ""
 	if hasRequestBody {
 		requestType = endpointName + "Request"
+		if requestHasVariants {
+			requestParam = "any"
+		} else {
+			requestParam = "*" + requestType
+		}
 	}
 
 	responseType := endpointName + "Response"
+	responseParam := "*" + responseType
+	responseVar := responseType
+	if responseHasVariants {
+		responseParam = "any"
+		responseVar = "any"
+	}
 
 	return MethodInfo{
 		Name:           methodName,
@@ -350,7 +370,10 @@ func (g *Generator) schemaToMethodInfo(schema *APISchema) MethodInfo {
 		PathParams:     pathParams,
 		HasRequestBody: hasRequestBody,
 		RequestType:    requestType,
+		RequestParam:   requestParam,
 		ResponseType:   responseType,
+		ResponseParam:  responseParam,
+		ResponseVar:    responseVar,
 		EndpointName:   endpointName,
 	}
 }

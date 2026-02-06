@@ -84,6 +84,12 @@ func (g *Generator) scrape(url string) (*APISchema, error) {
 				if len(props) > 0 && schema.Request == nil {
 					schema.Request = &SchemaObject{Name: "Request"}
 					schema.Request.Properties = props
+					if disc, variants := g.extractVariantsForSection(page, section, props); len(variants) > 1 {
+						schema.Request.VariantDiscriminator = disc
+						schema.Request.Variants = variants
+						fmt.Printf("Found %d request variants for %s (from text)\n", len(variants), disc)
+					}
+					g.stripPathParamsFromRequest(schema)
 					fmt.Printf("Found %d request properties (from text)\n", len(schema.Request.Properties))
 				}
 			}
@@ -99,13 +105,26 @@ func (g *Generator) scrape(url string) (*APISchema, error) {
 		} else if strings.Contains(headerText, "request body") || strings.Contains(headerText, "request") {
 			if schema.Request == nil {
 				schema.Request = &SchemaObject{Name: "Request"}
-				schema.Request.Properties = g.extractProperties(page, section)
+				props := g.extractProperties(page, section)
+				schema.Request.Properties = props
+				if disc, variants := g.extractVariantsForSection(page, section, props); len(variants) > 1 {
+					schema.Request.VariantDiscriminator = disc
+					schema.Request.Variants = variants
+					fmt.Printf("Found %d request variants for %s\n", len(variants), disc)
+				}
+				g.stripPathParamsFromRequest(schema)
 				fmt.Printf("Found %d request properties\n", len(schema.Request.Properties))
 			}
 		} else if strings.Contains(headerText, "response") {
 			if schema.Response == nil {
 				schema.Response = &SchemaObject{Name: "Response"}
-				schema.Response.Properties = g.extractProperties(page, section)
+				props := g.extractProperties(page, section)
+				schema.Response.Properties = props
+				if disc, variants := g.extractVariantsForSection(page, section, props); len(variants) > 1 {
+					schema.Response.VariantDiscriminator = disc
+					schema.Response.Variants = variants
+					fmt.Printf("Found %d response variants for %s\n", len(variants), disc)
+				}
 				fmt.Printf("Found %d response properties\n", len(schema.Response.Properties))
 			}
 		}
@@ -319,6 +338,196 @@ func (g *Generator) extractEnumValues(row *rod.Element) []string {
 	}
 
 	return enums
+}
+
+func (g *Generator) extractVariantsForSection(page *rod.Page, section *rod.Element, props []Property) (string, map[string][]Property) {
+	discriminator := g.findDiscriminatorProperty(props)
+	if discriminator == nil || len(discriminator.Enum) < 2 {
+		return "", nil
+	}
+
+	variants := make(map[string][]Property)
+	for _, option := range discriminator.Enum {
+		if g.clickVariantOption(section, option) {
+			time.Sleep(200 * time.Millisecond)
+		}
+		g.expandAllSections(page)
+
+		variantProps := g.extractProperties(page, section)
+		if len(variantProps) > 0 {
+			variants[option] = variantProps
+		}
+	}
+
+	if len(variants) < 2 {
+		return "", nil
+	}
+
+	if !variantsAreDistinct(variants) {
+		return "", nil
+	}
+
+	return discriminator.Name, variants
+}
+
+func (g *Generator) stripPathParamsFromRequest(schema *APISchema) {
+	if schema == nil || schema.Request == nil || len(schema.PathParams) == 0 {
+		return
+	}
+
+	pathParamNames := make(map[string]bool)
+	for _, param := range schema.PathParams {
+		pathParamNames[strings.ToLower(param.Name)] = true
+	}
+
+	schema.Request.Properties = filterPropertiesByName(schema.Request.Properties, pathParamNames)
+	if len(schema.Request.Variants) > 0 {
+		for key, props := range schema.Request.Variants {
+			schema.Request.Variants[key] = filterPropertiesByName(props, pathParamNames)
+		}
+	}
+}
+
+func filterPropertiesByName(props []Property, excluded map[string]bool) []Property {
+	if len(props) == 0 {
+		return props
+	}
+
+	filtered := make([]Property, 0, len(props))
+	for _, prop := range props {
+		if excluded[strings.ToLower(prop.Name)] {
+			continue
+		}
+		if len(prop.Children) > 0 {
+			prop.Children = filterPropertiesByName(prop.Children, excluded)
+		}
+		filtered = append(filtered, prop)
+	}
+
+	return filtered
+}
+
+func (g *Generator) findDiscriminatorProperty(props []Property) *Property {
+	for i := range props {
+		prop := &props[i]
+		if len(prop.Enum) < 2 {
+			continue
+		}
+		if prop.IsArray || prop.IsObject {
+			continue
+		}
+		return prop
+	}
+	return nil
+}
+
+func (g *Generator) clickVariantOption(section *rod.Element, value string) bool {
+	normalized := normalizeToggleText(value)
+	selectors := []string{
+		"button",
+		"[role='tab']",
+		"[role='radio']",
+		"label",
+		"[class*='Toggle']",
+		"[class*='Segment']",
+		"[class*='Tab']",
+	}
+
+	var candidates []*rod.Element
+	for _, selector := range selectors {
+		els, _ := section.Elements(selector)
+		if len(els) > 0 {
+			candidates = append(candidates, els...)
+		}
+	}
+
+	for _, el := range candidates {
+		visible, _ := el.Visible()
+		if !visible {
+			continue
+		}
+
+		text := strings.TrimSpace(el.MustText())
+		if text != "" && normalizeToggleText(text) == normalized {
+			el.Click("left", 1)
+			return true
+		}
+
+		if val, _ := el.Attribute("value"); val != nil {
+			if normalizeToggleText(*val) == normalized {
+				el.Click("left", 1)
+				return true
+			}
+		}
+		if val, _ := el.Attribute("data-value"); val != nil {
+			if normalizeToggleText(*val) == normalized {
+				el.Click("left", 1)
+				return true
+			}
+		}
+	}
+
+	return false
+}
+
+func normalizeToggleText(text string) string {
+	text = strings.ToLower(strings.TrimSpace(text))
+	replacer := strings.NewReplacer(" ", "", "_", "", "-", "")
+	return replacer.Replace(text)
+}
+
+func variantsAreDistinct(variants map[string][]Property) bool {
+	var baseline []Property
+	for _, props := range variants {
+		baseline = props
+		break
+	}
+
+	for _, props := range variants {
+		if !propertiesEqual(baseline, props) {
+			return true
+		}
+	}
+
+	return false
+}
+
+func propertiesEqual(a, b []Property) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for i := range a {
+		if !propertyEqual(a[i], b[i]) {
+			return false
+		}
+	}
+	return true
+}
+
+func propertyEqual(a, b Property) bool {
+	if strings.ToLower(a.Name) != strings.ToLower(b.Name) {
+		return false
+	}
+	if a.Type != b.Type || a.Required != b.Required || a.IsArray != b.IsArray || a.IsObject != b.IsObject {
+		return false
+	}
+	if len(a.Enum) != len(b.Enum) {
+		return false
+	}
+	for i := range a.Enum {
+		if a.Enum[i] != b.Enum[i] {
+			return false
+		}
+	}
+	if len(a.Children) != len(b.Children) {
+		return false
+	}
+	for i := range a.Children {
+		if !propertyEqual(a.Children[i], b.Children[i]) {
+			return false
+		}
+	}
+	return true
 }
 
 // detectDepth determines the nesting depth of a property row.

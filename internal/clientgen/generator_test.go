@@ -446,7 +446,7 @@ func TestSchemaToMethodInfo(t *testing.T) {
 		t.Fatalf("New() error = %v", err)
 	}
 
-	schema := &APISchema{
+			// Verify generated code contains expected elements
 		Endpoint:    "List Clients",
 		Method:      "GET",
 		Path:        "/api/v1/sites/{siteId}/clients",
