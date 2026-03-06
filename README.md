@@ -156,7 +156,8 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 8. Create a version tag (SDK version)
 9. Create a GitHub release
 
-Release notes include an OpenAPI diff and a breaking-changes section when `unifi-network-version` is present and valid. If the file is missing or invalid, the workflow falls back to parsing the latest GitHub release body.
+Release notes include an OpenAPI diff and a breaking-changes section when `unifi-network-version` is present and valid.
+If the file is missing or invalid, the workflow falls back to the latest GitHub release and parses only the first 10 body lines for `UniFi SDK for API version {version}` (`v` prefix optional).
 
 ## Error Handling
 
