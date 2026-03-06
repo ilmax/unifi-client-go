@@ -52,6 +52,9 @@ jobs:
       - name: Determine SDK version
         id: sdk_version
         run: |
+          git fetch --tags origin
+          git fetch origin 'refs/heads/release/*:refs/remotes/origin/release/*' || true
+
           if [[ ! -f VERSION ]]; then
             echo "0.1.0" > VERSION
           fi
@@ -62,14 +65,22 @@ jobs:
             exit 1
           fi
 
-          tag="v${version}"
-          if git tag --list "$tag" | grep -q .; then
+          while true; do
+            tag="v${version}"
+            release_branch="release/${tag}"
+            tag_exists="$(git tag --list "$tag")"
+            branch_exists="$(git ls-remote --heads origin "$release_branch")"
+
+            if [[ -z "$tag_exists" && -z "$branch_exists" ]]; then
+              break
+            fi
+
             IFS='.' read -r major minor patch <<< "$version"
             patch=$((patch + 1))
             version="${major}.${minor}.${patch}"
-            tag="v${version}"
-            echo "$version" > VERSION
-          fi
+          done
+
+          echo "$version" > VERSION
 
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "tag=${tag}" >> "$GITHUB_OUTPUT"
@@ -108,7 +119,7 @@ jobs:
 
       - name: Create release branch
         run: |
-          git checkout -b release/${{ steps.sdk_version.outputs.tag }}
+          git checkout -B release/${{ steps.sdk_version.outputs.tag }}
 
       - name: Download OpenAPI spec
         run: |
@@ -251,7 +262,11 @@ jobs:
 
       - name: Push release branch
         run: |
-          git push origin release/${{ steps.sdk_version.outputs.tag }}
+          git push --set-upstream origin release/${{ steps.sdk_version.outputs.tag }}
+
+      - name: Push changes to main
+        run: |
+          git push origin HEAD:main
 
       - name: Create tag
         run: |
