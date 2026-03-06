@@ -26,10 +26,18 @@ jobs:
 
       - name: Validate version format
         run: |
-          if [[ ! "${{ inputs.api_version }}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "Error: Invalid version format. Expected format: vX.Y.Z (e.g., v9.1.120)"
+          if [[ ! "${{ inputs.api_version }}" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Error: Invalid version format. Expected format: X.Y.Z or vX.Y.Z (e.g., 9.1.120)"
             exit 1
           fi
+
+      - name: Normalize API version
+        id: api_version
+        run: |
+          normalized="${{ inputs.api_version }}"
+          normalized="${normalized#v}"
+          echo "normalized=${normalized}" >> "$GITHUB_OUTPUT"
+          echo "prefixed=v${normalized}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -76,8 +84,8 @@ jobs:
           prev_version=""
           if [[ -f unifi-network-version ]]; then
             candidate=$(tr -d ' \t\r\n' < unifi-network-version)
-            if [[ "$candidate" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-              prev_version="$candidate"
+            if [[ "$candidate" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              prev_version="${candidate#v}"
               echo "Using baseline from unifi-network-version: $prev_version"
             else
               echo "Invalid baseline in unifi-network-version; falling back to latest release."
@@ -86,7 +94,8 @@ jobs:
 
           if [[ -z "$prev_version" ]]; then
             if curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$api_url" -o /tmp/latest_release.json; then
-              prev_version=$(python -c $'import json, re\nbody=json.load(open("/tmp/latest_release.json", "r", encoding="utf-8")).get("body", "") or ""\npatterns=[r"UniFi Network API version\\\\s+(v\\\\d+\\\\.\\\\d+\\\\.\\\\d+)", r"UniFi API version\\\\s+(v\\\\d+\\\\.\\\\d+\\\\.\\\\d+)"]\nversion=""\nfor pattern in patterns:\n    match = re.search(pattern, body)\n    if match:\n        version = match.group(1)\n        break\nprint(version)\n')
+              body_head=$(jq -r '.body // ""' /tmp/latest_release.json | head -n 10)
+              prev_version=$(printf '%s\n' "$body_head" | sed -nE 's/.*UniFi SDK for API version[[:space:]]+v?([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' | head -n 1)
             fi
           fi
 
@@ -104,16 +113,31 @@ jobs:
       - name: Download OpenAPI spec
         run: |
           echo "Downloading OpenAPI spec..."
-          spec_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/${{ inputs.api_version }}.json"
-          curl -fsSL "$spec_url" -o /tmp/unifi-network-new.json
+          base_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network"
+          if curl -fsSL "${base_url}/${{ steps.api_version.outputs.normalized }}.json" -o /tmp/unifi-network-new.json; then
+            echo "Downloaded OpenAPI spec using non-prefixed version."
+          elif curl -fsSL "${base_url}/${{ steps.api_version.outputs.prefixed }}.json" -o /tmp/unifi-network-new.json; then
+            echo "Downloaded OpenAPI spec using v-prefixed version."
+          else
+            echo "Error: Unable to download OpenAPI spec for version ${{ inputs.api_version }}"
+            exit 1
+          fi
 
       - name: Generate OpenAPI diff
-        if: steps.prev_api_version.outputs.version != '' && steps.prev_api_version.outputs.version != inputs.api_version
+        if: steps.prev_api_version.outputs.version != '' && steps.prev_api_version.outputs.version != steps.api_version.outputs.normalized
         run: |
           old_version="${{ steps.prev_api_version.outputs.version }}"
-          new_version="${{ inputs.api_version }}"
+          new_version="${{ steps.api_version.outputs.normalized }}"
           echo "Generating OpenAPI diff: ${old_version} -> ${new_version}"
-          curl -fsSL "https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/${old_version}.json" -o /tmp/unifi-network-old.json
+          base_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network"
+          if curl -fsSL "${base_url}/${old_version}.json" -o /tmp/unifi-network-old.json; then
+            echo "Downloaded previous OpenAPI spec using non-prefixed version."
+          elif curl -fsSL "${base_url}/v${old_version}.json" -o /tmp/unifi-network-old.json; then
+            echo "Downloaded previous OpenAPI spec using v-prefixed version."
+          else
+            echo "Error: Unable to download previous OpenAPI spec for version ${old_version}"
+            exit 1
+          fi
           oasdiff diff /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-diff.md
           oasdiff breaking /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-breaking.md
 
@@ -143,14 +167,14 @@ jobs:
 
       - name: Update baseline API version file
         run: |
-          echo "${{ inputs.api_version }}" > unifi-network-version
+          echo "${{ steps.api_version.outputs.normalized }}" > unifi-network-version
 
       - name: Prepare release notes
         run: |
           cat > /tmp/release-notes.md <<'EOF'
           # UniFi SDK ${{ steps.sdk_version.outputs.tag }}
           
-          UniFi SDK for UniFi Network API version ${{ inputs.api_version }}
+          UniFi SDK for API version ${{ steps.api_version.outputs.normalized }}
           
           ## Installation
           
@@ -187,7 +211,7 @@ jobs:
           ```
           EOF
 
-          if [[ -n "${{ steps.prev_api_version.outputs.version }}" && "${{ steps.prev_api_version.outputs.version }}" != "${{ inputs.api_version }}" ]]; then
+          if [[ -n "${{ steps.prev_api_version.outputs.version }}" && "${{ steps.prev_api_version.outputs.version }}" != "${{ steps.api_version.outputs.normalized }}" ]]; then
             echo "" >> /tmp/release-notes.md
             echo "## OpenAPI Diff" >> /tmp/release-notes.md
             echo "" >> /tmp/release-notes.md
