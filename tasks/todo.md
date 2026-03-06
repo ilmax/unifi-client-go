@@ -1,24 +1,23 @@
 # Todo
 
 ## Acceptance Criteria
-- Generating the client from UniFi OpenAPI `10.0.162` succeeds.
-- `go build ./...` succeeds after generation.
-- Missing runtime dependencies from generated code are added to module metadata.
+- Release workflow chooses a free SDK version even if `VERSION` lags behind existing tags/branches.
+- Release workflow pushes release commit content to `main` as part of the run.
+- Existing release/tag flow remains intact.
 - Verification steps are recorded.
 
 ## Plan
-- [x] Reproduce generation/build for API version `10.0.162` locally.
-- [x] Add/fix required dependencies for generated `oapi-codegen` output.
-- [x] Verify with build/tests.
+- [x] Update version selection to loop until both tag and release branch are available.
+- [x] Push release commit to `main` in addition to release branch and tag.
+- [x] Verify and document results.
 
 ## Working Notes
-- Follow workflow behavior as closely as possible.
+- Main issue: `VERSION` on `main` can lag, and previous logic bumped only once.
 
 ## Progress
-- [ ] In progress
+- [x] In progress
 
 ## Results
-- Download of `10.0.162` spec succeeded via `https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/10.0.162.json`.
-- Generation with `oapi-codegen` reproduced missing dependency errors for `github.com/oapi-codegen/runtime` and `github.com/oapi-codegen/runtime/types`.
-- Added `github.com/oapi-codegen/runtime v1.2.0` to module metadata (`go mod tidy` also added required indirect deps).
-- Verified `go build ./...` and `go test ./...` succeed after adding dependency.
+- Workflow now increments SDK patch version in a loop until both tag and `release/` branch names are free.
+- Workflow now pushes release commit to both `release/<tag>` and `main`.
+- Verified repository tests still pass with `go test ./...`.

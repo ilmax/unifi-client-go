@@ -146,13 +146,13 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 
 ### Workflow Steps
 
-1. Determine the next SDK version from [VERSION](VERSION) and create a release branch (`release/vX.Y.Z`)
+1. Determine the next free SDK version by starting from [VERSION](VERSION) and incrementing until both tag and release branch names are available
 2. Download the OpenAPI spec for the requested API version
 3. Generate types and client via `oapi-codegen`
 4. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
 5. Format, build, and test code
 6. Update `unifi-network-version` to the released API version
-7. Commit and push changes
+7. Commit and push changes to both the release branch and `main`
 8. Create a version tag (SDK version)
 9. Create a GitHub release
 
