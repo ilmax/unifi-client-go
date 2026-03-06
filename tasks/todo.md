@@ -7,9 +7,9 @@
 - Verification is run or a reason is documented.
 
 ## Plan
-- [ ] Update workflow to prefer `unifi-network-version` for the previous API version and keep the release fallback.
-- [ ] Update README to document the baseline file.
-- [ ] Verify changes.
+- [x] Update workflow to prefer `unifi-network-version` for the previous API version and keep the release fallback.
+- [x] Update README to document the baseline file.
+- [x] Verify changes.
 
 ## Working Notes
 - Treat missing/invalid `unifi-network-version` as "no baseline".
@@ -18,4 +18,6 @@
 - [x] In progress
 
 ## Results
-- TBD
+- Workflow uses `unifi-network-version` when valid, and falls back to parsing the latest release body otherwise.
+- README documents the baseline file behavior.
+- Verified with `go test ./...`.
