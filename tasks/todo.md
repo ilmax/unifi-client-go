@@ -1,23 +1,24 @@
 # Todo
 
 ## Acceptance Criteria
-- Release workflow uses `unifi-network-version` as the baseline API version when present and valid.
-- Workflow falls back to the latest release parsing only when the file is missing or invalid.
-- README documents the baseline file behavior.
-- Verification is run or a reason is documented.
+- Generating the client from UniFi OpenAPI `10.0.162` succeeds.
+- `go build ./...` succeeds after generation.
+- Missing runtime dependencies from generated code are added to module metadata.
+- Verification steps are recorded.
 
 ## Plan
-- [x] Update workflow to prefer `unifi-network-version` for the previous API version and keep the release fallback.
-- [x] Update README to document the baseline file.
-- [x] Verify changes.
+- [x] Reproduce generation/build for API version `10.0.162` locally.
+- [x] Add/fix required dependencies for generated `oapi-codegen` output.
+- [x] Verify with build/tests.
 
 ## Working Notes
-- Treat missing/invalid `unifi-network-version` as "no baseline".
+- Follow workflow behavior as closely as possible.
 
 ## Progress
-- [x] In progress
+- [ ] In progress
 
 ## Results
-- Workflow uses `unifi-network-version` when valid, and falls back to parsing the latest release body otherwise.
-- README documents the baseline file behavior.
-- Verified with `go test ./...`.
+- Download of `10.0.162` spec succeeded via `https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/10.0.162.json`.
+- Generation with `oapi-codegen` reproduced missing dependency errors for `github.com/oapi-codegen/runtime` and `github.com/oapi-codegen/runtime/types`.
+- Added `github.com/oapi-codegen/runtime v1.2.0` to module metadata (`go mod tidy` also added required indirect deps).
+- Verified `go build ./...` and `go test ./...` succeed after adding dependency.
