@@ -103,12 +103,7 @@ unifi-go-sdk/
 │   │   └── network.go           # Client helpers/config
 │   └── sitemanager/             # Site Manager API
 ├── internal/
-│   ├── http/                    # HTTP client
-│   ├── typegen/                 # Legacy generator (unused)
-│   └── clientgen/               # Legacy generator (unused)
-├── cmd/
-│   ├── typegen/                 # Legacy generator CLI (unused)
-│   └── clientgen/               # Legacy generator CLI (unused)
+│   └── http/                    # HTTP client
 ├── go.mod
 └── README.md
 ```
@@ -154,13 +149,14 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 1. Determine the next SDK version from [VERSION](VERSION) and create a release branch (`release/vX.Y.Z`)
 2. Download the OpenAPI spec for the requested API version
 3. Generate types and client via `oapi-codegen`
-4. If a previous release exists, compute OpenAPI diffs via `oasdiff` and include them in the release notes
+4. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
 5. Format, build, and test code
-6. Commit and push changes
-7. Create a version tag (SDK version)
-8. Create a GitHub release
+6. Update `unifi-network-version` to the released API version
+7. Commit and push changes
+8. Create a version tag (SDK version)
+9. Create a GitHub release
 
-Release notes include an OpenAPI diff and a breaking-changes section when a prior release contains a `UniFi Network API version vX.Y.Z` line.
+Release notes include an OpenAPI diff and a breaking-changes section when `unifi-network-version` is present and valid. If the file is missing or invalid, the workflow falls back to parsing the latest GitHub release body.
 
 ## Error Handling
 
