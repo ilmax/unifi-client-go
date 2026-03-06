@@ -38,7 +38,7 @@ jobs:
 
       - name: Install oasdiff
         run: |
-          go install github.com/Tufin/oasdiff/cmd/oasdiff@latest
+          go install github.com/oasdiff/oasdiff@latest
           echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Determine SDK version
