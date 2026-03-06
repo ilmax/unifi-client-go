@@ -74,30 +74,20 @@ jobs:
           set -euo pipefail
           api_url="https://api.github.com/repos/${{ github.repository }}/releases/latest"
           prev_version=""
-          if curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$api_url" -o /tmp/latest_release.json; then
-            prev_version=$(python - <<'PY'
-import json
-import re
+          if [[ -f unifi-network-version ]]; then
+            candidate=$(tr -d ' \t\r\n' < unifi-network-version)
+            if [[ "$candidate" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+              prev_version="$candidate"
+              echo "Using baseline from unifi-network-version: $prev_version"
+            else
+              echo "Invalid baseline in unifi-network-version; falling back to latest release."
+            fi
+          fi
 
-with open("/tmp/latest_release.json", "r", encoding="utf-8") as f:
-    data = json.load(f)
-
-body = data.get("body", "") or ""
-patterns = [
-    r"UniFi Network API version\\s+(v\\d+\\.\\d+\\.\\d+)",
-    r"UniFi API version\\s+(v\\d+\\.\\d+\\.\\d+)",
-]
-
-version = ""
-for pattern in patterns:
-    match = re.search(pattern, body)
-    if match:
-        version = match.group(1)
-        break
-
-print(version)
-PY
-)
+          if [[ -z "$prev_version" ]]; then
+            if curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$api_url" -o /tmp/latest_release.json; then
+              prev_version=$(python -c $'import json, re\nbody=json.load(open("/tmp/latest_release.json", "r", encoding="utf-8")).get("body", "") or ""\npatterns=[r"UniFi Network API version\\\\s+(v\\\\d+\\\\.\\\\d+\\\\.\\\\d+)", r"UniFi API version\\\\s+(v\\\\d+\\\\.\\\\d+\\\\.\\\\d+)"]\nversion=""\nfor pattern in patterns:\n    match = re.search(pattern, body)\n    if match:\n        version = match.group(1)\n        break\nprint(version)\n')
+            fi
           fi
 
           echo "version=${prev_version}" >> "$GITHUB_OUTPUT"
@@ -150,6 +140,10 @@ PY
         run: |
           echo "Running tests..."
           go test ./...
+
+      - name: Update baseline API version file
+        run: |
+          echo "${{ inputs.api_version }}" > unifi-network-version
 
       - name: Prepare release notes
         run: |

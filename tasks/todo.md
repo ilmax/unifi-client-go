@@ -1,26 +1,21 @@
 # Todo
 
 ## Acceptance Criteria
-- Release workflow generates release notes that include `oasdiff` output for API diffs.
-- Breaking changes are called out using `oasdiff breaking`.
-- Diff summary is reproducible from the OpenAPI specs (old vs new) without manual steps.
-- README documents the diff behavior and how previous API versions are detected.
+- Release workflow uses `unifi-network-version` as the baseline API version when present and valid.
+- Workflow falls back to the latest release parsing only when the file is missing or invalid.
+- README documents the baseline file behavior.
+- Verification is run or a reason is documented.
 
 ## Plan
-- [x] Inspect current release workflow and release notes generation to identify where to inject `oasdiff` outputs.
-- [x] Define how to discover the previous API version from the latest release body.
-- [x] Update the workflow to download both specs, run `oasdiff diff` and `oasdiff breaking`, and append results to the release notes.
-- [x] Add tooling setup for `oasdiff` in the workflow.
-- [x] Update README to document the diff output and workflow usage.
-- [ ] Verify by running tests and a local dry-run example.
+- [ ] Update workflow to prefer `unifi-network-version` for the previous API version and keep the release fallback.
+- [ ] Update README to document the baseline file.
+- [ ] Verify changes.
 
 ## Working Notes
-- Prefer diffing the OpenAPI JSON directly; avoid parsing generated Go to reduce noise.
-- Keep output stable for release notes (markdown section with counts + lists).
+- Treat missing/invalid `unifi-network-version` as "no baseline".
 
 ## Progress
-- [ ] In progress
+- [x] In progress
 
 ## Results
-- Release workflow now installs `oasdiff`, compares specs to the previous release, and appends diff + breaking changes to release notes.
-- README documents the `oasdiff`-based release note sections and version parsing.
+- TBD
