@@ -1,5 +1,5 @@
 # UniFi SDK Release Workflow
-# This workflow generates Go types and client methods from UniFi API documentation
+# This workflow generates Go types and client methods from the UniFi Network OpenAPI spec
 # and creates a new release with the specified API version.
 
 name: Release SDK
@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       api_version:
-        description: 'UniFi API Version (e.g., v9.1.120)'
+        description: 'UniFi Network API Version (e.g., v9.1.120)'
         required: true
         type: string
 
@@ -34,17 +34,12 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.22'
+          go-version: '1.25.x'
 
-      - name: Setup Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: stable
-
-      - name: Verify Chrome installation
+      - name: Install oasdiff
         run: |
-          which google-chrome || which chromium-browser || which chromium
-          google-chrome --version || chromium-browser --version || chromium --version
+          go install github.com/Tufin/oasdiff/cmd/oasdiff@latest
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
 
       - name: Determine SDK version
         id: sdk_version
@@ -71,25 +66,76 @@ jobs:
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "tag=${tag}" >> "$GITHUB_OUTPUT"
 
+      - name: Determine previous API version
+        id: prev_api_version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          api_url="https://api.github.com/repos/${{ github.repository }}/releases/latest"
+          prev_version=""
+          if curl -fsSL -H "Authorization: Bearer $GITHUB_TOKEN" -H "Accept: application/vnd.github+json" "$api_url" -o /tmp/latest_release.json; then
+            prev_version=$(python - <<'PY'
+import json
+import re
+
+with open("/tmp/latest_release.json", "r", encoding="utf-8") as f:
+    data = json.load(f)
+
+body = data.get("body", "") or ""
+patterns = [
+    r"UniFi Network API version\\s+(v\\d+\\.\\d+\\.\\d+)",
+    r"UniFi API version\\s+(v\\d+\\.\\d+\\.\\d+)",
+]
+
+version = ""
+for pattern in patterns:
+    match = re.search(pattern, body)
+    if match:
+        version = match.group(1)
+        break
+
+print(version)
+PY
+)
+          fi
+
+          echo "version=${prev_version}" >> "$GITHUB_OUTPUT"
+          if [[ -n "$prev_version" ]]; then
+            echo "Previous API version: $prev_version"
+          else
+            echo "Previous API version not found; diff will be skipped."
+          fi
+
       - name: Create release branch
         run: |
           git checkout -b release/${{ steps.sdk_version.outputs.tag }}
 
-      - name: Generate types
+      - name: Download OpenAPI spec
         run: |
-          echo "Generating types from UniFi API documentation..."
-          go run ./cmd/typegen/main.go \
-            -discover "https://developer.ui.com/network/${{ inputs.api_version }}" \
-            -output-dir ./pkg \
-            -package network \
-            -workers 4
+          echo "Downloading OpenAPI spec..."
+          spec_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/${{ inputs.api_version }}.json"
+          curl -fsSL "$spec_url" -o /tmp/unifi-network-new.json
 
-      - name: Generate client methods
+      - name: Generate OpenAPI diff
+        if: steps.prev_api_version.outputs.version != '' && steps.prev_api_version.outputs.version != inputs.api_version
         run: |
-          echo "Generating client methods..."
-          go run ./cmd/clientgen/main.go \
-            -input ./pkg \
-            -output ./pkg
+          old_version="${{ steps.prev_api_version.outputs.version }}"
+          new_version="${{ inputs.api_version }}"
+          echo "Generating OpenAPI diff: ${old_version} -> ${new_version}"
+          curl -fsSL "https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/${old_version}.json" -o /tmp/unifi-network-old.json
+          oasdiff diff /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-diff.md
+          oasdiff breaking /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-breaking.md
+
+      - name: Generate client
+        run: |
+          echo "Generating client from OpenAPI spec..."
+          find ./pkg/network -maxdepth 1 -type f -name '*.go' ! -name 'network.go' -delete
+          go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest \
+            -generate types,client \
+            -package network \
+            -o ./pkg/network/openapi.gen.go \
+            /tmp/unifi-network-new.json
 
       - name: Format generated code
         run: |
@@ -104,6 +150,76 @@ jobs:
         run: |
           echo "Running tests..."
           go test ./...
+
+      - name: Prepare release notes
+        run: |
+          cat > /tmp/release-notes.md <<'EOF'
+          # UniFi SDK ${{ steps.sdk_version.outputs.tag }}
+          
+          UniFi SDK for UniFi Network API version ${{ inputs.api_version }}
+          
+          ## Installation
+          
+          ```bash
+          go get github.com/ilmax/unifi-client-go@${{ steps.sdk_version.outputs.tag }}
+          ```
+          
+          ## Usage
+          
+          ```go
+          package main
+          
+          import (
+              "context"
+              "log"
+              
+              "github.com/ilmax/unifi-client-go/unifi"
+          )
+          
+          func main() {
+              client, err := unifi.New(
+                  unifi.ConfigBaseURL("https://your-unifi-controller.com"),
+                  unifi.ConfigAPIKey("your-api-key"),
+              )
+              if err != nil {
+                  log.Fatal(err)
+              }
+              
+              ctx := context.Background()
+              // Use client to interact with UniFi API
+              _ = client
+              _ = ctx
+          }
+          ```
+          EOF
+
+          if [[ -n "${{ steps.prev_api_version.outputs.version }}" && "${{ steps.prev_api_version.outputs.version }}" != "${{ inputs.api_version }}" ]]; then
+            echo "" >> /tmp/release-notes.md
+            echo "## OpenAPI Diff" >> /tmp/release-notes.md
+            echo "" >> /tmp/release-notes.md
+            echo "Compared to ${{ steps.prev_api_version.outputs.version }}" >> /tmp/release-notes.md
+            echo "" >> /tmp/release-notes.md
+            if [[ -s /tmp/openapi-diff.md ]]; then
+              cat /tmp/openapi-diff.md >> /tmp/release-notes.md
+            else
+              echo "_Diff output not available._" >> /tmp/release-notes.md
+            fi
+
+            echo "" >> /tmp/release-notes.md
+            echo "## Breaking Changes" >> /tmp/release-notes.md
+            echo "" >> /tmp/release-notes.md
+            if [[ -s /tmp/openapi-breaking.md ]]; then
+              cat /tmp/openapi-breaking.md >> /tmp/release-notes.md
+            else
+              echo "_No breaking changes detected._" >> /tmp/release-notes.md
+            fi
+          fi
+
+          echo "" >> /tmp/release-notes.md
+          echo "## Changes" >> /tmp/release-notes.md
+          echo "" >> /tmp/release-notes.md
+          echo "- Generated types from UniFi Network API ${{ inputs.api_version }} spec" >> /tmp/release-notes.md
+          echo "- Generated client methods for all API endpoints" >> /tmp/release-notes.md
 
       - name: Configure Git
         run: |
@@ -129,49 +245,7 @@ jobs:
         with:
           tag_name: ${{ steps.sdk_version.outputs.tag }}
           name: Release ${{ steps.sdk_version.outputs.tag }}
-          body: |
-            # UniFi SDK ${{ steps.sdk_version.outputs.tag }}
-            
-            UniFi SDK for API version ${{ inputs.api_version }}
-            
-            ## Installation
-            
-            ```bash
-            go get github.com/ilmax/unifi-client-go@${{ steps.sdk_version.outputs.tag }}
-            ```
-            
-            ## Usage
-            
-            ```go
-            package main
-            
-            import (
-                "context"
-                "log"
-                
-                "github.com/ilmax/unifi-client-go/unifi"
-            )
-            
-            func main() {
-                client, err := unifi.New(
-                    unifi.ConfigBaseURL("https://your-unifi-controller.com"),
-                    unifi.ConfigAPIKey("your-api-key"),
-                )
-                if err != nil {
-                    log.Fatal(err)
-                }
-                
-                ctx := context.Background()
-                // Use client to interact with UniFi API
-                _ = client
-                _ = ctx
-            }
-            ```
-            
-            ## Changes
-            
-            - Generated types from UniFi API ${{ inputs.api_version }} documentation
-            - Generated client methods for all API endpoints
+          body_path: /tmp/release-notes.md
           draft: false
           prerelease: false
         env:

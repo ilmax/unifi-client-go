@@ -1,12 +1,12 @@
 # UniFi Go SDK
 
-Go SDK for the UniFi API. It provides auto-generated types and client methods based on the UniFi API documentation.
+Go SDK for the UniFi API. It provides auto-generated types and client methods based on the UniFi Network OpenAPI spec.
 
 ## Features
 
-- **Auto-generated**: Types and client methods are generated from the UniFi API documentation
+- **Auto-generated**: Types and client methods are generated from the UniFi Network OpenAPI spec
 - **Type-safe**: Strongly typed request and response models for all APIs
-- **Standard library only**: No external dependencies (uses only `net/http`, `encoding/json`, `context`, etc.)
+- **oapi-codegen**: Client code is generated via `oapi-codegen`
 - **Context-first**: All API methods accept `ctx context.Context` as the first argument
 
 ## Installation
@@ -99,23 +99,25 @@ unifi-go-sdk/
 │   ├── config/                  # Configuration
 │   ├── errors/                  # Custom errors
 │   ├── network/                 # Network API (generated)
-│   │   ├── types.go             # Type definitions
-│   │   └── network.go           # Client methods
+│   │   ├── openapi.gen.go       # Generated types + client
+│   │   └── network.go           # Client helpers/config
 │   └── sitemanager/             # Site Manager API
 ├── internal/
 │   ├── http/                    # HTTP client
-│   ├── typegen/                 # Type generator
-│   └── clientgen/               # Client method generator
+│   ├── typegen/                 # Legacy generator (unused)
+│   └── clientgen/               # Legacy generator (unused)
 ├── cmd/
-│   ├── typegen/                 # Type generator CLI
-│   └── clientgen/               # Client method generator CLI
+│   ├── typegen/                 # Legacy generator CLI (unused)
+│   └── clientgen/               # Legacy generator CLI (unused)
 ├── go.mod
 └── README.md
 ```
 
 ## About Auto-Generation
 
-Types and client methods in this SDK are auto-generated from UniFi API documentation.
+Types and client methods in this SDK are auto-generated from the UniFi Network OpenAPI spec:
+
+`https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/{version}.json`
 
 ### Generated Types
 
@@ -150,12 +152,15 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 ### Workflow Steps
 
 1. Determine the next SDK version from [VERSION](VERSION) and create a release branch (`release/vX.Y.Z`)
-2. Generate types from the UniFi API documentation (`typegen`)
-3. Generate client methods (`clientgen`)
-4. Format, build, and test code
-5. Commit and push changes
-6. Create a version tag (SDK version)
-7. Create a GitHub release
+2. Download the OpenAPI spec for the requested API version
+3. Generate types and client via `oapi-codegen`
+4. If a previous release exists, compute OpenAPI diffs via `oasdiff` and include them in the release notes
+5. Format, build, and test code
+6. Commit and push changes
+7. Create a version tag (SDK version)
+8. Create a GitHub release
+
+Release notes include an OpenAPI diff and a breaking-changes section when a prior release contains a `UniFi Network API version vX.Y.Z` line.
 
 ## Error Handling
 
@@ -205,22 +210,18 @@ client, err := unifi.NewNetwork(network.Config{
 
 ## Development
 
-### Run the type generator
+### Generate the Network client from OpenAPI
 
 ```bash
-go run ./cmd/typegen/main.go \
-    -discover "https://developer.ui.com/network/v9.1.120" \
-    -output-dir ./pkg \
+curl -fsSL \
+    "https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/v9.1.120.json" \
+    -o /tmp/unifi-network.json
+
+go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest \
+    -generate types,client \
     -package network \
-    -workers 4
-```
-
-### Run the client generator
-
-```bash
-go run ./cmd/clientgen/main.go \
-    -input ./pkg \
-    -output ./pkg
+    -o ./pkg/network/openapi.gen.go \
+    /tmp/unifi-network.json
 ```
 
 ## License
