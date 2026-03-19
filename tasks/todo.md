@@ -1,25 +1,26 @@
 # Todo
 
 ## Acceptance Criteria
-- The generated Network client supports `api_key` authentication via request headers.
-- The public constructor in `pkg/network` and `unifi.NewNetwork(...)` expose API-key auth configuration.
-- Username/password login is no longer advertised in code examples/docs.
-- Tests cover the API-key header injection path and constructor validation where possible.
+- The release process rewrites the DNS policy schemas into a `oneOf`-based union before running `oapi-codegen`.
+- The raw upstream spec remains committed under `openapi/unifi-network/<version>.json`.
+- The patched codegen input is also committed, and the workflow generates `pkg/network/openapi.gen.go` from it.
+- The generated DNS request/response/page item types can model derived DNS policy variants.
+- Tests cover the preprocessor behavior.
 - Verification steps are recorded.
 
 ## Plan
-- [x] Add API-key auth support to the generated Network client wrapper.
-- [x] Update docs/examples/workflow snippets to show API-key-based usage.
-- [x] Verify with tests.
+- [x] Add a tested OpenAPI preprocessor that rewrites DNS discriminator schemas into `oneOf` unions.
+- [ ] Integrate the preprocessor into the release workflow and persist the codegen-ready spec artifact.
+- [ ] Update docs and verify with tests/build.
 
 ## Working Notes
-- Use the generated client's request editor hook instead of modifying generated files directly.
+- `oapi-codegen` only builds discriminator unions when the schema uses `oneOf` or `anyOf`; discriminator + `allOf` inheritance stays flattened.
+- A safe rewrite needs a synthetic `... base` schema to avoid introducing a self-referential cycle.
+- Keep the change targeted to DNS for now; the upstream spec contains many other discriminator-only schemas.
 
 ## Progress
 - [x] In progress
 
 ## Results
-- Added `APIKey` support to `network.Config` and wired it into the generated client through `oapi-codegen` request editors using the `X-API-Key` header.
-- Updated README, example code, and release-note usage snippets to show API-key authentication and removed the old username/password/site-based examples.
-- Added tests for constructor validation, API-key header injection, and timeout defaults.
-- Verified with `go test ./...` and a repo-wide search confirming the old login/config references are gone.
+- Added `cmd/openapi-preprocess` plus `internal/openapipatch` to rewrite the two DNS policy schemas into proper `oneOf` unions with synthetic base schemas, avoiding recursive `allOf` cycles.
+- Added unit coverage for the rewrite behavior and verified it with `go test ./internal/openapipatch ./cmd/openapi-preprocess`.
