@@ -9,7 +9,7 @@
 
 ## Plan
 - [x] Map firewall discriminator targets and identify any parent-ref mismatches that need special handling.
-- [ ] Extend the OpenAPI preprocessor and tests to rewrite the firewall union families safely.
+- [x] Extend the OpenAPI preprocessor and tests to rewrite the firewall union families safely.
 - [ ] Verify with tests/build and record the results.
 
 ## Working Notes
@@ -23,3 +23,5 @@
 ## Results
 - Confirmed the firewall policy graph needs curated preprocessing for the nested discriminator families used by `Create or update firewall policy` and `Firewall policy`.
 - Confirmed a special-case upstream mismatch: `Firewall policy IPv4 protocol` maps `PROTOCOL_NUMBER` to `Firewall policy IPv4 protocol number`, but that schema currently inherits from `Firewall policy IPv6 protocol`.
+- Extended the preprocessor to rewrite the firewall action, source/destination filter, port/IP filter, protocol scope, protocol family, named protocol, protocol preset, and schedule unions.
+- Added a firewall regression fixture that covers the mismatched IPv4 protocol-number case by cloning it to a synthetic IPv4-specific child while leaving the shared IPv6 branch intact.

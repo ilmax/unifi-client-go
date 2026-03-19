@@ -24,9 +24,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	out, err := openapipatch.RewriteDNSUnions(in)
+	out, err := openapipatch.RewriteDiscriminatorUnions(in)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "rewrite dns unions: %v\n", err)
+		fmt.Fprintf(os.Stderr, "rewrite discriminator unions: %v\n", err)
 		os.Exit(1)
 	}
 

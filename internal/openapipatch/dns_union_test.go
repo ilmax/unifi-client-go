@@ -5,12 +5,12 @@ import (
 	"testing"
 )
 
-func TestRewriteDNSUnions(t *testing.T) {
+func TestRewriteDiscriminatorUnionsRewritesDNSPolicyFamilies(t *testing.T) {
 	t.Parallel()
 
-	patched, err := RewriteDNSUnions([]byte(testSpec))
+	patched, err := RewriteDiscriminatorUnions([]byte(testSpec))
 	if err != nil {
-		t.Fatalf("RewriteDNSUnions() error = %v", err)
+		t.Fatalf("RewriteDiscriminatorUnions() error = %v", err)
 	}
 
 	var spec map[string]any
@@ -77,16 +77,74 @@ func TestRewriteDNSUnions(t *testing.T) {
 	assertAllOfParentRef(t, forwardResponse, schemaRef(dnsPolicyBase))
 }
 
-func TestRewriteDNSUnionsSkipsAlreadyFixedSpec(t *testing.T) {
+func TestRewriteDiscriminatorUnionsRewritesFirewallPolicyFamilies(t *testing.T) {
 	t.Parallel()
 
-	patched, err := RewriteDNSUnions([]byte(alreadyFixedSpec))
+	patched, err := RewriteDiscriminatorUnions([]byte(firewallSpec))
 	if err != nil {
-		t.Fatalf("RewriteDNSUnions() error = %v", err)
+		t.Fatalf("RewriteDiscriminatorUnions() error = %v", err)
+	}
+
+	var spec map[string]any
+	if err := json.Unmarshal(patched, &spec); err != nil {
+		t.Fatalf("json.Unmarshal() error = %v", err)
+	}
+
+	schemas, err := schemaObjects(spec)
+	if err != nil {
+		t.Fatalf("schemaObjects() error = %v", err)
+	}
+
+	actionSchema, err := schemaObject(schemas, "Firewall policy action")
+	if err != nil {
+		t.Fatalf("schemaObject(action) error = %v", err)
+	}
+	assertUnionSchema(t, actionSchema, []string{
+		schemaRef("IntegrationFirewallPolicyActionAllowDto"),
+		schemaRef("IntegrationFirewallPolicyActionBlockDto"),
+	})
+
+	ipv4ProtocolSchema, err := schemaObject(schemas, "Firewall policy IPv4 protocol")
+	if err != nil {
+		t.Fatalf("schemaObject(ipv4 protocol) error = %v", err)
+	}
+	assertUnionSchema(t, ipv4ProtocolSchema, []string{
+		schemaRef("Firewall policy IPv4 protocol number (IPv4 base)"),
+		schemaRef("IntegrationFirewallPolicyIpv4NamedProtocolFilterDto"),
+		schemaRef("IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto"),
+	})
+
+	ipv4ProtocolBase, err := schemaObject(schemas, "Firewall policy IPv4 protocol base")
+	if err != nil {
+		t.Fatalf("schemaObject(ipv4 protocol base) error = %v", err)
+	}
+	if _, ok := ipv4ProtocolBase["discriminator"]; ok {
+		t.Fatalf("synthetic ipv4 protocol base should not keep discriminator")
+	}
+
+	overrideSchema, err := schemaObject(schemas, "Firewall policy IPv4 protocol number (IPv4 base)")
+	if err != nil {
+		t.Fatalf("schemaObject(ipv4 protocol override) error = %v", err)
+	}
+	assertAllOfParentRef(t, overrideSchema, schemaRef("Firewall policy IPv4 protocol base"))
+
+	originalProtocolNumber, err := schemaObject(schemas, "Firewall policy IPv4 protocol number")
+	if err != nil {
+		t.Fatalf("schemaObject(original protocol number) error = %v", err)
+	}
+	assertAllOfParentRef(t, originalProtocolNumber, schemaRef("Firewall policy IPv6 protocol base"))
+}
+
+func TestRewriteDiscriminatorUnionsSkipsAlreadyFixedSpec(t *testing.T) {
+	t.Parallel()
+
+	patched, err := RewriteDiscriminatorUnions([]byte(alreadyFixedSpec))
+	if err != nil {
+		t.Fatalf("RewriteDiscriminatorUnions() error = %v", err)
 	}
 
 	if string(patched) != alreadyFixedSpec {
-		t.Fatalf("RewriteDNSUnions() should return the original bytes when no rewrite is needed")
+		t.Fatalf("RewriteDiscriminatorUnions() should return the original bytes when no rewrite is needed")
 	}
 }
 
@@ -268,3 +326,169 @@ const testSpec = `{
 }`
 
 const alreadyFixedSpec = `{"openapi":"3.1.0","components":{"schemas":{"Create or update DNS policy":{"type":"object","discriminator":{"propertyName":"type","mapping":{"A_RECORD":"#/components/schemas/IntegrationDnsARecordCreateUpdateDto","FORWARD_DOMAIN":"#/components/schemas/IntegrationDnsForwardDomainPolicyCreateUpdateDto"}},"oneOf":[{"$ref":"#/components/schemas/IntegrationDnsARecordCreateUpdateDto"},{"$ref":"#/components/schemas/IntegrationDnsForwardDomainPolicyCreateUpdateDto"}]},"DNS policy":{"type":"object","discriminator":{"propertyName":"type","mapping":{"A_RECORD":"#/components/schemas/IntegrationDnsARecordDto","FORWARD_DOMAIN":"#/components/schemas/IntegrationDnsForwardDomainPolicyDto"}},"oneOf":[{"$ref":"#/components/schemas/IntegrationDnsARecordDto"},{"$ref":"#/components/schemas/IntegrationDnsForwardDomainPolicyDto"}]}}}}`
+
+const firewallSpec = `{
+  "openapi": "3.1.0",
+  "components": {
+    "schemas": {
+      "Firewall policy action": {
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ALLOW": "#/components/schemas/IntegrationFirewallPolicyActionAllowDto",
+            "BLOCK": "#/components/schemas/IntegrationFirewallPolicyActionBlockDto"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "IntegrationFirewallPolicyActionAllowDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy action"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "log": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "IntegrationFirewallPolicyActionBlockDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy action"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "notify": {
+                "type": "boolean"
+              }
+            }
+          }
+        ]
+      },
+      "Firewall policy IPv6 protocol": {
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "NAMED_PROTOCOL": "#/components/schemas/IntegrationFirewallPolicyIpv6NamedProtocolFilterDto",
+            "PROTOCOL_NUMBER": "#/components/schemas/Firewall policy IPv4 protocol number",
+            "PRESET": "#/components/schemas/IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "Firewall policy IPv4 protocol": {
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "NAMED_PROTOCOL": "#/components/schemas/IntegrationFirewallPolicyIpv4NamedProtocolFilterDto",
+            "PROTOCOL_NUMBER": "#/components/schemas/Firewall policy IPv4 protocol number",
+            "PRESET": "#/components/schemas/IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto"
+          }
+        },
+        "properties": {
+          "type": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type"
+        ]
+      },
+      "IntegrationFirewallPolicyIpv4NamedProtocolFilterDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "protocol": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "preset": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "IntegrationFirewallPolicyIpv6NamedProtocolFilterDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "protocol": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "preset": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "Firewall policy IPv4 protocol number": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "protocolNumber": {
+                "type": "integer"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}`
