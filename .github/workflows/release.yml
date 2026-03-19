@@ -138,6 +138,13 @@ jobs:
             exit 1
           fi
 
+      - name: Prepare codegen spec
+        run: |
+          echo "Rewriting DNS unions for code generation..."
+          go run ./cmd/openapi-preprocess \
+            -in "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" \
+            -out "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.codegen.json"
+
       - name: Generate OpenAPI diff
         if: steps.prev_api_version.outputs.version != '' && steps.prev_api_version.outputs.version != steps.api_version.outputs.normalized
         run: |
@@ -164,7 +171,7 @@ jobs:
             -generate types,client \
             -package network \
             -o ./pkg/network/openapi.gen.go \
-            "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json"
+            "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.codegen.json"
 
       - name: Format generated code
         run: |
@@ -253,7 +260,9 @@ jobs:
           echo "" >> /tmp/release-notes.md
           echo "## Changes" >> /tmp/release-notes.md
           echo "" >> /tmp/release-notes.md
-          echo "- Generated types from UniFi Network API ${{ inputs.api_version }} spec" >> /tmp/release-notes.md
+          echo "- Committed upstream OpenAPI spec to openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" >> /tmp/release-notes.md
+          echo "- Committed patched codegen spec to openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.codegen.json" >> /tmp/release-notes.md
+          echo "- Generated types from the patched UniFi Network API ${{ inputs.api_version }} spec" >> /tmp/release-notes.md
           echo "- Generated client methods for all API endpoints" >> /tmp/release-notes.md
 
       - name: Configure Git

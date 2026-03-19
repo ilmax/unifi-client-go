@@ -49,33 +49,31 @@ func RewriteDNSUnions(doc []byte) ([]byte, error) {
 	return out, nil
 }
 
-func schemaObjects(spec map[string]any) (map[string]map[string]any, error) {
+func schemaObjects(spec map[string]any) (map[string]any, error) {
 	components, ok := spec["components"].(map[string]any)
 	if !ok {
 		return nil, fmt.Errorf("spec.components is missing or invalid")
 	}
 
-	rawSchemas, ok := components["schemas"].(map[string]any)
+	schemas, ok := components["schemas"].(map[string]any)
 	if !ok {
 		return nil, fmt.Errorf("spec.components.schemas is missing or invalid")
 	}
 
-	schemas := make(map[string]map[string]any, len(rawSchemas))
-	for name, rawSchema := range rawSchemas {
-		schema, ok := rawSchema.(map[string]any)
+	for name, rawSchema := range schemas {
+		_, ok := rawSchema.(map[string]any)
 		if !ok {
 			return nil, fmt.Errorf("schema %q is invalid", name)
 		}
-		schemas[name] = schema
 	}
 
 	return schemas, nil
 }
 
-func rewriteDiscriminatorAllOfUnion(schemas map[string]map[string]any, schemaName, syntheticBaseName string) error {
-	schema, ok := schemas[schemaName]
-	if !ok {
-		return fmt.Errorf("schema %q not found", schemaName)
+func rewriteDiscriminatorAllOfUnion(schemas map[string]any, schemaName, syntheticBaseName string) error {
+	schema, err := schemaObject(schemas, schemaName)
+	if err != nil {
+		return err
 	}
 
 	if _, alreadyUnion := schema["oneOf"]; alreadyUnion {
@@ -106,9 +104,9 @@ func rewriteDiscriminatorAllOfUnion(schemas map[string]map[string]any, schemaNam
 
 	for _, ref := range oneOfRefs {
 		childName := schemaNameFromRef(ref)
-		childSchema, ok := schemas[childName]
-		if !ok {
-			return fmt.Errorf("mapped schema %q not found", childName)
+		childSchema, err := schemaObject(schemas, childName)
+		if err != nil {
+			return err
 		}
 
 		replaced, err := rewriteAllOfRef(childSchema, originalRef, syntheticRef)
@@ -125,6 +123,20 @@ func rewriteDiscriminatorAllOfUnion(schemas map[string]map[string]any, schemaNam
 	schema["oneOf"] = refsAsSchemaRefs(oneOfRefs)
 
 	return nil
+}
+
+func schemaObject(schemas map[string]any, name string) (map[string]any, error) {
+	rawSchema, ok := schemas[name]
+	if !ok {
+		return nil, fmt.Errorf("schema %q not found", name)
+	}
+
+	schema, ok := rawSchema.(map[string]any)
+	if !ok {
+		return nil, fmt.Errorf("schema %q is invalid", name)
+	}
+
+	return schema, nil
 }
 
 func rewriteAllOfRef(schema map[string]any, oldRef, newRef string) (bool, error) {

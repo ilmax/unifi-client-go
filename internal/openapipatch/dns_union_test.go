@@ -23,26 +23,58 @@ func TestRewriteDNSUnions(t *testing.T) {
 		t.Fatalf("schemaObjects() error = %v", err)
 	}
 
-	assertUnionSchema(t, schemas[createOrUpdateDNSPolicySchema], []string{
+	createOrUpdateSchema, err := schemaObject(schemas, createOrUpdateDNSPolicySchema)
+	if err != nil {
+		t.Fatalf("schemaObject(create/update) error = %v", err)
+	}
+	assertUnionSchema(t, createOrUpdateSchema, []string{
 		schemaRef("IntegrationDnsARecordCreateUpdateDto"),
 		schemaRef("IntegrationDnsForwardDomainPolicyCreateUpdateDto"),
 	})
-	assertUnionSchema(t, schemas[dnsPolicySchema], []string{
+	responseSchema, err := schemaObject(schemas, dnsPolicySchema)
+	if err != nil {
+		t.Fatalf("schemaObject(response) error = %v", err)
+	}
+	assertUnionSchema(t, responseSchema, []string{
 		schemaRef("IntegrationDnsARecordDto"),
 		schemaRef("IntegrationDnsForwardDomainPolicyDto"),
 	})
 
-	if _, ok := schemas[createOrUpdateDNSPolicyBase]["discriminator"]; ok {
+	createOrUpdateBase, err := schemaObject(schemas, createOrUpdateDNSPolicyBase)
+	if err != nil {
+		t.Fatalf("schemaObject(create/update base) error = %v", err)
+	}
+	if _, ok := createOrUpdateBase["discriminator"]; ok {
 		t.Fatalf("synthetic create/update base should not keep discriminator")
 	}
-	if _, ok := schemas[dnsPolicyBase]["discriminator"]; ok {
+	responseBase, err := schemaObject(schemas, dnsPolicyBase)
+	if err != nil {
+		t.Fatalf("schemaObject(response base) error = %v", err)
+	}
+	if _, ok := responseBase["discriminator"]; ok {
 		t.Fatalf("synthetic response base should not keep discriminator")
 	}
 
-	assertAllOfParentRef(t, schemas["IntegrationDnsARecordCreateUpdateDto"], schemaRef(createOrUpdateDNSPolicyBase))
-	assertAllOfParentRef(t, schemas["IntegrationDnsForwardDomainPolicyCreateUpdateDto"], schemaRef(createOrUpdateDNSPolicyBase))
-	assertAllOfParentRef(t, schemas["IntegrationDnsARecordDto"], schemaRef(dnsPolicyBase))
-	assertAllOfParentRef(t, schemas["IntegrationDnsForwardDomainPolicyDto"], schemaRef(dnsPolicyBase))
+	createOrUpdateARecord, err := schemaObject(schemas, "IntegrationDnsARecordCreateUpdateDto")
+	if err != nil {
+		t.Fatalf("schemaObject(create/update A record) error = %v", err)
+	}
+	forwardCreateUpdate, err := schemaObject(schemas, "IntegrationDnsForwardDomainPolicyCreateUpdateDto")
+	if err != nil {
+		t.Fatalf("schemaObject(create/update forward domain) error = %v", err)
+	}
+	responseARecord, err := schemaObject(schemas, "IntegrationDnsARecordDto")
+	if err != nil {
+		t.Fatalf("schemaObject(response A record) error = %v", err)
+	}
+	forwardResponse, err := schemaObject(schemas, "IntegrationDnsForwardDomainPolicyDto")
+	if err != nil {
+		t.Fatalf("schemaObject(response forward domain) error = %v", err)
+	}
+	assertAllOfParentRef(t, createOrUpdateARecord, schemaRef(createOrUpdateDNSPolicyBase))
+	assertAllOfParentRef(t, forwardCreateUpdate, schemaRef(createOrUpdateDNSPolicyBase))
+	assertAllOfParentRef(t, responseARecord, schemaRef(dnsPolicyBase))
+	assertAllOfParentRef(t, forwardResponse, schemaRef(dnsPolicyBase))
 }
 
 func assertUnionSchema(t *testing.T, schema map[string]any, wantRefs []string) {

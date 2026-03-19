@@ -10,7 +10,7 @@
 
 ## Plan
 - [x] Add a tested OpenAPI preprocessor that rewrites DNS discriminator schemas into `oneOf` unions.
-- [ ] Integrate the preprocessor into the release workflow and persist the codegen-ready spec artifact.
+- [x] Integrate the preprocessor into the release workflow and persist the codegen-ready spec artifact.
 - [ ] Update docs and verify with tests/build.
 
 ## Working Notes
@@ -24,3 +24,4 @@
 ## Results
 - Added `cmd/openapi-preprocess` plus `internal/openapipatch` to rewrite the two DNS policy schemas into proper `oneOf` unions with synthetic base schemas, avoiding recursive `allOf` cycles.
 - Added unit coverage for the rewrite behavior and verified it with `go test ./internal/openapipatch ./cmd/openapi-preprocess`.
+- Updated the release workflow to commit a patched `openapi/unifi-network/<version>.codegen.json` artifact and generate `pkg/network/openapi.gen.go` from that file instead of the raw upstream spec.
