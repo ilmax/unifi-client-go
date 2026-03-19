@@ -95,7 +95,7 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 1. Determine the next free SDK version by starting from [VERSION](VERSION) and incrementing until both tag and branch names are available
 2. Create a release branch named `release/sdk-vX.Y.Z-network-vA.B.C`
 3. Download the OpenAPI spec into `openapi/unifi-network/<version>.json`
-4. Rewrite DNS policy discriminator schemas into `oneOf` unions and commit the patched codegen input as `openapi/unifi-network/<version>.codegen.json`
+4. Rewrite the known discriminator-only schema families needed for code generation (currently DNS policy and firewall policy unions) into `oneOf` unions and commit the patched codegen input as `openapi/unifi-network/<version>.codegen.json`
 5. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
 6. Generate `pkg/network/openapi.gen.go` from the committed patched spec via `oapi-codegen`
 7. Format, build, and test code
