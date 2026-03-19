@@ -1,29 +1,25 @@
 # Todo
 
 ## Acceptance Criteria
-- The release process rewrites the DNS policy schemas into a `oneOf`-based union before running `oapi-codegen`.
-- The raw upstream spec remains committed under `openapi/unifi-network/<version>.json`.
-- The patched codegen input is also committed, and the workflow generates `pkg/network/openapi.gen.go` from it.
-- The generated DNS request/response/page item types can model derived DNS policy variants.
-- Tests cover the preprocessor behavior.
+- The OpenAPI preprocessor rewrites the firewall discriminator-based schemas that are still flattened by `oapi-codegen`.
+- The rewrite stays curated and safe: if a target family is already fixed upstream, the tool skips it.
+- Known upstream oddities in the firewall protocol family are handled without breaking generation.
+- Tests cover the firewall rewrite behavior, including a mismatched-parent case.
 - Verification steps are recorded.
 
 ## Plan
-- [x] Add a tested OpenAPI preprocessor that rewrites DNS discriminator schemas into `oneOf` unions.
-- [x] Integrate the preprocessor into the release workflow and persist the codegen-ready spec artifact.
-- [x] Update docs and verify with tests/build.
+- [x] Map firewall discriminator targets and identify any parent-ref mismatches that need special handling.
+- [ ] Extend the OpenAPI preprocessor and tests to rewrite the firewall union families safely.
+- [ ] Verify with tests/build and record the results.
 
 ## Working Notes
-- `oapi-codegen` only builds discriminator unions when the schema uses `oneOf` or `anyOf`; discriminator + `allOf` inheritance stays flattened.
-- A safe rewrite needs a synthetic `... base` schema to avoid introducing a self-referential cycle.
-- Keep the change targeted to DNS for now; the upstream spec contains many other discriminator-only schemas.
+- The firewall policy graph has nested polymorphic families: action, source/destination filters, port/IP filters, protocol scope, protocol families, and schedule.
+- At least one upstream schema appears inconsistent: `Firewall policy IPv4 protocol number` inherits from `Firewall policy IPv6 protocol` while also being referenced from the IPv4 discriminator mapping.
+- The existing DNS rewrite machinery should be reusable if we add support for synthetic child overrides when a mapped schema does not inherit from the expected base.
 
 ## Progress
-- [x] In progress
+- [ ] In progress
 
 ## Results
-- Added `cmd/openapi-preprocess` plus `internal/openapipatch` to rewrite the two DNS policy schemas into proper `oneOf` unions with synthetic base schemas, avoiding recursive `allOf` cycles.
-- Added unit coverage for the rewrite behavior and verified it with `go test ./internal/openapipatch ./cmd/openapi-preprocess`.
-- Updated the release workflow to commit a patched `openapi/unifi-network/<version>.codegen.json` artifact and generate `pkg/network/openapi.gen.go` from that file instead of the raw upstream spec.
-- Updated the README so the release flow and local generation steps describe the raw spec plus patched codegen spec workflow.
-- Verified with `go test ./...` and `go build ./...` (rerun outside the sandbox because `httptest.NewServer` needed a real local port).
+- Confirmed the firewall policy graph needs curated preprocessing for the nested discriminator families used by `Create or update firewall policy` and `Firewall policy`.
+- Confirmed a special-case upstream mismatch: `Firewall policy IPv4 protocol` maps `PROTOCOL_NUMBER` to `Firewall policy IPv4 protocol number`, but that schema currently inherits from `Firewall policy IPv6 protocol`.
