@@ -7,6 +7,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -924,6 +925,11 @@ type CountryDefinitionPage struct {
 
 // CreateOrUpdateDNSPolicy defines model for Create or update DNS policy.
 type CreateOrUpdateDNSPolicy struct {
+	union json.RawMessage
+}
+
+// CreateOrUpdateDNSPolicyBase defines model for Create or update DNS policy base.
+type CreateOrUpdateDNSPolicyBase struct {
 	Enabled bool   `json:"enabled"`
 	Type    string `json:"type"`
 }
@@ -989,6 +995,11 @@ type CreateOrUpdateTrafficMatchingList struct {
 
 // DNSPolicy defines model for DNS policy.
 type DNSPolicy struct {
+	union json.RawMessage
+}
+
+// DNSPolicyBase defines model for DNS policy base.
+type DNSPolicyBase struct {
 	Domain   *string                   `json:"domain,omitempty"`
 	Enabled  bool                      `json:"enabled"`
 	Id       openapi_types.UUID        `json:"id"`
@@ -1300,6 +1311,124 @@ type IntegrationDeviceTagPageDto struct {
 	TotalCount int64       `json:"totalCount"`
 }
 
+// IntegrationDnsARecordCreateUpdateDto defines model for IntegrationDnsARecordCreateUpdateDto.
+type IntegrationDnsARecordCreateUpdateDto struct {
+	Domain      *string `json:"domain,omitempty"`
+	Enabled     bool    `json:"enabled"`
+	Ipv4Address *string `json:"ipv4Address,omitempty"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsARecordDto defines model for IntegrationDnsARecordDto.
+type IntegrationDnsARecordDto struct {
+	Domain      *string                   `json:"domain,omitempty"`
+	Enabled     bool                      `json:"enabled"`
+	Id          openapi_types.UUID        `json:"id"`
+	Ipv4Address *string                   `json:"ipv4Address,omitempty"`
+	Metadata    UserDefinedEntityMetadata `json:"metadata"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsAaaaRecordCreateUpdateDto defines model for IntegrationDnsAaaaRecordCreateUpdateDto.
+type IntegrationDnsAaaaRecordCreateUpdateDto struct {
+	Domain      *string `json:"domain,omitempty"`
+	Enabled     bool    `json:"enabled"`
+	Ipv6Address *string `json:"ipv6Address,omitempty"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsAaaaRecordDto defines model for IntegrationDnsAaaaRecordDto.
+type IntegrationDnsAaaaRecordDto struct {
+	Domain      *string                   `json:"domain,omitempty"`
+	Enabled     bool                      `json:"enabled"`
+	Id          openapi_types.UUID        `json:"id"`
+	Ipv6Address *string                   `json:"ipv6Address,omitempty"`
+	Metadata    UserDefinedEntityMetadata `json:"metadata"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsCnameRecordCreateUpdateDto defines model for IntegrationDnsCnameRecordCreateUpdateDto.
+type IntegrationDnsCnameRecordCreateUpdateDto struct {
+	Domain       *string `json:"domain,omitempty"`
+	Enabled      bool    `json:"enabled"`
+	TargetDomain *string `json:"targetDomain,omitempty"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsCnameRecordDto defines model for IntegrationDnsCnameRecordDto.
+type IntegrationDnsCnameRecordDto struct {
+	Domain       *string                   `json:"domain,omitempty"`
+	Enabled      bool                      `json:"enabled"`
+	Id           openapi_types.UUID        `json:"id"`
+	Metadata     UserDefinedEntityMetadata `json:"metadata"`
+	TargetDomain *string                   `json:"targetDomain,omitempty"`
+
+	// TtlSeconds Time to live in seconds.
+	TtlSeconds *int32 `json:"ttlSeconds,omitempty"`
+	Type       string `json:"type"`
+}
+
+// IntegrationDnsForwardDomainPolicyCreateUpdateDto defines model for IntegrationDnsForwardDomainPolicyCreateUpdateDto.
+type IntegrationDnsForwardDomainPolicyCreateUpdateDto struct {
+	Domain  *string `json:"domain,omitempty"`
+	Enabled bool    `json:"enabled"`
+
+	// IpAddress IP address of the DNS Server that the DNS query is forwarded to.
+	IpAddress *string `json:"ipAddress,omitempty"`
+	Type      string  `json:"type"`
+}
+
+// IntegrationDnsForwardDomainPolicyDto defines model for IntegrationDnsForwardDomainPolicyDto.
+type IntegrationDnsForwardDomainPolicyDto struct {
+	Domain  *string            `json:"domain,omitempty"`
+	Enabled bool               `json:"enabled"`
+	Id      openapi_types.UUID `json:"id"`
+
+	// IpAddress IP address of the DNS Server that the DNS query is forwarded to.
+	IpAddress *string                   `json:"ipAddress,omitempty"`
+	Metadata  UserDefinedEntityMetadata `json:"metadata"`
+	Type      string                    `json:"type"`
+}
+
+// IntegrationDnsMxRecordCreateUpdateDto defines model for IntegrationDnsMxRecordCreateUpdateDto.
+type IntegrationDnsMxRecordCreateUpdateDto struct {
+	Domain           *string `json:"domain,omitempty"`
+	Enabled          bool    `json:"enabled"`
+	MailServerDomain *string `json:"mailServerDomain,omitempty"`
+
+	// Priority Priority. A lower number is preferred.
+	Priority *int32 `json:"priority,omitempty"`
+	Type     string `json:"type"`
+}
+
+// IntegrationDnsMxRecordDto defines model for IntegrationDnsMxRecordDto.
+type IntegrationDnsMxRecordDto struct {
+	Domain           *string                   `json:"domain,omitempty"`
+	Enabled          bool                      `json:"enabled"`
+	Id               openapi_types.UUID        `json:"id"`
+	MailServerDomain *string                   `json:"mailServerDomain,omitempty"`
+	Metadata         UserDefinedEntityMetadata `json:"metadata"`
+
+	// Priority Priority. A lower number is preferred.
+	Priority *int32 `json:"priority,omitempty"`
+	Type     string `json:"type"`
+}
+
 // IntegrationDnsPolicyPageDto defines model for IntegrationDnsPolicyPageDto.
 type IntegrationDnsPolicyPageDto struct {
 	Count      int32       `json:"count"`
@@ -1307,6 +1436,76 @@ type IntegrationDnsPolicyPageDto struct {
 	Limit      int32       `json:"limit"`
 	Offset     int64       `json:"offset"`
 	TotalCount int64       `json:"totalCount"`
+}
+
+// IntegrationDnsSrvRecordCreateUpdateDto defines model for IntegrationDnsSrvRecordCreateUpdateDto.
+type IntegrationDnsSrvRecordCreateUpdateDto struct {
+	Domain  *string `json:"domain,omitempty"`
+	Enabled bool    `json:"enabled"`
+	Port    *int32  `json:"port,omitempty"`
+
+	// Priority Priority. A lower number is preferred.
+	Priority *int32 `json:"priority,omitempty"`
+
+	// Protocol Protocol used by the service.
+	Protocol *string `json:"protocol,omitempty"`
+
+	// ServerDomain Domain of the server that is running the service.
+	ServerDomain *string `json:"serverDomain,omitempty"`
+
+	// Service Service associated with this SRV record.
+	Service *string `json:"service,omitempty"`
+	Type    string  `json:"type"`
+
+	// Weight Weight. A relative value applicable for records with the same priority. A lower number is preferred.
+	Weight *int32 `json:"weight,omitempty"`
+}
+
+// IntegrationDnsSrvRecordDto defines model for IntegrationDnsSrvRecordDto.
+type IntegrationDnsSrvRecordDto struct {
+	Domain   *string                   `json:"domain,omitempty"`
+	Enabled  bool                      `json:"enabled"`
+	Id       openapi_types.UUID        `json:"id"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+	Port     *int32                    `json:"port,omitempty"`
+
+	// Priority Priority. A lower number is preferred.
+	Priority *int32 `json:"priority,omitempty"`
+
+	// Protocol Protocol used by the service.
+	Protocol *string `json:"protocol,omitempty"`
+
+	// ServerDomain Domain of the server that is running the service.
+	ServerDomain *string `json:"serverDomain,omitempty"`
+
+	// Service Service associated with this SRV record.
+	Service *string `json:"service,omitempty"`
+	Type    string  `json:"type"`
+
+	// Weight Weight. A relative value applicable for records with the same priority. A lower number is preferred.
+	Weight *int32 `json:"weight,omitempty"`
+}
+
+// IntegrationDnsTxtRecordCreateUpdateDto defines model for IntegrationDnsTxtRecordCreateUpdateDto.
+type IntegrationDnsTxtRecordCreateUpdateDto struct {
+	Domain  *string `json:"domain,omitempty"`
+	Enabled bool    `json:"enabled"`
+
+	// Text The text value associated with this TXT DNS record. Text can contain up to four 255-character strings. Lines containing commas must be enclosed in double quotes (").
+	Text *string `json:"text,omitempty"`
+	Type string  `json:"type"`
+}
+
+// IntegrationDnsTxtRecordDto defines model for IntegrationDnsTxtRecordDto.
+type IntegrationDnsTxtRecordDto struct {
+	Domain   *string                   `json:"domain,omitempty"`
+	Enabled  bool                      `json:"enabled"`
+	Id       openapi_types.UUID        `json:"id"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+
+	// Text The text value associated with this TXT DNS record. Text can contain up to four 255-character strings. Lines containing commas must be enclosed in double quotes (").
+	Text *string `json:"text,omitempty"`
+	Type string  `json:"type"`
 }
 
 // IntegrationFirewallPolicyOrderingDto defines model for IntegrationFirewallPolicyOrderingDto.
@@ -1978,6 +2177,484 @@ type CreateWifiBroadcastJSONRequestBody = WifiBroadcastCreateOrUpdate
 
 // UpdateWifiBroadcastJSONRequestBody defines body for UpdateWifiBroadcast for application/json ContentType.
 type UpdateWifiBroadcastJSONRequestBody = WifiBroadcastCreateOrUpdate
+
+// AsIntegrationDnsARecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsARecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsARecordCreateUpdateDto() (IntegrationDnsARecordCreateUpdateDto, error) {
+	var body IntegrationDnsARecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsARecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsARecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsARecordCreateUpdateDto(v IntegrationDnsARecordCreateUpdateDto) error {
+	v.Type = "A_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsARecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsARecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsARecordCreateUpdateDto(v IntegrationDnsARecordCreateUpdateDto) error {
+	v.Type = "A_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsAaaaRecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsAaaaRecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsAaaaRecordCreateUpdateDto() (IntegrationDnsAaaaRecordCreateUpdateDto, error) {
+	var body IntegrationDnsAaaaRecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsAaaaRecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsAaaaRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsAaaaRecordCreateUpdateDto(v IntegrationDnsAaaaRecordCreateUpdateDto) error {
+	v.Type = "AAAA_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsAaaaRecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsAaaaRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsAaaaRecordCreateUpdateDto(v IntegrationDnsAaaaRecordCreateUpdateDto) error {
+	v.Type = "AAAA_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsCnameRecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsCnameRecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsCnameRecordCreateUpdateDto() (IntegrationDnsCnameRecordCreateUpdateDto, error) {
+	var body IntegrationDnsCnameRecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsCnameRecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsCnameRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsCnameRecordCreateUpdateDto(v IntegrationDnsCnameRecordCreateUpdateDto) error {
+	v.Type = "CNAME_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsCnameRecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsCnameRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsCnameRecordCreateUpdateDto(v IntegrationDnsCnameRecordCreateUpdateDto) error {
+	v.Type = "CNAME_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsForwardDomainPolicyCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsForwardDomainPolicyCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsForwardDomainPolicyCreateUpdateDto() (IntegrationDnsForwardDomainPolicyCreateUpdateDto, error) {
+	var body IntegrationDnsForwardDomainPolicyCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsForwardDomainPolicyCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsForwardDomainPolicyCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsForwardDomainPolicyCreateUpdateDto(v IntegrationDnsForwardDomainPolicyCreateUpdateDto) error {
+	v.Type = "FORWARD_DOMAIN"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsForwardDomainPolicyCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsForwardDomainPolicyCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsForwardDomainPolicyCreateUpdateDto(v IntegrationDnsForwardDomainPolicyCreateUpdateDto) error {
+	v.Type = "FORWARD_DOMAIN"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsMxRecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsMxRecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsMxRecordCreateUpdateDto() (IntegrationDnsMxRecordCreateUpdateDto, error) {
+	var body IntegrationDnsMxRecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsMxRecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsMxRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsMxRecordCreateUpdateDto(v IntegrationDnsMxRecordCreateUpdateDto) error {
+	v.Type = "MX_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsMxRecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsMxRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsMxRecordCreateUpdateDto(v IntegrationDnsMxRecordCreateUpdateDto) error {
+	v.Type = "MX_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsSrvRecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsSrvRecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsSrvRecordCreateUpdateDto() (IntegrationDnsSrvRecordCreateUpdateDto, error) {
+	var body IntegrationDnsSrvRecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsSrvRecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsSrvRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsSrvRecordCreateUpdateDto(v IntegrationDnsSrvRecordCreateUpdateDto) error {
+	v.Type = "SRV_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsSrvRecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsSrvRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsSrvRecordCreateUpdateDto(v IntegrationDnsSrvRecordCreateUpdateDto) error {
+	v.Type = "SRV_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsTxtRecordCreateUpdateDto returns the union data inside the CreateOrUpdateDNSPolicy as a IntegrationDnsTxtRecordCreateUpdateDto
+func (t CreateOrUpdateDNSPolicy) AsIntegrationDnsTxtRecordCreateUpdateDto() (IntegrationDnsTxtRecordCreateUpdateDto, error) {
+	var body IntegrationDnsTxtRecordCreateUpdateDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsTxtRecordCreateUpdateDto overwrites any union data inside the CreateOrUpdateDNSPolicy as the provided IntegrationDnsTxtRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) FromIntegrationDnsTxtRecordCreateUpdateDto(v IntegrationDnsTxtRecordCreateUpdateDto) error {
+	v.Type = "TXT_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsTxtRecordCreateUpdateDto performs a merge with any union data inside the CreateOrUpdateDNSPolicy, using the provided IntegrationDnsTxtRecordCreateUpdateDto
+func (t *CreateOrUpdateDNSPolicy) MergeIntegrationDnsTxtRecordCreateUpdateDto(v IntegrationDnsTxtRecordCreateUpdateDto) error {
+	v.Type = "TXT_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t CreateOrUpdateDNSPolicy) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t CreateOrUpdateDNSPolicy) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "AAAA_RECORD":
+		return t.AsIntegrationDnsAaaaRecordCreateUpdateDto()
+	case "A_RECORD":
+		return t.AsIntegrationDnsARecordCreateUpdateDto()
+	case "CNAME_RECORD":
+		return t.AsIntegrationDnsCnameRecordCreateUpdateDto()
+	case "FORWARD_DOMAIN":
+		return t.AsIntegrationDnsForwardDomainPolicyCreateUpdateDto()
+	case "MX_RECORD":
+		return t.AsIntegrationDnsMxRecordCreateUpdateDto()
+	case "SRV_RECORD":
+		return t.AsIntegrationDnsSrvRecordCreateUpdateDto()
+	case "TXT_RECORD":
+		return t.AsIntegrationDnsTxtRecordCreateUpdateDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t CreateOrUpdateDNSPolicy) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *CreateOrUpdateDNSPolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationDnsARecordDto returns the union data inside the DNSPolicy as a IntegrationDnsARecordDto
+func (t DNSPolicy) AsIntegrationDnsARecordDto() (IntegrationDnsARecordDto, error) {
+	var body IntegrationDnsARecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsARecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsARecordDto
+func (t *DNSPolicy) FromIntegrationDnsARecordDto(v IntegrationDnsARecordDto) error {
+	v.Type = "A_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsARecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsARecordDto
+func (t *DNSPolicy) MergeIntegrationDnsARecordDto(v IntegrationDnsARecordDto) error {
+	v.Type = "A_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsAaaaRecordDto returns the union data inside the DNSPolicy as a IntegrationDnsAaaaRecordDto
+func (t DNSPolicy) AsIntegrationDnsAaaaRecordDto() (IntegrationDnsAaaaRecordDto, error) {
+	var body IntegrationDnsAaaaRecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsAaaaRecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsAaaaRecordDto
+func (t *DNSPolicy) FromIntegrationDnsAaaaRecordDto(v IntegrationDnsAaaaRecordDto) error {
+	v.Type = "AAAA_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsAaaaRecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsAaaaRecordDto
+func (t *DNSPolicy) MergeIntegrationDnsAaaaRecordDto(v IntegrationDnsAaaaRecordDto) error {
+	v.Type = "AAAA_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsCnameRecordDto returns the union data inside the DNSPolicy as a IntegrationDnsCnameRecordDto
+func (t DNSPolicy) AsIntegrationDnsCnameRecordDto() (IntegrationDnsCnameRecordDto, error) {
+	var body IntegrationDnsCnameRecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsCnameRecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsCnameRecordDto
+func (t *DNSPolicy) FromIntegrationDnsCnameRecordDto(v IntegrationDnsCnameRecordDto) error {
+	v.Type = "CNAME_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsCnameRecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsCnameRecordDto
+func (t *DNSPolicy) MergeIntegrationDnsCnameRecordDto(v IntegrationDnsCnameRecordDto) error {
+	v.Type = "CNAME_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsForwardDomainPolicyDto returns the union data inside the DNSPolicy as a IntegrationDnsForwardDomainPolicyDto
+func (t DNSPolicy) AsIntegrationDnsForwardDomainPolicyDto() (IntegrationDnsForwardDomainPolicyDto, error) {
+	var body IntegrationDnsForwardDomainPolicyDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsForwardDomainPolicyDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsForwardDomainPolicyDto
+func (t *DNSPolicy) FromIntegrationDnsForwardDomainPolicyDto(v IntegrationDnsForwardDomainPolicyDto) error {
+	v.Type = "FORWARD_DOMAIN"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsForwardDomainPolicyDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsForwardDomainPolicyDto
+func (t *DNSPolicy) MergeIntegrationDnsForwardDomainPolicyDto(v IntegrationDnsForwardDomainPolicyDto) error {
+	v.Type = "FORWARD_DOMAIN"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsMxRecordDto returns the union data inside the DNSPolicy as a IntegrationDnsMxRecordDto
+func (t DNSPolicy) AsIntegrationDnsMxRecordDto() (IntegrationDnsMxRecordDto, error) {
+	var body IntegrationDnsMxRecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsMxRecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsMxRecordDto
+func (t *DNSPolicy) FromIntegrationDnsMxRecordDto(v IntegrationDnsMxRecordDto) error {
+	v.Type = "MX_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsMxRecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsMxRecordDto
+func (t *DNSPolicy) MergeIntegrationDnsMxRecordDto(v IntegrationDnsMxRecordDto) error {
+	v.Type = "MX_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsSrvRecordDto returns the union data inside the DNSPolicy as a IntegrationDnsSrvRecordDto
+func (t DNSPolicy) AsIntegrationDnsSrvRecordDto() (IntegrationDnsSrvRecordDto, error) {
+	var body IntegrationDnsSrvRecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsSrvRecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsSrvRecordDto
+func (t *DNSPolicy) FromIntegrationDnsSrvRecordDto(v IntegrationDnsSrvRecordDto) error {
+	v.Type = "SRV_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsSrvRecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsSrvRecordDto
+func (t *DNSPolicy) MergeIntegrationDnsSrvRecordDto(v IntegrationDnsSrvRecordDto) error {
+	v.Type = "SRV_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationDnsTxtRecordDto returns the union data inside the DNSPolicy as a IntegrationDnsTxtRecordDto
+func (t DNSPolicy) AsIntegrationDnsTxtRecordDto() (IntegrationDnsTxtRecordDto, error) {
+	var body IntegrationDnsTxtRecordDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationDnsTxtRecordDto overwrites any union data inside the DNSPolicy as the provided IntegrationDnsTxtRecordDto
+func (t *DNSPolicy) FromIntegrationDnsTxtRecordDto(v IntegrationDnsTxtRecordDto) error {
+	v.Type = "TXT_RECORD"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationDnsTxtRecordDto performs a merge with any union data inside the DNSPolicy, using the provided IntegrationDnsTxtRecordDto
+func (t *DNSPolicy) MergeIntegrationDnsTxtRecordDto(v IntegrationDnsTxtRecordDto) error {
+	v.Type = "TXT_RECORD"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DNSPolicy) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t DNSPolicy) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "AAAA_RECORD":
+		return t.AsIntegrationDnsAaaaRecordDto()
+	case "A_RECORD":
+		return t.AsIntegrationDnsARecordDto()
+	case "CNAME_RECORD":
+		return t.AsIntegrationDnsCnameRecordDto()
+	case "FORWARD_DOMAIN":
+		return t.AsIntegrationDnsForwardDomainPolicyDto()
+	case "MX_RECORD":
+		return t.AsIntegrationDnsMxRecordDto()
+	case "SRV_RECORD":
+		return t.AsIntegrationDnsSrvRecordDto()
+	case "TXT_RECORD":
+		return t.AsIntegrationDnsTxtRecordDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t DNSPolicy) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DNSPolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
