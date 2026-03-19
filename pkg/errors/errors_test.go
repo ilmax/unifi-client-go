@@ -173,22 +173,6 @@ func TestIsRateLimitError(t *testing.T) {
 	}
 }
 
-func TestCommonErrors(t *testing.T) {
-	// Verify common errors are defined and not nil
-	if ErrEmptyAPIKey == nil {
-		t.Error("ErrEmptyAPIKey should not be nil")
-	}
-	if ErrInvalidInterval == nil {
-		t.Error("ErrInvalidInterval should not be nil")
-	}
-	if ErrEmptyConfigID == nil {
-		t.Error("ErrEmptyConfigID should not be nil")
-	}
-	if ErrEmptyHostID == nil {
-		t.Error("ErrEmptyHostID should not be nil")
-	}
-}
-
 func TestValidationError_Error(t *testing.T) {
 	tests := []struct {
 		name     string

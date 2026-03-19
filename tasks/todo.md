@@ -1,23 +1,24 @@
 # Todo
 
 ## Acceptance Criteria
-- Release workflow chooses a free SDK version even if `VERSION` lags behind existing tags/branches.
-- Release workflow pushes release commit content to `main` as part of the run.
-- Existing release/tag flow remains intact.
+- Handwritten Site Manager code and top-level Site Manager wiring are removed.
+- Release branches are named `release/sdk-vX.Y.Z-network-vA.B.C`.
+- Release workflow commits the downloaded Network OpenAPI spec into `openapi/unifi-network/<version>.json`.
+- Release workflow generates code from the committed spec file and commits both spec and generated code.
+- README/examples describe a Network-only generated SDK.
 - Verification steps are recorded.
 
 ## Plan
-- [x] Update version selection to loop until both tag and release branch are available.
-- [x] Push release commit to `main` in addition to release branch and tag.
-- [x] Verify and document results.
+- [x] Remove Site Manager code, top-level wiring, and examples/docs references.
+- [ ] Update release workflow to use spec-aware branch names and commit the spec file.
+- [ ] Rewrite docs to describe the Network-only generated SDK.
+- [ ] Verify with generation/build/tests and record results.
 
 ## Working Notes
-- Main issue: `VERSION` on `main` can lag, and previous logic bumped only once.
+- No Site Manager replacement will be added in this change because there is no confirmed OpenAPI JSON source for it.
 
 ## Progress
-- [x] In progress
+- [ ] In progress
 
 ## Results
-- Workflow now increments SDK patch version in a loop until both tag and `release/` branch names are free.
-- Workflow now pushes release commit to both `release/<tag>` and `main`.
-- Verified repository tests still pass with `go test ./...`.
+- Removed handwritten Site Manager code, top-level cloud-client wiring, and the Site Manager example.

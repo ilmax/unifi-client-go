@@ -7,14 +7,6 @@ import (
 	"net/http"
 )
 
-// Common errors
-var (
-	ErrEmptyAPIKey     = errors.New("API key cannot be empty")
-	ErrInvalidInterval = errors.New("invalid ISP metrics interval: must be '5m' or '1h'")
-	ErrEmptyConfigID   = errors.New("config ID cannot be empty")
-	ErrEmptyHostID     = errors.New("host ID cannot be empty")
-)
-
 // APIError represents an error returned by the UniFi API.
 type APIError struct {
 	StatusCode int
