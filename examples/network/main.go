@@ -4,7 +4,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -24,62 +23,7 @@ func main() {
 	}
 
 	ctx := context.Background()
-
-	// Login with username and password
-	username := os.Getenv("UNIFI_USERNAME")
-	password := os.Getenv("UNIFI_PASSWORD")
-	if err := client.Login(ctx, username, password); err != nil {
-		log.Fatalf("Failed to login: %v", err)
-	}
-	defer client.Logout(ctx)
-
-	// List all sites
-	sites, err := client.ListSites(ctx)
-	if err != nil {
-		log.Fatalf("Failed to list sites: %v", err)
-	}
-	fmt.Printf("Found %d sites\n", len(sites))
-	for _, site := range sites {
-		fmt.Printf("  - %s (%s)\n", site.Desc, site.Name)
-	}
-
-	// Get site health
-	health, err := client.GetSiteHealth(ctx)
-	if err != nil {
-		log.Fatalf("Failed to get site health: %v", err)
-	}
-	for _, h := range health {
-		fmt.Printf("Subsystem: %s, Status: %s\n", h.Subsystem, h.Status)
-	}
-
-	// List all devices
-	devices, err := client.ListDevices(ctx)
-	if err != nil {
-		log.Fatalf("Failed to list devices: %v", err)
-	}
-	fmt.Printf("\nFound %d devices\n", len(devices))
-	for _, device := range devices {
-		fmt.Printf("  - %s (%s) - %s\n", device.Name, device.Model, device.IP)
-	}
-
-	// List all clients
-	clients, err := client.ListClients(ctx)
-	if err != nil {
-		log.Fatalf("Failed to list clients: %v", err)
-	}
-	fmt.Printf("\nFound %d connected clients\n", len(clients))
-
-	// List WLANs
-	wlans, err := client.ListWLANs(ctx)
-	if err != nil {
-		log.Fatalf("Failed to list WLANs: %v", err)
-	}
-	fmt.Printf("\nFound %d WLANs\n", len(wlans))
-	for _, wlan := range wlans {
-		status := "disabled"
-		if wlan.Enabled {
-			status = "enabled"
-		}
-		fmt.Printf("  - %s (%s)\n", wlan.Name, status)
-	}
+	// Generated methods are added by the release workflow in pkg/network/openapi.gen.go.
+	_ = client
+	_ = ctx
 }
