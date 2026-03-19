@@ -3,6 +3,7 @@
 # and creates a new release with the specified API version.
 
 name: Release SDK
+run-name: Release SDK for UniFi Network API ${{ inputs.api_version }}
 
 on:
   workflow_dispatch:
