@@ -27,6 +27,7 @@ func RewriteDNSUnions(doc []byte) ([]byte, error) {
 		return nil, err
 	}
 
+	changed := false
 	targets := []struct {
 		name     string
 		baseName string
@@ -36,9 +37,15 @@ func RewriteDNSUnions(doc []byte) ([]byte, error) {
 	}
 
 	for _, target := range targets {
-		if err := rewriteDiscriminatorAllOfUnion(schemas, target.name, target.baseName); err != nil {
+		targetChanged, err := rewriteDiscriminatorAllOfUnion(schemas, target.name, target.baseName)
+		if err != nil {
 			return nil, err
 		}
+		changed = changed || targetChanged
+	}
+
+	if !changed {
+		return doc, nil
 	}
 
 	out, err := json.MarshalIndent(spec, "", "  ")
@@ -70,28 +77,28 @@ func schemaObjects(spec map[string]any) (map[string]any, error) {
 	return schemas, nil
 }
 
-func rewriteDiscriminatorAllOfUnion(schemas map[string]any, schemaName, syntheticBaseName string) error {
+func rewriteDiscriminatorAllOfUnion(schemas map[string]any, schemaName, syntheticBaseName string) (bool, error) {
 	schema, err := schemaObject(schemas, schemaName)
 	if err != nil {
-		return err
+		return false, err
 	}
 
 	if _, alreadyUnion := schema["oneOf"]; alreadyUnion {
-		return nil
+		return false, nil
 	}
 
 	discriminator, ok := schema["discriminator"].(map[string]any)
 	if !ok {
-		return fmt.Errorf("schema %q is missing a discriminator", schemaName)
+		return false, fmt.Errorf("schema %q is missing a discriminator", schemaName)
 	}
 
 	mapping, ok := discriminator["mapping"].(map[string]any)
 	if !ok || len(mapping) == 0 {
-		return fmt.Errorf("schema %q has an invalid discriminator mapping", schemaName)
+		return false, fmt.Errorf("schema %q has an invalid discriminator mapping", schemaName)
 	}
 
 	if _, exists := schemas[syntheticBaseName]; exists {
-		return fmt.Errorf("synthetic schema %q already exists", syntheticBaseName)
+		return false, fmt.Errorf("synthetic schema %q already exists", syntheticBaseName)
 	}
 
 	syntheticBase := deepCopyMap(schema)
@@ -106,15 +113,15 @@ func rewriteDiscriminatorAllOfUnion(schemas map[string]any, schemaName, syntheti
 		childName := schemaNameFromRef(ref)
 		childSchema, err := schemaObject(schemas, childName)
 		if err != nil {
-			return err
+			return false, err
 		}
 
 		replaced, err := rewriteAllOfRef(childSchema, originalRef, syntheticRef)
 		if err != nil {
-			return fmt.Errorf("rewrite %q parent ref: %w", childName, err)
+			return false, fmt.Errorf("rewrite %q parent ref: %w", childName, err)
 		}
 		if !replaced {
-			return fmt.Errorf("schema %q does not inherit from %q", childName, schemaName)
+			return false, fmt.Errorf("schema %q does not inherit from %q", childName, schemaName)
 		}
 	}
 
@@ -122,7 +129,7 @@ func rewriteDiscriminatorAllOfUnion(schemas map[string]any, schemaName, syntheti
 	delete(schema, "required")
 	schema["oneOf"] = refsAsSchemaRefs(oneOfRefs)
 
-	return nil
+	return true, nil
 }
 
 func schemaObject(schemas map[string]any, name string) (map[string]any, error) {

@@ -77,6 +77,19 @@ func TestRewriteDNSUnions(t *testing.T) {
 	assertAllOfParentRef(t, forwardResponse, schemaRef(dnsPolicyBase))
 }
 
+func TestRewriteDNSUnionsSkipsAlreadyFixedSpec(t *testing.T) {
+	t.Parallel()
+
+	patched, err := RewriteDNSUnions([]byte(alreadyFixedSpec))
+	if err != nil {
+		t.Fatalf("RewriteDNSUnions() error = %v", err)
+	}
+
+	if string(patched) != alreadyFixedSpec {
+		t.Fatalf("RewriteDNSUnions() should return the original bytes when no rewrite is needed")
+	}
+}
+
 func assertUnionSchema(t *testing.T, schema map[string]any, wantRefs []string) {
 	t.Helper()
 
@@ -253,3 +266,5 @@ const testSpec = `{
     }
   }
 }`
+
+const alreadyFixedSpec = `{"openapi":"3.1.0","components":{"schemas":{"Create or update DNS policy":{"type":"object","discriminator":{"propertyName":"type","mapping":{"A_RECORD":"#/components/schemas/IntegrationDnsARecordCreateUpdateDto","FORWARD_DOMAIN":"#/components/schemas/IntegrationDnsForwardDomainPolicyCreateUpdateDto"}},"oneOf":[{"$ref":"#/components/schemas/IntegrationDnsARecordCreateUpdateDto"},{"$ref":"#/components/schemas/IntegrationDnsForwardDomainPolicyCreateUpdateDto"}]},"DNS policy":{"type":"object","discriminator":{"propertyName":"type","mapping":{"A_RECORD":"#/components/schemas/IntegrationDnsARecordDto","FORWARD_DOMAIN":"#/components/schemas/IntegrationDnsForwardDomainPolicyDto"}},"oneOf":[{"$ref":"#/components/schemas/IntegrationDnsARecordDto"},{"$ref":"#/components/schemas/IntegrationDnsForwardDomainPolicyDto"}]}}}}`
