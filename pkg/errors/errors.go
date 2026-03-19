@@ -7,6 +7,10 @@ import (
 	"net/http"
 )
 
+var (
+	ErrEmptyAPIKey = errors.New("API key cannot be empty")
+)
+
 // APIError represents an error returned by the UniFi API.
 type APIError struct {
 	StatusCode int

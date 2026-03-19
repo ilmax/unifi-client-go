@@ -173,6 +173,12 @@ func TestIsRateLimitError(t *testing.T) {
 	}
 }
 
+func TestCommonErrors(t *testing.T) {
+	if ErrEmptyAPIKey == nil {
+		t.Error("ErrEmptyAPIKey should not be nil")
+	}
+}
+
 func TestValidationError_Error(t *testing.T) {
 	tests := []struct {
 		name     string

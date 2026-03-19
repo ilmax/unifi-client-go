@@ -36,7 +36,7 @@ func main() {
     // Initialize network client
     client, err := unifi.NewNetwork(network.Config{
         BaseURL:            "https://192.168.1.1:8443",
-        Site:               "default",
+        APIKey:             "your-api-key",
         InsecureSkipVerify: true, // For self-signed certificates
     })
     if err != nil {
@@ -134,7 +134,7 @@ if errors.As(err, &apiErr) {
 ```go
 client, err := unifi.NewNetwork(network.Config{
     BaseURL:            "https://192.168.1.1:8443", // Controller URL (required)
-    Site:               "default",                   // Site name (default: "default")
+    APIKey:             "your-api-key",              // API key (required)
     Timeout:            30 * time.Second,            // Timeout (default: 30s)
     InsecureSkipVerify: true,                        // Skip TLS verification for self-signed certs
 })

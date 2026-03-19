@@ -1,28 +1,25 @@
 # Todo
 
 ## Acceptance Criteria
-- Handwritten Site Manager code and top-level Site Manager wiring are removed.
-- Release branches are named `release/sdk-vX.Y.Z-network-vA.B.C`.
-- Release workflow commits the downloaded Network OpenAPI spec into `openapi/unifi-network/<version>.json`.
-- Release workflow generates code from the committed spec file and commits both spec and generated code.
-- README/examples describe a Network-only generated SDK.
+- The generated Network client supports `api_key` authentication via request headers.
+- The public constructor in `pkg/network` and `unifi.NewNetwork(...)` expose API-key auth configuration.
+- Username/password login is no longer advertised in code examples/docs.
+- Tests cover the API-key header injection path and constructor validation where possible.
 - Verification steps are recorded.
 
 ## Plan
-- [x] Remove Site Manager code, top-level wiring, and examples/docs references.
-- [x] Update release workflow to use spec-aware branch names and commit the spec file.
-- [x] Rewrite docs to describe the Network-only generated SDK.
-- [x] Verify with generation/build/tests and record results.
+- [x] Add API-key auth support to the generated Network client wrapper.
+- [x] Update docs/examples/workflow snippets to show API-key-based usage.
+- [x] Verify with tests.
 
 ## Working Notes
-- No Site Manager replacement will be added in this change because there is no confirmed OpenAPI JSON source for it.
+- Use the generated client's request editor hook instead of modifying generated files directly.
 
 ## Progress
 - [x] In progress
 
 ## Results
-- Removed handwritten Site Manager code, top-level cloud-client wiring, and the Site Manager example.
-- Updated the release workflow to use `release/sdk-vX.Y.Z-network-vA.B.C` branches and to commit the downloaded spec under `openapi/unifi-network/`.
-- Rewrote docs/examples around a Network-only generated SDK and removed the old handwritten Network endpoint files from `pkg/network`.
-- Verified with `go test ./...` and a repo-wide search confirming no remaining references to the deleted handwritten Site Manager/config/http packages.
-- Local spec download/codegen dry run was not performed because network fetch permission for the OpenAPI JSON was denied during this session.
+- Added `APIKey` support to `network.Config` and wired it into the generated client through `oapi-codegen` request editors using the `X-API-Key` header.
+- Updated README, example code, and release-note usage snippets to show API-key authentication and removed the old username/password/site-based examples.
+- Added tests for constructor validation, API-key header injection, and timeout defaults.
+- Verified with `go test ./...` and a repo-wide search confirming the old login/config references are gone.

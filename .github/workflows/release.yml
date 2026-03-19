@@ -212,7 +212,7 @@ jobs:
           func main() {
               client, err := unifi.NewNetwork(network.Config{
                   BaseURL:            "https://your-unifi-controller.com",
-                  Site:               "default",
+                  APIKey:             "your-api-key",
                   InsecureSkipVerify: true,
               })
               if err != nil {

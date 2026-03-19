@@ -15,7 +15,7 @@ func main() {
 	// Create Network API client for local UniFi controller
 	client, err := unifi.NewNetwork(network.Config{
 		BaseURL:            os.Getenv("UNIFI_CONTROLLER_URL"), // e.g., "https://192.168.1.1"
-		Site:               "default",
+		APIKey:             os.Getenv("UNIFI_API_KEY"),
 		InsecureSkipVerify: true, // For self-signed certificates
 	})
 	if err != nil {
