@@ -95,13 +95,14 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 1. Determine the next free SDK version by starting from [VERSION](VERSION) and incrementing until both tag and branch names are available
 2. Create a release branch named `release/sdk-vX.Y.Z-network-vA.B.C`
 3. Download the OpenAPI spec into `openapi/unifi-network/<version>.json`
-4. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
-5. Generate `pkg/network/openapi.gen.go` from the committed spec via `oapi-codegen`
-6. Format, build, and test code
-7. Update `unifi-network-version` to the released API version
-8. Commit and push the spec, generated code, and metadata to both the release branch and `main`
-9. Create a version tag (SDK version)
-10. Create a GitHub release
+4. Rewrite DNS policy discriminator schemas into `oneOf` unions and commit the patched codegen input as `openapi/unifi-network/<version>.codegen.json`
+5. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
+6. Generate `pkg/network/openapi.gen.go` from the committed patched spec via `oapi-codegen`
+7. Format, build, and test code
+8. Update `unifi-network-version` to the released API version
+9. Commit and push the raw spec, patched codegen spec, generated code, and metadata to both the release branch and `main`
+10. Create a version tag (SDK version)
+11. Create a GitHub release
 
 Release notes include an OpenAPI diff and a breaking-changes section when `unifi-network-version` is present and valid.
 If the file is missing or invalid, the workflow falls back to the latest GitHub release and parses only the first 10 body lines for `UniFi SDK for API version {version}` (`v` prefix optional).
@@ -149,11 +150,15 @@ curl -fsSL \
     "https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/10.0.162.json" \
     -o ./openapi/unifi-network/10.0.162.json
 
+go run ./cmd/openapi-preprocess \
+    -in ./openapi/unifi-network/10.0.162.json \
+    -out ./openapi/unifi-network/10.0.162.codegen.json
+
 go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest \
     -generate types,client \
     -package network \
     -o ./pkg/network/openapi.gen.go \
-    ./openapi/unifi-network/10.0.162.json
+    ./openapi/unifi-network/10.0.162.codegen.json
 ```
 
 ## License
