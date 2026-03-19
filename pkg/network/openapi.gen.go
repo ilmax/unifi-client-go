@@ -376,6 +376,1914 @@ func (e FirewallPolicyIpsecFilter) Valid() bool {
 	}
 }
 
+// Defines values for FirewallPolicyIPv4AndIPv6NamedProtocolBaseName.
+const (
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameAh             FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ah"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameAx25           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ax.25"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameDccp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "dccp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameDdp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ddp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEgp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "egp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEigrp          FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "eigrp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEncap          FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "encap"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEsp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "esp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEtherip        FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "etherip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameFc             FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "fc"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameGgp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ggp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameGre            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "gre"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameHip            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "hip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameHmp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "hmp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIcmp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "icmp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIcmpv6         FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "icmpv6"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIdprCmtp       FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "idpr-cmtp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIdrp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "idrp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIgmp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "igmp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIgp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "igp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIp             FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpcomp         FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipcomp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpencap        FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipencap"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpip           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipv6"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Frag       FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipv6-frag"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Nonxt      FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipv6-nonxt"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Opts       FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipv6-opts"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Route      FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ipv6-route"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIsis           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "isis"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIsoTp4         FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "iso-tp4"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameL2tp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "l2tp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameManet          FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "manet"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameMobilityHeader FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "mobility-header"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameMplsInIp       FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "mpls-in-ip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameOspf           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "ospf"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNamePim            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "pim"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNamePup            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "pup"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRdp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "rdp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRohc           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "rohc"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRspf           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "rspf"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRsvp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "rsvp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSctp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "sctp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameShim6          FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "shim6"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSkip           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "skip"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSt             FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "st"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameTcp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "tcp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameTcpUdp         FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "tcp_udp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameUdp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "udp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameUdplite        FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "udplite"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameVmtp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "vmtp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameVrrp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "vrrp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameWesp           FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "wesp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameXnsIdp         FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "xns-idp"
+	FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameXtp            FirewallPolicyIPv4AndIPv6NamedProtocolBaseName = "xtp"
+)
+
+// Valid indicates whether the value is a known member of the FirewallPolicyIPv4AndIPv6NamedProtocolBaseName enum.
+func (e FirewallPolicyIPv4AndIPv6NamedProtocolBaseName) Valid() bool {
+	switch e {
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameAh:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameAx25:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameDccp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameDdp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEgp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEigrp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEncap:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEsp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameEtherip:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameFc:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameGgp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameGre:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameHip:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameHmp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIcmp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIcmpv6:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIdprCmtp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIdrp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIgmp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIgp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpcomp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpencap:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpip:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Frag:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Nonxt:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Opts:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIpv6Route:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIsis:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameIsoTp4:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameL2tp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameManet:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameMobilityHeader:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameMplsInIp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameOspf:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNamePim:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNamePup:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRdp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRohc:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRspf:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameRsvp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSctp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameShim6:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSkip:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameSt:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameTcp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameTcpUdp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameUdp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameUdplite:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameVmtp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameVrrp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameWesp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameXnsIdp:
+		return true
+	case FirewallPolicyIPv4AndIPv6NamedProtocolBaseNameXtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FirewallPolicyIPv4NamedProtocolBaseName.
+const (
+	FirewallPolicyIPv4NamedProtocolBaseNameAh             FirewallPolicyIPv4NamedProtocolBaseName = "ah"
+	FirewallPolicyIPv4NamedProtocolBaseNameAx25           FirewallPolicyIPv4NamedProtocolBaseName = "ax.25"
+	FirewallPolicyIPv4NamedProtocolBaseNameDccp           FirewallPolicyIPv4NamedProtocolBaseName = "dccp"
+	FirewallPolicyIPv4NamedProtocolBaseNameDdp            FirewallPolicyIPv4NamedProtocolBaseName = "ddp"
+	FirewallPolicyIPv4NamedProtocolBaseNameEgp            FirewallPolicyIPv4NamedProtocolBaseName = "egp"
+	FirewallPolicyIPv4NamedProtocolBaseNameEigrp          FirewallPolicyIPv4NamedProtocolBaseName = "eigrp"
+	FirewallPolicyIPv4NamedProtocolBaseNameEncap          FirewallPolicyIPv4NamedProtocolBaseName = "encap"
+	FirewallPolicyIPv4NamedProtocolBaseNameEsp            FirewallPolicyIPv4NamedProtocolBaseName = "esp"
+	FirewallPolicyIPv4NamedProtocolBaseNameEtherip        FirewallPolicyIPv4NamedProtocolBaseName = "etherip"
+	FirewallPolicyIPv4NamedProtocolBaseNameFc             FirewallPolicyIPv4NamedProtocolBaseName = "fc"
+	FirewallPolicyIPv4NamedProtocolBaseNameGgp            FirewallPolicyIPv4NamedProtocolBaseName = "ggp"
+	FirewallPolicyIPv4NamedProtocolBaseNameGre            FirewallPolicyIPv4NamedProtocolBaseName = "gre"
+	FirewallPolicyIPv4NamedProtocolBaseNameHip            FirewallPolicyIPv4NamedProtocolBaseName = "hip"
+	FirewallPolicyIPv4NamedProtocolBaseNameHmp            FirewallPolicyIPv4NamedProtocolBaseName = "hmp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIcmp           FirewallPolicyIPv4NamedProtocolBaseName = "icmp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIcmpv6         FirewallPolicyIPv4NamedProtocolBaseName = "icmpv6"
+	FirewallPolicyIPv4NamedProtocolBaseNameIdprCmtp       FirewallPolicyIPv4NamedProtocolBaseName = "idpr-cmtp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIdrp           FirewallPolicyIPv4NamedProtocolBaseName = "idrp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIgmp           FirewallPolicyIPv4NamedProtocolBaseName = "igmp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIgp            FirewallPolicyIPv4NamedProtocolBaseName = "igp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIp             FirewallPolicyIPv4NamedProtocolBaseName = "ip"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpcomp         FirewallPolicyIPv4NamedProtocolBaseName = "ipcomp"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpencap        FirewallPolicyIPv4NamedProtocolBaseName = "ipencap"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpip           FirewallPolicyIPv4NamedProtocolBaseName = "ipip"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpv6           FirewallPolicyIPv4NamedProtocolBaseName = "ipv6"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpv6Frag       FirewallPolicyIPv4NamedProtocolBaseName = "ipv6-frag"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpv6Nonxt      FirewallPolicyIPv4NamedProtocolBaseName = "ipv6-nonxt"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpv6Opts       FirewallPolicyIPv4NamedProtocolBaseName = "ipv6-opts"
+	FirewallPolicyIPv4NamedProtocolBaseNameIpv6Route      FirewallPolicyIPv4NamedProtocolBaseName = "ipv6-route"
+	FirewallPolicyIPv4NamedProtocolBaseNameIsis           FirewallPolicyIPv4NamedProtocolBaseName = "isis"
+	FirewallPolicyIPv4NamedProtocolBaseNameIsoTp4         FirewallPolicyIPv4NamedProtocolBaseName = "iso-tp4"
+	FirewallPolicyIPv4NamedProtocolBaseNameL2tp           FirewallPolicyIPv4NamedProtocolBaseName = "l2tp"
+	FirewallPolicyIPv4NamedProtocolBaseNameManet          FirewallPolicyIPv4NamedProtocolBaseName = "manet"
+	FirewallPolicyIPv4NamedProtocolBaseNameMobilityHeader FirewallPolicyIPv4NamedProtocolBaseName = "mobility-header"
+	FirewallPolicyIPv4NamedProtocolBaseNameMplsInIp       FirewallPolicyIPv4NamedProtocolBaseName = "mpls-in-ip"
+	FirewallPolicyIPv4NamedProtocolBaseNameOspf           FirewallPolicyIPv4NamedProtocolBaseName = "ospf"
+	FirewallPolicyIPv4NamedProtocolBaseNamePim            FirewallPolicyIPv4NamedProtocolBaseName = "pim"
+	FirewallPolicyIPv4NamedProtocolBaseNamePup            FirewallPolicyIPv4NamedProtocolBaseName = "pup"
+	FirewallPolicyIPv4NamedProtocolBaseNameRdp            FirewallPolicyIPv4NamedProtocolBaseName = "rdp"
+	FirewallPolicyIPv4NamedProtocolBaseNameRohc           FirewallPolicyIPv4NamedProtocolBaseName = "rohc"
+	FirewallPolicyIPv4NamedProtocolBaseNameRspf           FirewallPolicyIPv4NamedProtocolBaseName = "rspf"
+	FirewallPolicyIPv4NamedProtocolBaseNameRsvp           FirewallPolicyIPv4NamedProtocolBaseName = "rsvp"
+	FirewallPolicyIPv4NamedProtocolBaseNameSctp           FirewallPolicyIPv4NamedProtocolBaseName = "sctp"
+	FirewallPolicyIPv4NamedProtocolBaseNameShim6          FirewallPolicyIPv4NamedProtocolBaseName = "shim6"
+	FirewallPolicyIPv4NamedProtocolBaseNameSkip           FirewallPolicyIPv4NamedProtocolBaseName = "skip"
+	FirewallPolicyIPv4NamedProtocolBaseNameSt             FirewallPolicyIPv4NamedProtocolBaseName = "st"
+	FirewallPolicyIPv4NamedProtocolBaseNameTcp            FirewallPolicyIPv4NamedProtocolBaseName = "tcp"
+	FirewallPolicyIPv4NamedProtocolBaseNameTcpUdp         FirewallPolicyIPv4NamedProtocolBaseName = "tcp_udp"
+	FirewallPolicyIPv4NamedProtocolBaseNameUdp            FirewallPolicyIPv4NamedProtocolBaseName = "udp"
+	FirewallPolicyIPv4NamedProtocolBaseNameUdplite        FirewallPolicyIPv4NamedProtocolBaseName = "udplite"
+	FirewallPolicyIPv4NamedProtocolBaseNameVmtp           FirewallPolicyIPv4NamedProtocolBaseName = "vmtp"
+	FirewallPolicyIPv4NamedProtocolBaseNameVrrp           FirewallPolicyIPv4NamedProtocolBaseName = "vrrp"
+	FirewallPolicyIPv4NamedProtocolBaseNameWesp           FirewallPolicyIPv4NamedProtocolBaseName = "wesp"
+	FirewallPolicyIPv4NamedProtocolBaseNameXnsIdp         FirewallPolicyIPv4NamedProtocolBaseName = "xns-idp"
+	FirewallPolicyIPv4NamedProtocolBaseNameXtp            FirewallPolicyIPv4NamedProtocolBaseName = "xtp"
+)
+
+// Valid indicates whether the value is a known member of the FirewallPolicyIPv4NamedProtocolBaseName enum.
+func (e FirewallPolicyIPv4NamedProtocolBaseName) Valid() bool {
+	switch e {
+	case FirewallPolicyIPv4NamedProtocolBaseNameAh:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameAx25:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameDccp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameDdp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameEgp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameEigrp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameEncap:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameEsp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameEtherip:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameFc:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameGgp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameGre:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameHip:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameHmp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIcmp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIcmpv6:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIdprCmtp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIdrp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIgmp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIgp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpcomp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpencap:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpip:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpv6:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpv6Frag:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpv6Nonxt:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpv6Opts:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIpv6Route:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIsis:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameIsoTp4:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameL2tp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameManet:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameMobilityHeader:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameMplsInIp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameOspf:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNamePim:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNamePup:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameRdp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameRohc:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameRspf:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameRsvp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameSctp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameShim6:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameSkip:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameSt:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameTcp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameTcpUdp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameUdp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameUdplite:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameVmtp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameVrrp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameWesp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameXnsIdp:
+		return true
+	case FirewallPolicyIPv4NamedProtocolBaseNameXtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FirewallPolicyIPv6NamedProtocolBaseName.
+const (
+	FirewallPolicyIPv6NamedProtocolBaseNameAh             FirewallPolicyIPv6NamedProtocolBaseName = "ah"
+	FirewallPolicyIPv6NamedProtocolBaseNameAx25           FirewallPolicyIPv6NamedProtocolBaseName = "ax.25"
+	FirewallPolicyIPv6NamedProtocolBaseNameDccp           FirewallPolicyIPv6NamedProtocolBaseName = "dccp"
+	FirewallPolicyIPv6NamedProtocolBaseNameDdp            FirewallPolicyIPv6NamedProtocolBaseName = "ddp"
+	FirewallPolicyIPv6NamedProtocolBaseNameEgp            FirewallPolicyIPv6NamedProtocolBaseName = "egp"
+	FirewallPolicyIPv6NamedProtocolBaseNameEigrp          FirewallPolicyIPv6NamedProtocolBaseName = "eigrp"
+	FirewallPolicyIPv6NamedProtocolBaseNameEncap          FirewallPolicyIPv6NamedProtocolBaseName = "encap"
+	FirewallPolicyIPv6NamedProtocolBaseNameEsp            FirewallPolicyIPv6NamedProtocolBaseName = "esp"
+	FirewallPolicyIPv6NamedProtocolBaseNameEtherip        FirewallPolicyIPv6NamedProtocolBaseName = "etherip"
+	FirewallPolicyIPv6NamedProtocolBaseNameFc             FirewallPolicyIPv6NamedProtocolBaseName = "fc"
+	FirewallPolicyIPv6NamedProtocolBaseNameGgp            FirewallPolicyIPv6NamedProtocolBaseName = "ggp"
+	FirewallPolicyIPv6NamedProtocolBaseNameGre            FirewallPolicyIPv6NamedProtocolBaseName = "gre"
+	FirewallPolicyIPv6NamedProtocolBaseNameHip            FirewallPolicyIPv6NamedProtocolBaseName = "hip"
+	FirewallPolicyIPv6NamedProtocolBaseNameHmp            FirewallPolicyIPv6NamedProtocolBaseName = "hmp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIcmp           FirewallPolicyIPv6NamedProtocolBaseName = "icmp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIcmpv6         FirewallPolicyIPv6NamedProtocolBaseName = "icmpv6"
+	FirewallPolicyIPv6NamedProtocolBaseNameIdprCmtp       FirewallPolicyIPv6NamedProtocolBaseName = "idpr-cmtp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIdrp           FirewallPolicyIPv6NamedProtocolBaseName = "idrp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIgmp           FirewallPolicyIPv6NamedProtocolBaseName = "igmp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIgp            FirewallPolicyIPv6NamedProtocolBaseName = "igp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIp             FirewallPolicyIPv6NamedProtocolBaseName = "ip"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpcomp         FirewallPolicyIPv6NamedProtocolBaseName = "ipcomp"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpencap        FirewallPolicyIPv6NamedProtocolBaseName = "ipencap"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpip           FirewallPolicyIPv6NamedProtocolBaseName = "ipip"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpv6           FirewallPolicyIPv6NamedProtocolBaseName = "ipv6"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpv6Frag       FirewallPolicyIPv6NamedProtocolBaseName = "ipv6-frag"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpv6Nonxt      FirewallPolicyIPv6NamedProtocolBaseName = "ipv6-nonxt"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpv6Opts       FirewallPolicyIPv6NamedProtocolBaseName = "ipv6-opts"
+	FirewallPolicyIPv6NamedProtocolBaseNameIpv6Route      FirewallPolicyIPv6NamedProtocolBaseName = "ipv6-route"
+	FirewallPolicyIPv6NamedProtocolBaseNameIsis           FirewallPolicyIPv6NamedProtocolBaseName = "isis"
+	FirewallPolicyIPv6NamedProtocolBaseNameIsoTp4         FirewallPolicyIPv6NamedProtocolBaseName = "iso-tp4"
+	FirewallPolicyIPv6NamedProtocolBaseNameL2tp           FirewallPolicyIPv6NamedProtocolBaseName = "l2tp"
+	FirewallPolicyIPv6NamedProtocolBaseNameManet          FirewallPolicyIPv6NamedProtocolBaseName = "manet"
+	FirewallPolicyIPv6NamedProtocolBaseNameMobilityHeader FirewallPolicyIPv6NamedProtocolBaseName = "mobility-header"
+	FirewallPolicyIPv6NamedProtocolBaseNameMplsInIp       FirewallPolicyIPv6NamedProtocolBaseName = "mpls-in-ip"
+	FirewallPolicyIPv6NamedProtocolBaseNameOspf           FirewallPolicyIPv6NamedProtocolBaseName = "ospf"
+	FirewallPolicyIPv6NamedProtocolBaseNamePim            FirewallPolicyIPv6NamedProtocolBaseName = "pim"
+	FirewallPolicyIPv6NamedProtocolBaseNamePup            FirewallPolicyIPv6NamedProtocolBaseName = "pup"
+	FirewallPolicyIPv6NamedProtocolBaseNameRdp            FirewallPolicyIPv6NamedProtocolBaseName = "rdp"
+	FirewallPolicyIPv6NamedProtocolBaseNameRohc           FirewallPolicyIPv6NamedProtocolBaseName = "rohc"
+	FirewallPolicyIPv6NamedProtocolBaseNameRspf           FirewallPolicyIPv6NamedProtocolBaseName = "rspf"
+	FirewallPolicyIPv6NamedProtocolBaseNameRsvp           FirewallPolicyIPv6NamedProtocolBaseName = "rsvp"
+	FirewallPolicyIPv6NamedProtocolBaseNameSctp           FirewallPolicyIPv6NamedProtocolBaseName = "sctp"
+	FirewallPolicyIPv6NamedProtocolBaseNameShim6          FirewallPolicyIPv6NamedProtocolBaseName = "shim6"
+	FirewallPolicyIPv6NamedProtocolBaseNameSkip           FirewallPolicyIPv6NamedProtocolBaseName = "skip"
+	FirewallPolicyIPv6NamedProtocolBaseNameSt             FirewallPolicyIPv6NamedProtocolBaseName = "st"
+	FirewallPolicyIPv6NamedProtocolBaseNameTcp            FirewallPolicyIPv6NamedProtocolBaseName = "tcp"
+	FirewallPolicyIPv6NamedProtocolBaseNameTcpUdp         FirewallPolicyIPv6NamedProtocolBaseName = "tcp_udp"
+	FirewallPolicyIPv6NamedProtocolBaseNameUdp            FirewallPolicyIPv6NamedProtocolBaseName = "udp"
+	FirewallPolicyIPv6NamedProtocolBaseNameUdplite        FirewallPolicyIPv6NamedProtocolBaseName = "udplite"
+	FirewallPolicyIPv6NamedProtocolBaseNameVmtp           FirewallPolicyIPv6NamedProtocolBaseName = "vmtp"
+	FirewallPolicyIPv6NamedProtocolBaseNameVrrp           FirewallPolicyIPv6NamedProtocolBaseName = "vrrp"
+	FirewallPolicyIPv6NamedProtocolBaseNameWesp           FirewallPolicyIPv6NamedProtocolBaseName = "wesp"
+	FirewallPolicyIPv6NamedProtocolBaseNameXnsIdp         FirewallPolicyIPv6NamedProtocolBaseName = "xns-idp"
+	FirewallPolicyIPv6NamedProtocolBaseNameXtp            FirewallPolicyIPv6NamedProtocolBaseName = "xtp"
+)
+
+// Valid indicates whether the value is a known member of the FirewallPolicyIPv6NamedProtocolBaseName enum.
+func (e FirewallPolicyIPv6NamedProtocolBaseName) Valid() bool {
+	switch e {
+	case FirewallPolicyIPv6NamedProtocolBaseNameAh:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameAx25:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameDccp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameDdp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameEgp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameEigrp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameEncap:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameEsp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameEtherip:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameFc:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameGgp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameGre:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameHip:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameHmp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIcmp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIcmpv6:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIdprCmtp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIdrp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIgmp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIgp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpcomp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpencap:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpip:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpv6:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpv6Frag:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpv6Nonxt:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpv6Opts:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIpv6Route:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIsis:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameIsoTp4:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameL2tp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameManet:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameMobilityHeader:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameMplsInIp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameOspf:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNamePim:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNamePup:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameRdp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameRohc:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameRspf:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameRsvp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameSctp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameShim6:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameSkip:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameSt:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameTcp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameTcpUdp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameUdp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameUdplite:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameVmtp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameVrrp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameWesp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameXnsIdp:
+		return true
+	case FirewallPolicyIPv6NamedProtocolBaseNameXtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for FirewallPolicyRegionFilterRegions.
+const (
+	AD FirewallPolicyRegionFilterRegions = "AD"
+	AE FirewallPolicyRegionFilterRegions = "AE"
+	AF FirewallPolicyRegionFilterRegions = "AF"
+	AG FirewallPolicyRegionFilterRegions = "AG"
+	AI FirewallPolicyRegionFilterRegions = "AI"
+	AL FirewallPolicyRegionFilterRegions = "AL"
+	AM FirewallPolicyRegionFilterRegions = "AM"
+	AO FirewallPolicyRegionFilterRegions = "AO"
+	AQ FirewallPolicyRegionFilterRegions = "AQ"
+	AR FirewallPolicyRegionFilterRegions = "AR"
+	AS FirewallPolicyRegionFilterRegions = "AS"
+	AT FirewallPolicyRegionFilterRegions = "AT"
+	AU FirewallPolicyRegionFilterRegions = "AU"
+	AW FirewallPolicyRegionFilterRegions = "AW"
+	AX FirewallPolicyRegionFilterRegions = "AX"
+	AZ FirewallPolicyRegionFilterRegions = "AZ"
+	BA FirewallPolicyRegionFilterRegions = "BA"
+	BB FirewallPolicyRegionFilterRegions = "BB"
+	BD FirewallPolicyRegionFilterRegions = "BD"
+	BE FirewallPolicyRegionFilterRegions = "BE"
+	BF FirewallPolicyRegionFilterRegions = "BF"
+	BG FirewallPolicyRegionFilterRegions = "BG"
+	BH FirewallPolicyRegionFilterRegions = "BH"
+	BI FirewallPolicyRegionFilterRegions = "BI"
+	BJ FirewallPolicyRegionFilterRegions = "BJ"
+	BL FirewallPolicyRegionFilterRegions = "BL"
+	BM FirewallPolicyRegionFilterRegions = "BM"
+	BN FirewallPolicyRegionFilterRegions = "BN"
+	BO FirewallPolicyRegionFilterRegions = "BO"
+	BQ FirewallPolicyRegionFilterRegions = "BQ"
+	BR FirewallPolicyRegionFilterRegions = "BR"
+	BS FirewallPolicyRegionFilterRegions = "BS"
+	BT FirewallPolicyRegionFilterRegions = "BT"
+	BW FirewallPolicyRegionFilterRegions = "BW"
+	BY FirewallPolicyRegionFilterRegions = "BY"
+	BZ FirewallPolicyRegionFilterRegions = "BZ"
+	CA FirewallPolicyRegionFilterRegions = "CA"
+	CC FirewallPolicyRegionFilterRegions = "CC"
+	CD FirewallPolicyRegionFilterRegions = "CD"
+	CF FirewallPolicyRegionFilterRegions = "CF"
+	CG FirewallPolicyRegionFilterRegions = "CG"
+	CH FirewallPolicyRegionFilterRegions = "CH"
+	CI FirewallPolicyRegionFilterRegions = "CI"
+	CK FirewallPolicyRegionFilterRegions = "CK"
+	CL FirewallPolicyRegionFilterRegions = "CL"
+	CM FirewallPolicyRegionFilterRegions = "CM"
+	CN FirewallPolicyRegionFilterRegions = "CN"
+	CO FirewallPolicyRegionFilterRegions = "CO"
+	CR FirewallPolicyRegionFilterRegions = "CR"
+	CU FirewallPolicyRegionFilterRegions = "CU"
+	CV FirewallPolicyRegionFilterRegions = "CV"
+	CW FirewallPolicyRegionFilterRegions = "CW"
+	CX FirewallPolicyRegionFilterRegions = "CX"
+	CY FirewallPolicyRegionFilterRegions = "CY"
+	CZ FirewallPolicyRegionFilterRegions = "CZ"
+	DE FirewallPolicyRegionFilterRegions = "DE"
+	DJ FirewallPolicyRegionFilterRegions = "DJ"
+	DK FirewallPolicyRegionFilterRegions = "DK"
+	DM FirewallPolicyRegionFilterRegions = "DM"
+	DO FirewallPolicyRegionFilterRegions = "DO"
+	DZ FirewallPolicyRegionFilterRegions = "DZ"
+	EC FirewallPolicyRegionFilterRegions = "EC"
+	EE FirewallPolicyRegionFilterRegions = "EE"
+	EG FirewallPolicyRegionFilterRegions = "EG"
+	EH FirewallPolicyRegionFilterRegions = "EH"
+	ER FirewallPolicyRegionFilterRegions = "ER"
+	ES FirewallPolicyRegionFilterRegions = "ES"
+	ET FirewallPolicyRegionFilterRegions = "ET"
+	FI FirewallPolicyRegionFilterRegions = "FI"
+	FJ FirewallPolicyRegionFilterRegions = "FJ"
+	FK FirewallPolicyRegionFilterRegions = "FK"
+	FM FirewallPolicyRegionFilterRegions = "FM"
+	FO FirewallPolicyRegionFilterRegions = "FO"
+	FR FirewallPolicyRegionFilterRegions = "FR"
+	GA FirewallPolicyRegionFilterRegions = "GA"
+	GB FirewallPolicyRegionFilterRegions = "GB"
+	GD FirewallPolicyRegionFilterRegions = "GD"
+	GE FirewallPolicyRegionFilterRegions = "GE"
+	GF FirewallPolicyRegionFilterRegions = "GF"
+	GG FirewallPolicyRegionFilterRegions = "GG"
+	GH FirewallPolicyRegionFilterRegions = "GH"
+	GI FirewallPolicyRegionFilterRegions = "GI"
+	GL FirewallPolicyRegionFilterRegions = "GL"
+	GM FirewallPolicyRegionFilterRegions = "GM"
+	GN FirewallPolicyRegionFilterRegions = "GN"
+	GP FirewallPolicyRegionFilterRegions = "GP"
+	GQ FirewallPolicyRegionFilterRegions = "GQ"
+	GR FirewallPolicyRegionFilterRegions = "GR"
+	GS FirewallPolicyRegionFilterRegions = "GS"
+	GT FirewallPolicyRegionFilterRegions = "GT"
+	GU FirewallPolicyRegionFilterRegions = "GU"
+	GW FirewallPolicyRegionFilterRegions = "GW"
+	GY FirewallPolicyRegionFilterRegions = "GY"
+	HK FirewallPolicyRegionFilterRegions = "HK"
+	HN FirewallPolicyRegionFilterRegions = "HN"
+	HR FirewallPolicyRegionFilterRegions = "HR"
+	HT FirewallPolicyRegionFilterRegions = "HT"
+	HU FirewallPolicyRegionFilterRegions = "HU"
+	ID FirewallPolicyRegionFilterRegions = "ID"
+	IE FirewallPolicyRegionFilterRegions = "IE"
+	IL FirewallPolicyRegionFilterRegions = "IL"
+	IM FirewallPolicyRegionFilterRegions = "IM"
+	IN FirewallPolicyRegionFilterRegions = "IN"
+	IO FirewallPolicyRegionFilterRegions = "IO"
+	IQ FirewallPolicyRegionFilterRegions = "IQ"
+	IR FirewallPolicyRegionFilterRegions = "IR"
+	IS FirewallPolicyRegionFilterRegions = "IS"
+	IT FirewallPolicyRegionFilterRegions = "IT"
+	JE FirewallPolicyRegionFilterRegions = "JE"
+	JM FirewallPolicyRegionFilterRegions = "JM"
+	JO FirewallPolicyRegionFilterRegions = "JO"
+	JP FirewallPolicyRegionFilterRegions = "JP"
+	KE FirewallPolicyRegionFilterRegions = "KE"
+	KG FirewallPolicyRegionFilterRegions = "KG"
+	KH FirewallPolicyRegionFilterRegions = "KH"
+	KI FirewallPolicyRegionFilterRegions = "KI"
+	KM FirewallPolicyRegionFilterRegions = "KM"
+	KN FirewallPolicyRegionFilterRegions = "KN"
+	KP FirewallPolicyRegionFilterRegions = "KP"
+	KR FirewallPolicyRegionFilterRegions = "KR"
+	KW FirewallPolicyRegionFilterRegions = "KW"
+	KY FirewallPolicyRegionFilterRegions = "KY"
+	KZ FirewallPolicyRegionFilterRegions = "KZ"
+	LA FirewallPolicyRegionFilterRegions = "LA"
+	LB FirewallPolicyRegionFilterRegions = "LB"
+	LC FirewallPolicyRegionFilterRegions = "LC"
+	LI FirewallPolicyRegionFilterRegions = "LI"
+	LK FirewallPolicyRegionFilterRegions = "LK"
+	LR FirewallPolicyRegionFilterRegions = "LR"
+	LS FirewallPolicyRegionFilterRegions = "LS"
+	LT FirewallPolicyRegionFilterRegions = "LT"
+	LU FirewallPolicyRegionFilterRegions = "LU"
+	LV FirewallPolicyRegionFilterRegions = "LV"
+	LY FirewallPolicyRegionFilterRegions = "LY"
+	MA FirewallPolicyRegionFilterRegions = "MA"
+	MC FirewallPolicyRegionFilterRegions = "MC"
+	MD FirewallPolicyRegionFilterRegions = "MD"
+	ME FirewallPolicyRegionFilterRegions = "ME"
+	MF FirewallPolicyRegionFilterRegions = "MF"
+	MG FirewallPolicyRegionFilterRegions = "MG"
+	MH FirewallPolicyRegionFilterRegions = "MH"
+	MK FirewallPolicyRegionFilterRegions = "MK"
+	ML FirewallPolicyRegionFilterRegions = "ML"
+	MM FirewallPolicyRegionFilterRegions = "MM"
+	MN FirewallPolicyRegionFilterRegions = "MN"
+	MO FirewallPolicyRegionFilterRegions = "MO"
+	MP FirewallPolicyRegionFilterRegions = "MP"
+	MQ FirewallPolicyRegionFilterRegions = "MQ"
+	MR FirewallPolicyRegionFilterRegions = "MR"
+	MS FirewallPolicyRegionFilterRegions = "MS"
+	MT FirewallPolicyRegionFilterRegions = "MT"
+	MU FirewallPolicyRegionFilterRegions = "MU"
+	MV FirewallPolicyRegionFilterRegions = "MV"
+	MW FirewallPolicyRegionFilterRegions = "MW"
+	MX FirewallPolicyRegionFilterRegions = "MX"
+	MY FirewallPolicyRegionFilterRegions = "MY"
+	MZ FirewallPolicyRegionFilterRegions = "MZ"
+	NA FirewallPolicyRegionFilterRegions = "NA"
+	NC FirewallPolicyRegionFilterRegions = "NC"
+	NE FirewallPolicyRegionFilterRegions = "NE"
+	NF FirewallPolicyRegionFilterRegions = "NF"
+	NG FirewallPolicyRegionFilterRegions = "NG"
+	NI FirewallPolicyRegionFilterRegions = "NI"
+	NL FirewallPolicyRegionFilterRegions = "NL"
+	NO FirewallPolicyRegionFilterRegions = "NO"
+	NP FirewallPolicyRegionFilterRegions = "NP"
+	NR FirewallPolicyRegionFilterRegions = "NR"
+	NU FirewallPolicyRegionFilterRegions = "NU"
+	NZ FirewallPolicyRegionFilterRegions = "NZ"
+	OM FirewallPolicyRegionFilterRegions = "OM"
+	PA FirewallPolicyRegionFilterRegions = "PA"
+	PE FirewallPolicyRegionFilterRegions = "PE"
+	PF FirewallPolicyRegionFilterRegions = "PF"
+	PG FirewallPolicyRegionFilterRegions = "PG"
+	PH FirewallPolicyRegionFilterRegions = "PH"
+	PK FirewallPolicyRegionFilterRegions = "PK"
+	PL FirewallPolicyRegionFilterRegions = "PL"
+	PM FirewallPolicyRegionFilterRegions = "PM"
+	PN FirewallPolicyRegionFilterRegions = "PN"
+	PR FirewallPolicyRegionFilterRegions = "PR"
+	PS FirewallPolicyRegionFilterRegions = "PS"
+	PT FirewallPolicyRegionFilterRegions = "PT"
+	PW FirewallPolicyRegionFilterRegions = "PW"
+	PY FirewallPolicyRegionFilterRegions = "PY"
+	QA FirewallPolicyRegionFilterRegions = "QA"
+	RE FirewallPolicyRegionFilterRegions = "RE"
+	RO FirewallPolicyRegionFilterRegions = "RO"
+	RS FirewallPolicyRegionFilterRegions = "RS"
+	RU FirewallPolicyRegionFilterRegions = "RU"
+	RW FirewallPolicyRegionFilterRegions = "RW"
+	SA FirewallPolicyRegionFilterRegions = "SA"
+	SB FirewallPolicyRegionFilterRegions = "SB"
+	SC FirewallPolicyRegionFilterRegions = "SC"
+	SD FirewallPolicyRegionFilterRegions = "SD"
+	SE FirewallPolicyRegionFilterRegions = "SE"
+	SG FirewallPolicyRegionFilterRegions = "SG"
+	SH FirewallPolicyRegionFilterRegions = "SH"
+	SI FirewallPolicyRegionFilterRegions = "SI"
+	SJ FirewallPolicyRegionFilterRegions = "SJ"
+	SK FirewallPolicyRegionFilterRegions = "SK"
+	SL FirewallPolicyRegionFilterRegions = "SL"
+	SM FirewallPolicyRegionFilterRegions = "SM"
+	SN FirewallPolicyRegionFilterRegions = "SN"
+	SO FirewallPolicyRegionFilterRegions = "SO"
+	SR FirewallPolicyRegionFilterRegions = "SR"
+	SS FirewallPolicyRegionFilterRegions = "SS"
+	ST FirewallPolicyRegionFilterRegions = "ST"
+	SV FirewallPolicyRegionFilterRegions = "SV"
+	SX FirewallPolicyRegionFilterRegions = "SX"
+	SY FirewallPolicyRegionFilterRegions = "SY"
+	SZ FirewallPolicyRegionFilterRegions = "SZ"
+	TC FirewallPolicyRegionFilterRegions = "TC"
+	TD FirewallPolicyRegionFilterRegions = "TD"
+	TF FirewallPolicyRegionFilterRegions = "TF"
+	TG FirewallPolicyRegionFilterRegions = "TG"
+	TH FirewallPolicyRegionFilterRegions = "TH"
+	TJ FirewallPolicyRegionFilterRegions = "TJ"
+	TK FirewallPolicyRegionFilterRegions = "TK"
+	TL FirewallPolicyRegionFilterRegions = "TL"
+	TM FirewallPolicyRegionFilterRegions = "TM"
+	TN FirewallPolicyRegionFilterRegions = "TN"
+	TO FirewallPolicyRegionFilterRegions = "TO"
+	TR FirewallPolicyRegionFilterRegions = "TR"
+	TT FirewallPolicyRegionFilterRegions = "TT"
+	TV FirewallPolicyRegionFilterRegions = "TV"
+	TW FirewallPolicyRegionFilterRegions = "TW"
+	TZ FirewallPolicyRegionFilterRegions = "TZ"
+	UA FirewallPolicyRegionFilterRegions = "UA"
+	UG FirewallPolicyRegionFilterRegions = "UG"
+	UM FirewallPolicyRegionFilterRegions = "UM"
+	US FirewallPolicyRegionFilterRegions = "US"
+	UY FirewallPolicyRegionFilterRegions = "UY"
+	UZ FirewallPolicyRegionFilterRegions = "UZ"
+	VA FirewallPolicyRegionFilterRegions = "VA"
+	VC FirewallPolicyRegionFilterRegions = "VC"
+	VE FirewallPolicyRegionFilterRegions = "VE"
+	VG FirewallPolicyRegionFilterRegions = "VG"
+	VI FirewallPolicyRegionFilterRegions = "VI"
+	VN FirewallPolicyRegionFilterRegions = "VN"
+	VU FirewallPolicyRegionFilterRegions = "VU"
+	WF FirewallPolicyRegionFilterRegions = "WF"
+	WS FirewallPolicyRegionFilterRegions = "WS"
+	XK FirewallPolicyRegionFilterRegions = "XK"
+	YE FirewallPolicyRegionFilterRegions = "YE"
+	YT FirewallPolicyRegionFilterRegions = "YT"
+	ZA FirewallPolicyRegionFilterRegions = "ZA"
+	ZM FirewallPolicyRegionFilterRegions = "ZM"
+	ZW FirewallPolicyRegionFilterRegions = "ZW"
+)
+
+// Valid indicates whether the value is a known member of the FirewallPolicyRegionFilterRegions enum.
+func (e FirewallPolicyRegionFilterRegions) Valid() bool {
+	switch e {
+	case AD:
+		return true
+	case AE:
+		return true
+	case AF:
+		return true
+	case AG:
+		return true
+	case AI:
+		return true
+	case AL:
+		return true
+	case AM:
+		return true
+	case AO:
+		return true
+	case AQ:
+		return true
+	case AR:
+		return true
+	case AS:
+		return true
+	case AT:
+		return true
+	case AU:
+		return true
+	case AW:
+		return true
+	case AX:
+		return true
+	case AZ:
+		return true
+	case BA:
+		return true
+	case BB:
+		return true
+	case BD:
+		return true
+	case BE:
+		return true
+	case BF:
+		return true
+	case BG:
+		return true
+	case BH:
+		return true
+	case BI:
+		return true
+	case BJ:
+		return true
+	case BL:
+		return true
+	case BM:
+		return true
+	case BN:
+		return true
+	case BO:
+		return true
+	case BQ:
+		return true
+	case BR:
+		return true
+	case BS:
+		return true
+	case BT:
+		return true
+	case BW:
+		return true
+	case BY:
+		return true
+	case BZ:
+		return true
+	case CA:
+		return true
+	case CC:
+		return true
+	case CD:
+		return true
+	case CF:
+		return true
+	case CG:
+		return true
+	case CH:
+		return true
+	case CI:
+		return true
+	case CK:
+		return true
+	case CL:
+		return true
+	case CM:
+		return true
+	case CN:
+		return true
+	case CO:
+		return true
+	case CR:
+		return true
+	case CU:
+		return true
+	case CV:
+		return true
+	case CW:
+		return true
+	case CX:
+		return true
+	case CY:
+		return true
+	case CZ:
+		return true
+	case DE:
+		return true
+	case DJ:
+		return true
+	case DK:
+		return true
+	case DM:
+		return true
+	case DO:
+		return true
+	case DZ:
+		return true
+	case EC:
+		return true
+	case EE:
+		return true
+	case EG:
+		return true
+	case EH:
+		return true
+	case ER:
+		return true
+	case ES:
+		return true
+	case ET:
+		return true
+	case FI:
+		return true
+	case FJ:
+		return true
+	case FK:
+		return true
+	case FM:
+		return true
+	case FO:
+		return true
+	case FR:
+		return true
+	case GA:
+		return true
+	case GB:
+		return true
+	case GD:
+		return true
+	case GE:
+		return true
+	case GF:
+		return true
+	case GG:
+		return true
+	case GH:
+		return true
+	case GI:
+		return true
+	case GL:
+		return true
+	case GM:
+		return true
+	case GN:
+		return true
+	case GP:
+		return true
+	case GQ:
+		return true
+	case GR:
+		return true
+	case GS:
+		return true
+	case GT:
+		return true
+	case GU:
+		return true
+	case GW:
+		return true
+	case GY:
+		return true
+	case HK:
+		return true
+	case HN:
+		return true
+	case HR:
+		return true
+	case HT:
+		return true
+	case HU:
+		return true
+	case ID:
+		return true
+	case IE:
+		return true
+	case IL:
+		return true
+	case IM:
+		return true
+	case IN:
+		return true
+	case IO:
+		return true
+	case IQ:
+		return true
+	case IR:
+		return true
+	case IS:
+		return true
+	case IT:
+		return true
+	case JE:
+		return true
+	case JM:
+		return true
+	case JO:
+		return true
+	case JP:
+		return true
+	case KE:
+		return true
+	case KG:
+		return true
+	case KH:
+		return true
+	case KI:
+		return true
+	case KM:
+		return true
+	case KN:
+		return true
+	case KP:
+		return true
+	case KR:
+		return true
+	case KW:
+		return true
+	case KY:
+		return true
+	case KZ:
+		return true
+	case LA:
+		return true
+	case LB:
+		return true
+	case LC:
+		return true
+	case LI:
+		return true
+	case LK:
+		return true
+	case LR:
+		return true
+	case LS:
+		return true
+	case LT:
+		return true
+	case LU:
+		return true
+	case LV:
+		return true
+	case LY:
+		return true
+	case MA:
+		return true
+	case MC:
+		return true
+	case MD:
+		return true
+	case ME:
+		return true
+	case MF:
+		return true
+	case MG:
+		return true
+	case MH:
+		return true
+	case MK:
+		return true
+	case ML:
+		return true
+	case MM:
+		return true
+	case MN:
+		return true
+	case MO:
+		return true
+	case MP:
+		return true
+	case MQ:
+		return true
+	case MR:
+		return true
+	case MS:
+		return true
+	case MT:
+		return true
+	case MU:
+		return true
+	case MV:
+		return true
+	case MW:
+		return true
+	case MX:
+		return true
+	case MY:
+		return true
+	case MZ:
+		return true
+	case NA:
+		return true
+	case NC:
+		return true
+	case NE:
+		return true
+	case NF:
+		return true
+	case NG:
+		return true
+	case NI:
+		return true
+	case NL:
+		return true
+	case NO:
+		return true
+	case NP:
+		return true
+	case NR:
+		return true
+	case NU:
+		return true
+	case NZ:
+		return true
+	case OM:
+		return true
+	case PA:
+		return true
+	case PE:
+		return true
+	case PF:
+		return true
+	case PG:
+		return true
+	case PH:
+		return true
+	case PK:
+		return true
+	case PL:
+		return true
+	case PM:
+		return true
+	case PN:
+		return true
+	case PR:
+		return true
+	case PS:
+		return true
+	case PT:
+		return true
+	case PW:
+		return true
+	case PY:
+		return true
+	case QA:
+		return true
+	case RE:
+		return true
+	case RO:
+		return true
+	case RS:
+		return true
+	case RU:
+		return true
+	case RW:
+		return true
+	case SA:
+		return true
+	case SB:
+		return true
+	case SC:
+		return true
+	case SD:
+		return true
+	case SE:
+		return true
+	case SG:
+		return true
+	case SH:
+		return true
+	case SI:
+		return true
+	case SJ:
+		return true
+	case SK:
+		return true
+	case SL:
+		return true
+	case SM:
+		return true
+	case SN:
+		return true
+	case SO:
+		return true
+	case SR:
+		return true
+	case SS:
+		return true
+	case ST:
+		return true
+	case SV:
+		return true
+	case SX:
+		return true
+	case SY:
+		return true
+	case SZ:
+		return true
+	case TC:
+		return true
+	case TD:
+		return true
+	case TF:
+		return true
+	case TG:
+		return true
+	case TH:
+		return true
+	case TJ:
+		return true
+	case TK:
+		return true
+	case TL:
+		return true
+	case TM:
+		return true
+	case TN:
+		return true
+	case TO:
+		return true
+	case TR:
+		return true
+	case TT:
+		return true
+	case TV:
+		return true
+	case TW:
+		return true
+	case TZ:
+		return true
+	case UA:
+		return true
+	case UG:
+		return true
+	case UM:
+		return true
+	case US:
+		return true
+	case UY:
+		return true
+	case UZ:
+		return true
+	case VA:
+		return true
+	case VC:
+		return true
+	case VE:
+		return true
+	case VG:
+		return true
+	case VI:
+		return true
+	case VN:
+		return true
+	case VU:
+		return true
+	case WF:
+		return true
+	case WS:
+		return true
+	case XK:
+		return true
+	case YE:
+		return true
+	case YT:
+		return true
+	case ZA:
+		return true
+	case ZM:
+		return true
+	case ZW:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName.
+const (
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameAh             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ah"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameAx25           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ax.25"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameDccp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "dccp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameDdp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ddp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEgp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "egp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEigrp          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "eigrp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEncap          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "encap"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEsp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "esp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEtherip        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "etherip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameFc             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "fc"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameGgp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ggp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameGre            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "gre"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameHip            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "hip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameHmp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "hmp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIcmp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "icmp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIcmpv6         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "icmpv6"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIdprCmtp       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "idpr-cmtp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIdrp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "idrp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIgmp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "igmp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIgp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "igp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIp             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpcomp         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipcomp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpencap        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipencap"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpip           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipv6"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Frag       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipv6-frag"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Nonxt      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipv6-nonxt"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Opts       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipv6-opts"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Route      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ipv6-route"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIsis           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "isis"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIsoTp4         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "iso-tp4"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameL2tp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "l2tp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameManet          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "manet"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameMobilityHeader IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "mobility-header"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameMplsInIp       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "mpls-in-ip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameOspf           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "ospf"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNamePim            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "pim"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNamePup            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "pup"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRdp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "rdp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRohc           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "rohc"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRspf           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "rspf"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRsvp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "rsvp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSctp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "sctp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameShim6          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "shim6"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSkip           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "skip"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSt             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "st"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameTcp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "tcp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameTcpUdp         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "tcp_udp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameUdp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "udp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameUdplite        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "udplite"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameVmtp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "vmtp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameVrrp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "vrrp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameWesp           IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "wesp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameXnsIdp         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "xns-idp"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameXtp            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName = "xtp"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName enum.
+func (e IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName) Valid() bool {
+	switch e {
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameAh:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameAx25:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameDccp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameDdp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEgp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEigrp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEncap:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEsp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameEtherip:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameFc:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameGgp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameGre:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameHip:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameHmp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIcmp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIcmpv6:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIdprCmtp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIdrp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIgmp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIgp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpcomp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpencap:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpip:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Frag:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Nonxt:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Opts:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIpv6Route:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIsis:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameIsoTp4:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameL2tp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameManet:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameMobilityHeader:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameMplsInIp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameOspf:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNamePim:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNamePup:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRdp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRohc:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRspf:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameRsvp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSctp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameShim6:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSkip:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameSt:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameTcp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameTcpUdp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameUdp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameUdplite:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameVmtp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameVrrp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameWesp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameXnsIdp:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoNameXtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter.
+const (
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterADDRESSMASKREPLY        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ADDRESS_MASK_REPLY"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterADDRESSMASKREQUEST      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ADDRESS_MASK_REQUEST"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterCOMMUNICATIONPROHIBITED IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "COMMUNICATION_PROHIBITED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterDESTINATIONUNREACHABLE  IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "DESTINATION_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterECHOREPLY               IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ECHO_REPLY"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterECHOREQUEST             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ECHO_REQUEST"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterFRAGMENTATIONNEEDED     IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "FRAGMENTATION_NEEDED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTPRECEDENCEVIOLATION IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "HOST_PRECEDENCE_VIOLATION"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTPROHIBITED          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "HOST_PROHIBITED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTREDIRECT            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "HOST_REDIRECT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTUNKNOWN             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "HOST_UNKNOWN"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTUNREACHABLE         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "HOST_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterIPHEADERBAD             IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "IP_HEADER_BAD"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKPROHIBITED       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "NETWORK_PROHIBITED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKREDIRECT         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "NETWORK_REDIRECT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKUNKNOWN          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "NETWORK_UNKNOWN"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKUNREACHABLE      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "NETWORK_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPARAMETERPROBLEM        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "PARAMETER_PROBLEM"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPORTUNREACHABLE         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "PORT_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPRECEDENCECUTOFF        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "PRECEDENCE_CUTOFF"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPROTOCOLUNREACHABLE     IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "PROTOCOL_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterREDIRECT                IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "REDIRECT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterREQUIREDOPTIONMISSING   IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "REQUIRED_OPTION_MISSING"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterROUTERADVERTISEMENT     IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ROUTER_ADVERTISEMENT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterROUTERSOLICITATION      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "ROUTER_SOLICITATION"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterSOURCEQUENCH            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "SOURCE_QUENCH"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterSOURCEROUTEFAILED       IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "SOURCE_ROUTE_FAILED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMEEXCEEDED            IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TIME_EXCEEDED"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMESTAMPREPLY          IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TIMESTAMP_REPLY"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMESTAMPREQUEST        IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TIMESTAMP_REQUEST"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSHOSTREDIRECT         IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TOS_HOST_REDIRECT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSHOSTUNREACHABLE      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TOS_HOST_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSNETWORKREDIRECT      IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TOS_NETWORK_REDIRECT"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSNETWORKUNREACHABLE   IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TOS_NETWORK_UNREACHABLE"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTTLZERODURINGREASSEMBLY IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TTL_ZERO_DURING_REASSEMBLY"
+	IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTTLZERODURINGTRANSIT    IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter = "TTL_ZERO_DURING_TRANSIT"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter enum.
+func (e IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter) Valid() bool {
+	switch e {
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterADDRESSMASKREPLY:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterADDRESSMASKREQUEST:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterCOMMUNICATIONPROHIBITED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterDESTINATIONUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterECHOREPLY:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterECHOREQUEST:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterFRAGMENTATIONNEEDED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTPRECEDENCEVIOLATION:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTPROHIBITED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTUNKNOWN:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterHOSTUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterIPHEADERBAD:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKPROHIBITED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKUNKNOWN:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterNETWORKUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPARAMETERPROBLEM:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPORTUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPRECEDENCECUTOFF:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterPROTOCOLUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterREQUIREDOPTIONMISSING:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterROUTERADVERTISEMENT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterROUTERSOLICITATION:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterSOURCEQUENCH:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterSOURCEROUTEFAILED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMEEXCEEDED:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMESTAMPREPLY:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTIMESTAMPREQUEST:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSHOSTREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSHOSTUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSNETWORKREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTOSNETWORKUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTTLZERODURINGREASSEMBLY:
+		return true
+	case IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilterTTLZERODURINGTRANSIT:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName.
+const (
+	Ah             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ah"
+	Ax25           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ax.25"
+	Dccp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "dccp"
+	Ddp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ddp"
+	Egp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "egp"
+	Eigrp          IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "eigrp"
+	Encap          IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "encap"
+	Esp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "esp"
+	Etherip        IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "etherip"
+	Fc             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "fc"
+	Ggp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ggp"
+	Gre            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "gre"
+	Hip            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "hip"
+	Hmp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "hmp"
+	Icmp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "icmp"
+	Icmpv6         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "icmpv6"
+	IdprCmtp       IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "idpr-cmtp"
+	Idrp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "idrp"
+	Igmp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "igmp"
+	Igp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "igp"
+	Ip             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ip"
+	Ipcomp         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipcomp"
+	Ipencap        IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipencap"
+	Ipip           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipip"
+	Ipv6           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipv6"
+	Ipv6Frag       IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipv6-frag"
+	Ipv6Nonxt      IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipv6-nonxt"
+	Ipv6Opts       IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipv6-opts"
+	Ipv6Route      IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ipv6-route"
+	Isis           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "isis"
+	IsoTp4         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "iso-tp4"
+	L2tp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "l2tp"
+	Manet          IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "manet"
+	MobilityHeader IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "mobility-header"
+	MplsInIp       IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "mpls-in-ip"
+	Ospf           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "ospf"
+	Pim            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "pim"
+	Pup            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "pup"
+	Rdp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "rdp"
+	Rohc           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "rohc"
+	Rspf           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "rspf"
+	Rsvp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "rsvp"
+	Sctp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "sctp"
+	Shim6          IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "shim6"
+	Skip           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "skip"
+	St             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "st"
+	Tcp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "tcp"
+	TcpUdp         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "tcp_udp"
+	Udp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "udp"
+	Udplite        IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "udplite"
+	Vmtp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "vmtp"
+	Vrrp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "vrrp"
+	Wesp           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "wesp"
+	XnsIdp         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "xns-idp"
+	Xtp            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName = "xtp"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName enum.
+func (e IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName) Valid() bool {
+	switch e {
+	case Ah:
+		return true
+	case Ax25:
+		return true
+	case Dccp:
+		return true
+	case Ddp:
+		return true
+	case Egp:
+		return true
+	case Eigrp:
+		return true
+	case Encap:
+		return true
+	case Esp:
+		return true
+	case Etherip:
+		return true
+	case Fc:
+		return true
+	case Ggp:
+		return true
+	case Gre:
+		return true
+	case Hip:
+		return true
+	case Hmp:
+		return true
+	case Icmp:
+		return true
+	case Icmpv6:
+		return true
+	case IdprCmtp:
+		return true
+	case Idrp:
+		return true
+	case Igmp:
+		return true
+	case Igp:
+		return true
+	case Ip:
+		return true
+	case Ipcomp:
+		return true
+	case Ipencap:
+		return true
+	case Ipip:
+		return true
+	case Ipv6:
+		return true
+	case Ipv6Frag:
+		return true
+	case Ipv6Nonxt:
+		return true
+	case Ipv6Opts:
+		return true
+	case Ipv6Route:
+		return true
+	case Isis:
+		return true
+	case IsoTp4:
+		return true
+	case L2tp:
+		return true
+	case Manet:
+		return true
+	case MobilityHeader:
+		return true
+	case MplsInIp:
+		return true
+	case Ospf:
+		return true
+	case Pim:
+		return true
+	case Pup:
+		return true
+	case Rdp:
+		return true
+	case Rohc:
+		return true
+	case Rspf:
+		return true
+	case Rsvp:
+		return true
+	case Sctp:
+		return true
+	case Shim6:
+		return true
+	case Skip:
+		return true
+	case St:
+		return true
+	case Tcp:
+		return true
+	case TcpUdp:
+		return true
+	case Udp:
+		return true
+	case Udplite:
+		return true
+	case Vmtp:
+		return true
+	case Vrrp:
+		return true
+	case Wesp:
+		return true
+	case XnsIdp:
+		return true
+	case Xtp:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter.
+const (
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterADDRESSUNREACHABLE      IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "ADDRESS_UNREACHABLE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterBADHEADER               IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "BAD_HEADER"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterBEYONDSCOPE             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "BEYOND_SCOPE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterCOMMUNICATIONPROHIBITED IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "COMMUNICATION_PROHIBITED"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterDESTINATIONUNREACHABLE  IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "DESTINATION_UNREACHABLE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterECHOREPLY               IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "ECHO_REPLY"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterECHOREQUEST             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "ECHO_REQUEST"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterFAILEDPOLICY            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "FAILED_POLICY"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNEIGHBORADVERTISEMENT   IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "NEIGHBOR_ADVERTISEMENT"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNEIGHBORSOLICITATION    IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "NEIGHBOR_SOLICITATION"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNOROUTE                 IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "NO_ROUTE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPACKETTOOBIG            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "PACKET_TOO_BIG"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPARAMETERPROBLEM        IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "PARAMETER_PROBLEM"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPORTUNREACHABLE         IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "PORT_UNREACHABLE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterREDIRECT                IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "REDIRECT"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterREJECTROUTE             IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "REJECT_ROUTE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterROUTERADVERTISEMENT     IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "ROUTER_ADVERTISEMENT"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterROUTERSOLICITATION      IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "ROUTER_SOLICITATION"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTIMEEXCEEDED            IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "TIME_EXCEEDED"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTTLZERODURINGREASSEMBLY IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "TTL_ZERO_DURING_REASSEMBLY"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTTLZERODURINGTRANSIT    IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "TTL_ZERO_DURING_TRANSIT"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterUNKNOWNHEADERTYPE       IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "UNKNOWN_HEADER_TYPE"
+	IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterUNKNOWNOPTION           IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter = "UNKNOWN_OPTION"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter enum.
+func (e IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter) Valid() bool {
+	switch e {
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterADDRESSUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterBADHEADER:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterBEYONDSCOPE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterCOMMUNICATIONPROHIBITED:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterDESTINATIONUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterECHOREPLY:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterECHOREQUEST:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterFAILEDPOLICY:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNEIGHBORADVERTISEMENT:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNEIGHBORSOLICITATION:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterNOROUTE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPACKETTOOBIG:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPARAMETERPROBLEM:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterPORTUNREACHABLE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterREDIRECT:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterREJECTROUTE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterROUTERADVERTISEMENT:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterROUTERSOLICITATION:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTIMEEXCEEDED:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTTLZERODURINGREASSEMBLY:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterTTLZERODURINGTRANSIT:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterUNKNOWNHEADERTYPE:
+		return true
+	case IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilterUNKNOWNOPTION:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallScheduleCustomDtoRepeatOnDays.
+const (
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysFRIDAY    IntegrationFirewallScheduleCustomDtoRepeatOnDays = "FRIDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysMONDAY    IntegrationFirewallScheduleCustomDtoRepeatOnDays = "MONDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysSATURDAY  IntegrationFirewallScheduleCustomDtoRepeatOnDays = "SATURDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysSUNDAY    IntegrationFirewallScheduleCustomDtoRepeatOnDays = "SUNDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysTHURSDAY  IntegrationFirewallScheduleCustomDtoRepeatOnDays = "THURSDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysTUESDAY   IntegrationFirewallScheduleCustomDtoRepeatOnDays = "TUESDAY"
+	IntegrationFirewallScheduleCustomDtoRepeatOnDaysWEDNESDAY IntegrationFirewallScheduleCustomDtoRepeatOnDays = "WEDNESDAY"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallScheduleCustomDtoRepeatOnDays enum.
+func (e IntegrationFirewallScheduleCustomDtoRepeatOnDays) Valid() bool {
+	switch e {
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysFRIDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysMONDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysSATURDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysSUNDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysTHURSDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysTUESDAY:
+		return true
+	case IntegrationFirewallScheduleCustomDtoRepeatOnDaysWEDNESDAY:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays.
+const (
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysFRIDAY    IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "FRIDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysMONDAY    IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "MONDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysSATURDAY  IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "SATURDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysSUNDAY    IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "SUNDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysTHURSDAY  IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "THURSDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysTUESDAY   IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "TUESDAY"
+	IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysWEDNESDAY IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays = "WEDNESDAY"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays enum.
+func (e IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays) Valid() bool {
+	switch e {
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysFRIDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysMONDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysSATURDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysSUNDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysTHURSDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysTUESDAY:
+		return true
+	case IntegrationFirewallScheduleEveryWeekDtoRepeatOnDaysWEDNESDAY:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for IntegrationWifiBasicDataRateConfigurationDto24.
 const (
 	IntegrationWifiBasicDataRateConfigurationDto24N1000  IntegrationWifiBasicDataRateConfigurationDto24 = 1000
@@ -1138,14 +3046,198 @@ type FirewallPolicyConnectionStateFilter string
 // FirewallPolicyIpsecFilter Match on traffic encrypted, or not encrypted by IPsec. If null, matches all traffic.
 type FirewallPolicyIpsecFilter string
 
+// FirewallPolicyIPAddressFilter Match traffic originating from, or destined to selected IP addresses.
+type FirewallPolicyIPAddressFilter struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPAddressFilterBase Match traffic originating from, or destined to selected IP addresses.
+type FirewallPolicyIPAddressFilterBase struct {
+	// MatchOpposite Match on all IP addresses except the specified ones.
+	MatchOpposite bool   `json:"matchOpposite"`
+	Type          string `json:"type"`
+}
+
 // FirewallPolicyIPProtocolScope Defines rules for matching by IP version and protocol.
 type FirewallPolicyIPProtocolScope struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPProtocolScopeBase Defines rules for matching by IP version and protocol.
+type FirewallPolicyIPProtocolScopeBase struct {
 	IpVersion string `json:"ipVersion"`
+}
+
+// FirewallPolicyIPv4AndIPv6NamedProtocol Defines rules for matching by protocol name.
+type FirewallPolicyIPv4AndIPv6NamedProtocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4AndIPv6NamedProtocolBase Defines rules for matching by protocol name.
+type FirewallPolicyIPv4AndIPv6NamedProtocolBase struct {
+	Name FirewallPolicyIPv4AndIPv6NamedProtocolBaseName `json:"name"`
+}
+
+// FirewallPolicyIPv4AndIPv6NamedProtocolBaseName defines model for FirewallPolicyIPv4AndIPv6NamedProtocolBase.Name.
+type FirewallPolicyIPv4AndIPv6NamedProtocolBaseName string
+
+// FirewallPolicyIPv4AndIPv6Protocol Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv4AndIPv6Protocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4AndIPv6ProtocolBase Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv4AndIPv6ProtocolBase struct {
+	Type string `json:"type"`
+}
+
+// FirewallPolicyIPv4AndIPv6ProtocolNumber defines model for Firewall policy IPv4 and IPv6 protocol number.
+type FirewallPolicyIPv4AndIPv6ProtocolNumber struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// ProtocolNumber Protocol number as defined by IANA.
+	ProtocolNumber *int32 `json:"protocolNumber,omitempty"`
+	Type           string `json:"type"`
+}
+
+// FirewallPolicyIPv4AndIPv6ProtocolPreset Defines rules for matching by protocol preset.
+type FirewallPolicyIPv4AndIPv6ProtocolPreset struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4AndIPv6ProtocolPresetBase Defines rules for matching by protocol preset.
+type FirewallPolicyIPv4AndIPv6ProtocolPresetBase struct {
+	Name string `json:"name"`
+}
+
+// FirewallPolicyIPv4NamedProtocol Defines rules for matching by protocol name.
+type FirewallPolicyIPv4NamedProtocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4NamedProtocolBase Defines rules for matching by protocol name.
+type FirewallPolicyIPv4NamedProtocolBase struct {
+	Name *FirewallPolicyIPv4NamedProtocolBaseName `json:"name,omitempty"`
+}
+
+// FirewallPolicyIPv4NamedProtocolBaseName defines model for FirewallPolicyIPv4NamedProtocolBase.Name.
+type FirewallPolicyIPv4NamedProtocolBaseName string
+
+// FirewallPolicyIPv4Protocol Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv4Protocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4ProtocolBase Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv4ProtocolBase struct {
+	Type string `json:"type"`
+}
+
+// FirewallPolicyIPv4ProtocolNumber defines model for Firewall policy IPv4 protocol number.
+type FirewallPolicyIPv4ProtocolNumber struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// ProtocolNumber Protocol number as defined by IANA.
+	ProtocolNumber *int32 `json:"protocolNumber,omitempty"`
+	Type           string `json:"type"`
+}
+
+// FirewallPolicyIPv4ProtocolNumberIPv4Base defines model for Firewall policy IPv4 protocol number (IPv4 base).
+type FirewallPolicyIPv4ProtocolNumberIPv4Base struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// ProtocolNumber Protocol number as defined by IANA.
+	ProtocolNumber *int32 `json:"protocolNumber,omitempty"`
+	Type           string `json:"type"`
+}
+
+// FirewallPolicyIPv4ProtocolPreset Defines rules for matching by protocol preset.
+type FirewallPolicyIPv4ProtocolPreset struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv4ProtocolPresetBase Defines rules for matching by protocol preset.
+type FirewallPolicyIPv4ProtocolPresetBase struct {
+	Name string `json:"name"`
+}
+
+// FirewallPolicyIPv6InterfaceIdentifierFilter defines model for Firewall policy IPv6 interface identifier filter.
+type FirewallPolicyIPv6InterfaceIdentifierFilter struct {
+	// Ipv6Iid IPv6 Interface Identifier.
+	Ipv6Iid string `json:"ipv6Iid"`
+
+	// MatchOpposite Match on all IPv6 IIDs except the specified one.
+	MatchOpposite bool `json:"matchOpposite"`
+}
+
+// FirewallPolicyIPv6NamedProtocol Defines rules for matching by protocol name.
+type FirewallPolicyIPv6NamedProtocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv6NamedProtocolBase Defines rules for matching by protocol name.
+type FirewallPolicyIPv6NamedProtocolBase struct {
+	Name *FirewallPolicyIPv6NamedProtocolBaseName `json:"name,omitempty"`
+}
+
+// FirewallPolicyIPv6NamedProtocolBaseName defines model for FirewallPolicyIPv6NamedProtocolBase.Name.
+type FirewallPolicyIPv6NamedProtocolBaseName string
+
+// FirewallPolicyIPv6Protocol Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv6Protocol struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv6ProtocolBase Defines protocol matching. If null, matches all protocols.
+type FirewallPolicyIPv6ProtocolBase struct {
+	Type string `json:"type"`
+}
+
+// FirewallPolicyIPv6ProtocolPreset Defines rules for matching by protocol preset.
+type FirewallPolicyIPv6ProtocolPreset struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyIPv6ProtocolPresetBase Defines rules for matching by protocol preset.
+type FirewallPolicyIPv6ProtocolPresetBase struct {
+	Name string `json:"name"`
+}
+
+// FirewallPolicyMACAddressFilter defines model for Firewall policy MAC address filter.
+type FirewallPolicyMACAddressFilter struct {
+	// MacAddresses Array of MAC addresses to match.
+	MacAddresses []string `json:"macAddresses"`
+}
+
+// FirewallPolicyVPNServerFilter defines model for Firewall policy VPN server filter.
+type FirewallPolicyVPNServerFilter struct {
+	MatchOpposite bool                 `json:"matchOpposite"`
+	VpnServerIds  []openapi_types.UUID `json:"vpnServerIds"`
 }
 
 // FirewallPolicyAction Defines action for matched traffic.
 type FirewallPolicyAction struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyActionBase Defines action for matched traffic.
+type FirewallPolicyActionBase struct {
 	Type string `json:"type"`
+}
+
+// FirewallPolicyApplicationCategoryFilter defines model for Firewall policy application category filter.
+type FirewallPolicyApplicationCategoryFilter struct {
+	// ApplicationCategoryIds Array of DPI Category IDs to match.
+	ApplicationCategoryIds []int32 `json:"applicationCategoryIds"`
+}
+
+// FirewallPolicyApplicationFilter defines model for Firewall policy application filter.
+type FirewallPolicyApplicationFilter struct {
+	// ApplicationIds Array of DPI Application IDs to match.
+	ApplicationIds []int32 `json:"applicationIds"`
 }
 
 // FirewallPolicyDestination defines model for Firewall policy destination.
@@ -1158,7 +3250,26 @@ type FirewallPolicyDestination struct {
 
 // FirewallPolicyDestinationTrafficFilter defines model for Firewall policy destination traffic filter.
 type FirewallPolicyDestinationTrafficFilter struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyDestinationTrafficFilterBase defines model for Firewall policy destination traffic filter base.
+type FirewallPolicyDestinationTrafficFilterBase struct {
 	Type string `json:"type"`
+}
+
+// FirewallPolicyDomainFilter defines model for Firewall policy domain filter.
+type FirewallPolicyDomainFilter struct {
+	Type string `json:"type"`
+}
+
+// FirewallPolicyNetworkFilter defines model for Firewall policy network filter.
+type FirewallPolicyNetworkFilter struct {
+	// MatchOpposite Match on all Networks except the selected.
+	MatchOpposite bool `json:"matchOpposite"`
+
+	// NetworkIds Array of Network IDs to match.
+	NetworkIds []openapi_types.UUID `json:"networkIds"`
 }
 
 // FirewallPolicyPage defines model for Firewall policy page.
@@ -1168,6 +3279,32 @@ type FirewallPolicyPage struct {
 	Limit      int32            `json:"limit"`
 	Offset     int64            `json:"offset"`
 	TotalCount int64            `json:"totalCount"`
+}
+
+// FirewallPolicyPortFilter Defines rules for matching traffic by port.
+type FirewallPolicyPortFilter struct {
+	union json.RawMessage
+}
+
+// FirewallPolicyPortFilterBase Defines rules for matching traffic by port.
+type FirewallPolicyPortFilterBase struct {
+	// MatchOpposite Match on all ports except the specified ones.
+	MatchOpposite bool   `json:"matchOpposite"`
+	Type          string `json:"type"`
+}
+
+// FirewallPolicyRegionFilter defines model for Firewall policy region filter.
+type FirewallPolicyRegionFilter struct {
+	// Regions Match traffic originating from selected regions. Regions are identified by their ISO 3166-1 alpha-2 country codes.
+	Regions []FirewallPolicyRegionFilterRegions `json:"regions"`
+}
+
+// FirewallPolicyRegionFilterRegions defines model for FirewallPolicyRegionFilter.Regions.
+type FirewallPolicyRegionFilterRegions string
+
+// FirewallPolicySiteToSiteVPNTunnelFilter defines model for Firewall policy site-to-site VPN tunnel filter.
+type FirewallPolicySiteToSiteVPNTunnelFilter struct {
+	SiteToSiteVpnTunnelId openapi_types.UUID `json:"siteToSiteVpnTunnelId"`
 }
 
 // FirewallPolicySource defines model for Firewall policy source.
@@ -1180,12 +3317,31 @@ type FirewallPolicySource struct {
 
 // FirewallPolicySourceTrafficFilter defines model for Firewall policy source traffic filter.
 type FirewallPolicySourceTrafficFilter struct {
+	union json.RawMessage
+}
+
+// FirewallPolicySourceTrafficFilterBase defines model for Firewall policy source traffic filter base.
+type FirewallPolicySourceTrafficFilterBase struct {
 	Type string `json:"type"`
 }
 
 // FirewallSchedule Defines date and time when the entity is active. If null, the entity is always active.
 type FirewallSchedule struct {
+	union json.RawMessage
+}
+
+// FirewallScheduleBase Defines date and time when the entity is active. If null, the entity is always active.
+type FirewallScheduleBase struct {
 	Mode string `json:"mode"`
+}
+
+// FirewallScheduleTime Defines the time range when the entity is active. If null, the entity is active all day.
+type FirewallScheduleTime struct {
+	// StartTime Time in HH:MM format. Uses 24-hour clock system. ISO 8601 compliant.
+	StartTime string `json:"startTime"`
+
+	// StopTime Time in HH:MM format. Uses 24-hour clock system. ISO 8601 compliant.
+	StopTime string `json:"stopTime"`
 }
 
 // FirewallZone defines model for Firewall zone.
@@ -1280,6 +3436,11 @@ type HotspotVoucherDetails struct {
 
 	// TxRateLimitKbps (Optional) upload rate limit in kilobits per second
 	TxRateLimitKbps *int64 `json:"txRateLimitKbps,omitempty"`
+}
+
+// IPMatching defines model for IP matching.
+type IPMatching struct {
+	Type string `json:"type"`
 }
 
 // IntegrationBlackoutScheduleConfiguration defines model for Integration blackout schedule configuration.
@@ -1508,9 +3669,393 @@ type IntegrationDnsTxtRecordDto struct {
 	Type string  `json:"type"`
 }
 
+// IntegrationFirewallPolicyActionAllowDto defines model for IntegrationFirewallPolicyActionAllowDto.
+type IntegrationFirewallPolicyActionAllowDto struct {
+	// AllowReturnTraffic Creates a derived policy for the mirrored firewall zone pair to automatically allow the return traffic.
+	AllowReturnTraffic *bool  `json:"allowReturnTraffic,omitempty"`
+	Type               string `json:"type"`
+}
+
+// IntegrationFirewallPolicyActionBlockDto Defines action for matched traffic.
+type IntegrationFirewallPolicyActionBlockDto = FirewallPolicyActionBase
+
+// IntegrationFirewallPolicyActionRejectDto Defines action for matched traffic.
+type IntegrationFirewallPolicyActionRejectDto = FirewallPolicyActionBase
+
+// IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto defines model for IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto.
+type IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto struct {
+	ApplicationCategoryFilter *FirewallPolicyApplicationCategoryFilter `json:"applicationCategoryFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationApplicationFilterDto defines model for IntegrationFirewallPolicyDestinationApplicationFilterDto.
+type IntegrationFirewallPolicyDestinationApplicationFilterDto struct {
+	ApplicationFilter *FirewallPolicyApplicationFilter `json:"applicationFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationDomainFilterDto defines model for IntegrationFirewallPolicyDestinationDomainFilterDto.
+type IntegrationFirewallPolicyDestinationDomainFilterDto struct {
+	DomainFilter *FirewallPolicyDomainFilter `json:"domainFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationIpAddressFilterDto defines model for IntegrationFirewallPolicyDestinationIpAddressFilterDto.
+type IntegrationFirewallPolicyDestinationIpAddressFilterDto struct {
+	// IpAddressFilter Match traffic originating from, or destined to selected IP addresses.
+	IpAddressFilter *FirewallPolicyIPAddressFilter `json:"ipAddressFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationIpv6IidFilterDto defines model for IntegrationFirewallPolicyDestinationIpv6IidFilterDto.
+type IntegrationFirewallPolicyDestinationIpv6IidFilterDto struct {
+	Ipv6IidFilter *FirewallPolicyIPv6InterfaceIdentifierFilter `json:"ipv6IidFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationNetworkFilterDto defines model for IntegrationFirewallPolicyDestinationNetworkFilterDto.
+type IntegrationFirewallPolicyDestinationNetworkFilterDto struct {
+	NetworkFilter *FirewallPolicyNetworkFilter `json:"networkFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationPortFilterDto defines model for IntegrationFirewallPolicyDestinationPortFilterDto.
+type IntegrationFirewallPolicyDestinationPortFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationRegionFilterDto defines model for IntegrationFirewallPolicyDestinationRegionFilterDto.
+type IntegrationFirewallPolicyDestinationRegionFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter   *FirewallPolicyPortFilter   `json:"portFilter,omitempty"`
+	RegionFilter *FirewallPolicyRegionFilter `json:"regionFilter,omitempty"`
+	Type         string                      `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto defines model for IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto.
+type IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter                *FirewallPolicyPortFilter                `json:"portFilter,omitempty"`
+	SiteToSiteVpnTunnelFilter *FirewallPolicySiteToSiteVPNTunnelFilter `json:"siteToSiteVpnTunnelFilter,omitempty"`
+	Type                      string                                   `json:"type"`
+}
+
+// IntegrationFirewallPolicyDestinationVpnServerFilterDto defines model for IntegrationFirewallPolicyDestinationVpnServerFilterDto.
+type IntegrationFirewallPolicyDestinationVpnServerFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter      *FirewallPolicyPortFilter      `json:"portFilter,omitempty"`
+	Type            string                         `json:"type"`
+	VpnServerFilter *FirewallPolicyVPNServerFilter `json:"vpnServerFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto defines model for IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto.
+type IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto struct {
+	// MatchOpposite Match on all IP addresses except the specified ones.
+	MatchOpposite bool `json:"matchOpposite"`
+
+	// TrafficMatchingListId ID of Traffic Matching List containing IP addresses to match.
+	TrafficMatchingListId *openapi_types.UUID `json:"trafficMatchingListId,omitempty"`
+	Type                  string              `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto Defines rules for matching by protocol name.
+type IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto = FirewallPolicyIPv4AndIPv6NamedProtocolBase
+
+// IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto defines model for IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto.
+type IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// Protocol Defines rules for matching by protocol name.
+	Protocol *FirewallPolicyIPv4AndIPv6NamedProtocol `json:"protocol,omitempty"`
+	Type     string                                  `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto defines model for IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto.
+type IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto struct {
+	// Preset Defines rules for matching by protocol preset.
+	Preset *FirewallPolicyIPv4AndIPv6ProtocolPreset `json:"preset,omitempty"`
+	Type   string                                   `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto Defines rules for matching by protocol preset.
+type IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto = FirewallPolicyIPv4AndIPv6ProtocolPresetBase
+
+// IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto defines model for IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto.
+type IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto struct {
+	IpVersion string `json:"ipVersion"`
+
+	// ProtocolFilter Defines protocol matching. If null, matches all protocols.
+	ProtocolFilter *FirewallPolicyIPv4AndIPv6Protocol `json:"protocolFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto Defines rules for matching by protocol name.
+type IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto = FirewallPolicyIPv4NamedProtocolBase
+
+// IntegrationFirewallPolicyIpv4NamedProtocolFilterDto defines model for IntegrationFirewallPolicyIpv4NamedProtocolFilterDto.
+type IntegrationFirewallPolicyIpv4NamedProtocolFilterDto struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// Protocol Defines rules for matching by protocol name.
+	Protocol *FirewallPolicyIPv4NamedProtocol `json:"protocol,omitempty"`
+	Type     string                           `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto defines model for IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto.
+type IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto struct {
+	Name *IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName `json:"name,omitempty"`
+
+	// TypenameFilter Match specific type of ICMP traffic. If null, matches all types.
+	TypenameFilter *IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter `json:"typenameFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName defines model for IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto.Name.
+type IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoName string
+
+// IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter Match specific type of ICMP traffic. If null, matches all types.
+type IntegrationFirewallPolicyIpv4NamedProtocolIcmpDtoTypenameFilter string
+
+// IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto defines model for IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto.
+type IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto struct {
+	// Preset Defines rules for matching by protocol preset.
+	Preset *FirewallPolicyIPv4ProtocolPreset `json:"preset,omitempty"`
+	Type   string                            `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto Defines rules for matching by protocol preset.
+type IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto = FirewallPolicyIPv4ProtocolPresetBase
+
+// IntegrationFirewallPolicyIpv4ProtocolScopeDto defines model for IntegrationFirewallPolicyIpv4ProtocolScopeDto.
+type IntegrationFirewallPolicyIpv4ProtocolScopeDto struct {
+	IpVersion string `json:"ipVersion"`
+
+	// ProtocolFilter Defines protocol matching. If null, matches all protocols.
+	ProtocolFilter *FirewallPolicyIPv4Protocol `json:"protocolFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto Defines rules for matching by protocol name.
+type IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto = FirewallPolicyIPv6NamedProtocolBase
+
+// IntegrationFirewallPolicyIpv6NamedProtocolFilterDto defines model for IntegrationFirewallPolicyIpv6NamedProtocolFilterDto.
+type IntegrationFirewallPolicyIpv6NamedProtocolFilterDto struct {
+	// MatchOpposite Match on all protocols except the specified protocol.
+	MatchOpposite *bool `json:"matchOpposite,omitempty"`
+
+	// Protocol Defines rules for matching by protocol name.
+	Protocol *FirewallPolicyIPv6NamedProtocol `json:"protocol,omitempty"`
+	Type     string                           `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto defines model for IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto.
+type IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto struct {
+	Name *IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName `json:"name,omitempty"`
+
+	// TypenameFilter Match specific type of ICMPv6 traffic. If null, matches all types.
+	TypenameFilter *IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter `json:"typenameFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName defines model for IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto.Name.
+type IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoName string
+
+// IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter Match specific type of ICMPv6 traffic. If null, matches all types.
+type IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6DtoTypenameFilter string
+
+// IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto defines model for IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto.
+type IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto struct {
+	// Preset Defines rules for matching by protocol preset.
+	Preset *FirewallPolicyIPv6ProtocolPreset `json:"preset,omitempty"`
+	Type   string                            `json:"type"`
+}
+
+// IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto Defines rules for matching by protocol preset.
+type IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto = FirewallPolicyIPv6ProtocolPresetBase
+
+// IntegrationFirewallPolicyIpv6ProtocolScopeDto defines model for IntegrationFirewallPolicyIpv6ProtocolScopeDto.
+type IntegrationFirewallPolicyIpv6ProtocolScopeDto struct {
+	IpVersion string `json:"ipVersion"`
+
+	// ProtocolFilter Defines protocol matching. If null, matches all protocols.
+	ProtocolFilter *FirewallPolicyIPv6Protocol `json:"protocolFilter,omitempty"`
+}
+
 // IntegrationFirewallPolicyOrderingDto defines model for IntegrationFirewallPolicyOrderingDto.
 type IntegrationFirewallPolicyOrderingDto struct {
 	OrderedFirewallPolicyIds OrderedFirewallPolicyIDs `json:"orderedFirewallPolicyIds"`
+}
+
+// IntegrationFirewallPolicyPortReferenceFilterDto defines model for IntegrationFirewallPolicyPortReferenceFilterDto.
+type IntegrationFirewallPolicyPortReferenceFilterDto struct {
+	// MatchOpposite Match on all ports except the specified ones.
+	MatchOpposite bool `json:"matchOpposite"`
+
+	// TrafficMatchingListId ID of Traffic Matching List containing ports to match.
+	TrafficMatchingListId *openapi_types.UUID `json:"trafficMatchingListId,omitempty"`
+	Type                  string              `json:"type"`
+}
+
+// IntegrationFirewallPolicyPortValueFilterDto defines model for IntegrationFirewallPolicyPortValueFilterDto.
+type IntegrationFirewallPolicyPortValueFilterDto struct {
+	// Items List of ports or port ranges to match.
+	Items *[]PortMatching `json:"items,omitempty"`
+
+	// MatchOpposite Match on all ports except the specified ones.
+	MatchOpposite bool   `json:"matchOpposite"`
+	Type          string `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceIpAddressFilterDto defines model for IntegrationFirewallPolicySourceIpAddressFilterDto.
+type IntegrationFirewallPolicySourceIpAddressFilterDto struct {
+	// IpAddressFilter Match traffic originating from, or destined to selected IP addresses.
+	IpAddressFilter *FirewallPolicyIPAddressFilter `json:"ipAddressFilter,omitempty"`
+
+	// MacAddressFilter Match source traffic additionally by a MAC address. If null, match all MAC addresses.
+	MacAddressFilter *string `json:"macAddressFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceIpv6IidFilterDto defines model for IntegrationFirewallPolicySourceIpv6IidFilterDto.
+type IntegrationFirewallPolicySourceIpv6IidFilterDto struct {
+	Ipv6IidFilter *FirewallPolicyIPv6InterfaceIdentifierFilter `json:"ipv6IidFilter,omitempty"`
+
+	// MacAddressFilter Match source traffic additionally by a MAC address. If null, match all MAC addresses.
+	MacAddressFilter *string `json:"macAddressFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceMacAddressFilterDto defines model for IntegrationFirewallPolicySourceMacAddressFilterDto.
+type IntegrationFirewallPolicySourceMacAddressFilterDto struct {
+	MacAddressFilter *FirewallPolicyMACAddressFilter `json:"macAddressFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceNetworkFilterDto defines model for IntegrationFirewallPolicySourceNetworkFilterDto.
+type IntegrationFirewallPolicySourceNetworkFilterDto struct {
+	// MacAddressFilter Match source traffic additionally by a MAC address. If null, match all MAC addresses.
+	MacAddressFilter *string                      `json:"macAddressFilter,omitempty"`
+	NetworkFilter    *FirewallPolicyNetworkFilter `json:"networkFilter,omitempty"`
+
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicySourcePortFilterDto defines model for IntegrationFirewallPolicySourcePortFilterDto.
+type IntegrationFirewallPolicySourcePortFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter *FirewallPolicyPortFilter `json:"portFilter,omitempty"`
+	Type       string                    `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceRegionFilterDto defines model for IntegrationFirewallPolicySourceRegionFilterDto.
+type IntegrationFirewallPolicySourceRegionFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter   *FirewallPolicyPortFilter   `json:"portFilter,omitempty"`
+	RegionFilter *FirewallPolicyRegionFilter `json:"regionFilter,omitempty"`
+	Type         string                      `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto defines model for IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto.
+type IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter                *FirewallPolicyPortFilter                `json:"portFilter,omitempty"`
+	SiteToSiteVpnTunnelFilter *FirewallPolicySiteToSiteVPNTunnelFilter `json:"siteToSiteVpnTunnelFilter,omitempty"`
+	Type                      string                                   `json:"type"`
+}
+
+// IntegrationFirewallPolicySourceVpnServerFilterDto defines model for IntegrationFirewallPolicySourceVpnServerFilterDto.
+type IntegrationFirewallPolicySourceVpnServerFilterDto struct {
+	// PortFilter Defines rules for matching traffic by port.
+	PortFilter      *FirewallPolicyPortFilter      `json:"portFilter,omitempty"`
+	Type            string                         `json:"type"`
+	VpnServerFilter *FirewallPolicyVPNServerFilter `json:"vpnServerFilter,omitempty"`
+}
+
+// IntegrationFirewallPolicySpecificIpAddressFilterDto defines model for IntegrationFirewallPolicySpecificIpAddressFilterDto.
+type IntegrationFirewallPolicySpecificIpAddressFilterDto struct {
+	// Items List of IP addresses, IP address ranges, or IP subnets to match.
+	Items *[]IPMatching `json:"items,omitempty"`
+
+	// MatchOpposite Match on all IP addresses except the specified ones.
+	MatchOpposite bool   `json:"matchOpposite"`
+	Type          string `json:"type"`
+}
+
+// IntegrationFirewallScheduleCustomDto defines model for IntegrationFirewallScheduleCustomDto.
+type IntegrationFirewallScheduleCustomDto struct {
+	Mode         string                                              `json:"mode"`
+	RepeatOnDays *[]IntegrationFirewallScheduleCustomDtoRepeatOnDays `json:"repeatOnDays,omitempty"`
+
+	// StartDate Date in YYYY-MM-DD format. ISO 8601 compliant.
+	StartDate *openapi_types.Date `json:"startDate,omitempty"`
+
+	// StopDate Date in YYYY-MM-DD format. ISO 8601 compliant.
+	StopDate *openapi_types.Date `json:"stopDate,omitempty"`
+
+	// TimeFilter Defines the time range when the entity is active. If null, the entity is active all day.
+	TimeFilter *FirewallScheduleTime `json:"timeFilter,omitempty"`
+}
+
+// IntegrationFirewallScheduleCustomDtoRepeatOnDays defines model for IntegrationFirewallScheduleCustomDto.RepeatOnDays.
+type IntegrationFirewallScheduleCustomDtoRepeatOnDays string
+
+// IntegrationFirewallScheduleEveryDayDto defines model for IntegrationFirewallScheduleEveryDayDto.
+type IntegrationFirewallScheduleEveryDayDto struct {
+	Mode string `json:"mode"`
+
+	// TimeFilter Defines the time range when the entity is active. If null, the entity is active all day.
+	TimeFilter *FirewallScheduleTime `json:"timeFilter,omitempty"`
+}
+
+// IntegrationFirewallScheduleEveryWeekDto defines model for IntegrationFirewallScheduleEveryWeekDto.
+type IntegrationFirewallScheduleEveryWeekDto struct {
+	Mode         string                                                 `json:"mode"`
+	RepeatOnDays *[]IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays `json:"repeatOnDays,omitempty"`
+
+	// TimeFilter Defines the time range when the entity is active. If null, the entity is active all day.
+	TimeFilter *FirewallScheduleTime `json:"timeFilter,omitempty"`
+}
+
+// IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays defines model for IntegrationFirewallScheduleEveryWeekDto.RepeatOnDays.
+type IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays string
+
+// IntegrationFirewallScheduleOneTimeOnlyDto defines model for IntegrationFirewallScheduleOneTimeOnlyDto.
+type IntegrationFirewallScheduleOneTimeOnlyDto struct {
+	// Date Date in YYYY-MM-DD format. ISO 8601 compliant.
+	Date *openapi_types.Date `json:"date,omitempty"`
+	Mode string              `json:"mode"`
+
+	// TimeFilter Defines the time range when the entity is active. If null, the entity is active all day.
+	TimeFilter *FirewallScheduleTime `json:"timeFilter,omitempty"`
 }
 
 // IntegrationSiteToSiteVpnTunnelOverviewPageDto defines model for IntegrationSiteToSiteVpnTunnelOverviewPageDto.
@@ -1707,6 +4252,11 @@ type PortPoEOverviewType int32
 // PortActionRequest defines model for Port action request.
 type PortActionRequest struct {
 	Action string `json:"action"`
+}
+
+// PortMatching defines model for Port matching.
+type PortMatching struct {
+	Type string `json:"type"`
 }
 
 // PortOverview defines model for Port overview.
@@ -2652,6 +5202,2104 @@ func (t DNSPolicy) MarshalJSON() ([]byte, error) {
 }
 
 func (t *DNSPolicy) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto returns the union data inside the FirewallPolicyIPAddressFilter as a IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto
+func (t FirewallPolicyIPAddressFilter) AsIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto() (IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto, error) {
+	var body IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto overwrites any union data inside the FirewallPolicyIPAddressFilter as the provided IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto
+func (t *FirewallPolicyIPAddressFilter) FromIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto(v IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto) error {
+	v.Type = "TRAFFIC_MATCHING_LIST"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto performs a merge with any union data inside the FirewallPolicyIPAddressFilter, using the provided IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto
+func (t *FirewallPolicyIPAddressFilter) MergeIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto(v IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto) error {
+	v.Type = "TRAFFIC_MATCHING_LIST"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySpecificIpAddressFilterDto returns the union data inside the FirewallPolicyIPAddressFilter as a IntegrationFirewallPolicySpecificIpAddressFilterDto
+func (t FirewallPolicyIPAddressFilter) AsIntegrationFirewallPolicySpecificIpAddressFilterDto() (IntegrationFirewallPolicySpecificIpAddressFilterDto, error) {
+	var body IntegrationFirewallPolicySpecificIpAddressFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySpecificIpAddressFilterDto overwrites any union data inside the FirewallPolicyIPAddressFilter as the provided IntegrationFirewallPolicySpecificIpAddressFilterDto
+func (t *FirewallPolicyIPAddressFilter) FromIntegrationFirewallPolicySpecificIpAddressFilterDto(v IntegrationFirewallPolicySpecificIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESSES"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySpecificIpAddressFilterDto performs a merge with any union data inside the FirewallPolicyIPAddressFilter, using the provided IntegrationFirewallPolicySpecificIpAddressFilterDto
+func (t *FirewallPolicyIPAddressFilter) MergeIntegrationFirewallPolicySpecificIpAddressFilterDto(v IntegrationFirewallPolicySpecificIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESSES"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPAddressFilter) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPAddressFilter) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "IP_ADDRESSES":
+		return t.AsIntegrationFirewallPolicySpecificIpAddressFilterDto()
+	case "TRAFFIC_MATCHING_LIST":
+		return t.AsIntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPAddressFilter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPAddressFilter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto returns the union data inside the FirewallPolicyIPProtocolScope as a IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto
+func (t FirewallPolicyIPProtocolScope) AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto() (IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto, error) {
+	var body IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto overwrites any union data inside the FirewallPolicyIPProtocolScope as the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto) error {
+	v.IpVersion = "IPV4_AND_IPV6"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto performs a merge with any union data inside the FirewallPolicyIPProtocolScope, using the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto) error {
+	v.IpVersion = "IPV4_AND_IPV6"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4ProtocolScopeDto returns the union data inside the FirewallPolicyIPProtocolScope as a IntegrationFirewallPolicyIpv4ProtocolScopeDto
+func (t FirewallPolicyIPProtocolScope) AsIntegrationFirewallPolicyIpv4ProtocolScopeDto() (IntegrationFirewallPolicyIpv4ProtocolScopeDto, error) {
+	var body IntegrationFirewallPolicyIpv4ProtocolScopeDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4ProtocolScopeDto overwrites any union data inside the FirewallPolicyIPProtocolScope as the provided IntegrationFirewallPolicyIpv4ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) FromIntegrationFirewallPolicyIpv4ProtocolScopeDto(v IntegrationFirewallPolicyIpv4ProtocolScopeDto) error {
+	v.IpVersion = "IPV4"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4ProtocolScopeDto performs a merge with any union data inside the FirewallPolicyIPProtocolScope, using the provided IntegrationFirewallPolicyIpv4ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) MergeIntegrationFirewallPolicyIpv4ProtocolScopeDto(v IntegrationFirewallPolicyIpv4ProtocolScopeDto) error {
+	v.IpVersion = "IPV4"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6ProtocolScopeDto returns the union data inside the FirewallPolicyIPProtocolScope as a IntegrationFirewallPolicyIpv6ProtocolScopeDto
+func (t FirewallPolicyIPProtocolScope) AsIntegrationFirewallPolicyIpv6ProtocolScopeDto() (IntegrationFirewallPolicyIpv6ProtocolScopeDto, error) {
+	var body IntegrationFirewallPolicyIpv6ProtocolScopeDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6ProtocolScopeDto overwrites any union data inside the FirewallPolicyIPProtocolScope as the provided IntegrationFirewallPolicyIpv6ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) FromIntegrationFirewallPolicyIpv6ProtocolScopeDto(v IntegrationFirewallPolicyIpv6ProtocolScopeDto) error {
+	v.IpVersion = "IPV6"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6ProtocolScopeDto performs a merge with any union data inside the FirewallPolicyIPProtocolScope, using the provided IntegrationFirewallPolicyIpv6ProtocolScopeDto
+func (t *FirewallPolicyIPProtocolScope) MergeIntegrationFirewallPolicyIpv6ProtocolScopeDto(v IntegrationFirewallPolicyIpv6ProtocolScopeDto) error {
+	v.IpVersion = "IPV6"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPProtocolScope) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"ipVersion"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPProtocolScope) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "IPV4":
+		return t.AsIntegrationFirewallPolicyIpv4ProtocolScopeDto()
+	case "IPV4_AND_IPV6":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto()
+	case "IPV6":
+		return t.AsIntegrationFirewallPolicyIpv6ProtocolScopeDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPProtocolScope) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPProtocolScope) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto returns the union data inside the FirewallPolicyIPv4AndIPv6NamedProtocol as a IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto
+func (t FirewallPolicyIPv4AndIPv6NamedProtocol) AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto() (IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto, error) {
+	var body IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto overwrites any union data inside the FirewallPolicyIPv4AndIPv6NamedProtocol as the provided IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv4AndIPv6NamedProtocol) FromIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto performs a merge with any union data inside the FirewallPolicyIPv4AndIPv6NamedProtocol, using the provided IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv4AndIPv6NamedProtocol) MergeIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4AndIPv6NamedProtocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4AndIPv6NamedProtocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "AH":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "DCCP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "EIGRP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "ESP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "GRE":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "IPCOMP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "ISIS":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "L2TP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "MANET":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "MOBILITY_HEADER":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "MPLS_IN_IP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "OSPF":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "PIM":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "RSVP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "SCTP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "SHIM6":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "TCP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "UDP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	case "VRRP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4AndIPv6NamedProtocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4AndIPv6NamedProtocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFirewallPolicyIPv4AndIPv6ProtocolNumber returns the union data inside the FirewallPolicyIPv4AndIPv6Protocol as a FirewallPolicyIPv4AndIPv6ProtocolNumber
+func (t FirewallPolicyIPv4AndIPv6Protocol) AsFirewallPolicyIPv4AndIPv6ProtocolNumber() (FirewallPolicyIPv4AndIPv6ProtocolNumber, error) {
+	var body FirewallPolicyIPv4AndIPv6ProtocolNumber
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFirewallPolicyIPv4AndIPv6ProtocolNumber overwrites any union data inside the FirewallPolicyIPv4AndIPv6Protocol as the provided FirewallPolicyIPv4AndIPv6ProtocolNumber
+func (t *FirewallPolicyIPv4AndIPv6Protocol) FromFirewallPolicyIPv4AndIPv6ProtocolNumber(v FirewallPolicyIPv4AndIPv6ProtocolNumber) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFirewallPolicyIPv4AndIPv6ProtocolNumber performs a merge with any union data inside the FirewallPolicyIPv4AndIPv6Protocol, using the provided FirewallPolicyIPv4AndIPv6ProtocolNumber
+func (t *FirewallPolicyIPv4AndIPv6Protocol) MergeFirewallPolicyIPv4AndIPv6ProtocolNumber(v FirewallPolicyIPv4AndIPv6ProtocolNumber) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto returns the union data inside the FirewallPolicyIPv4AndIPv6Protocol as a IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto
+func (t FirewallPolicyIPv4AndIPv6Protocol) AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto() (IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto overwrites any union data inside the FirewallPolicyIPv4AndIPv6Protocol as the provided IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto
+func (t *FirewallPolicyIPv4AndIPv6Protocol) FromIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto performs a merge with any union data inside the FirewallPolicyIPv4AndIPv6Protocol, using the provided IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto
+func (t *FirewallPolicyIPv4AndIPv6Protocol) MergeIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto returns the union data inside the FirewallPolicyIPv4AndIPv6Protocol as a IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto
+func (t FirewallPolicyIPv4AndIPv6Protocol) AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto() (IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto overwrites any union data inside the FirewallPolicyIPv4AndIPv6Protocol as the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv4AndIPv6Protocol) FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto performs a merge with any union data inside the FirewallPolicyIPv4AndIPv6Protocol, using the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv4AndIPv6Protocol) MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4AndIPv6Protocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4AndIPv6Protocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "NAMED_PROTOCOL":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto()
+	case "PRESET":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto()
+	case "PROTOCOL_NUMBER":
+		return t.AsFirewallPolicyIPv4AndIPv6ProtocolNumber()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4AndIPv6Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4AndIPv6Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto returns the union data inside the FirewallPolicyIPv4AndIPv6ProtocolPreset as a IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto
+func (t FirewallPolicyIPv4AndIPv6ProtocolPreset) AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto() (IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto, error) {
+	var body IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto overwrites any union data inside the FirewallPolicyIPv4AndIPv6ProtocolPreset as the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv4AndIPv6ProtocolPreset) FromIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto performs a merge with any union data inside the FirewallPolicyIPv4AndIPv6ProtocolPreset, using the provided IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv4AndIPv6ProtocolPreset) MergeIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4AndIPv6ProtocolPreset) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4AndIPv6ProtocolPreset) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "TCP_UDP":
+		return t.AsIntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4AndIPv6ProtocolPreset) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4AndIPv6ProtocolPreset) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto returns the union data inside the FirewallPolicyIPv4NamedProtocol as a IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto
+func (t FirewallPolicyIPv4NamedProtocol) AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto() (IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto, error) {
+	var body IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto overwrites any union data inside the FirewallPolicyIPv4NamedProtocol as the provided IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv4NamedProtocol) FromIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto performs a merge with any union data inside the FirewallPolicyIPv4NamedProtocol, using the provided IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv4NamedProtocol) MergeIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto returns the union data inside the FirewallPolicyIPv4NamedProtocol as a IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto
+func (t FirewallPolicyIPv4NamedProtocol) AsIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto() (IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto, error) {
+	var body IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto overwrites any union data inside the FirewallPolicyIPv4NamedProtocol as the provided IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto
+func (t *FirewallPolicyIPv4NamedProtocol) FromIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto(v IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto performs a merge with any union data inside the FirewallPolicyIPv4NamedProtocol, using the provided IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto
+func (t *FirewallPolicyIPv4NamedProtocol) MergeIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto(v IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4NamedProtocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4NamedProtocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "AH":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "AX_25":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "DCCP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "DDP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "EGP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "EIGRP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ENCAP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ESP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ETHERIP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "FC":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "GGP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "GRE":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "HIP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "HMP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ICMP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolIcmpDto()
+	case "IDPR_CMTP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IDRP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IGMP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IGP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IPCOMP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IPENCAP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "IPIP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ISIS":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ISO_TP4":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "L2TP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "MANET":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "MOBILITY_HEADER":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "MPLS_IN_IP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "OSPF":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "PIM":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "PUP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "RDP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ROHC":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "RSPF":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "RSVP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "SCTP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "SHIM6":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "SKIP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "ST":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "TCP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "UDP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "UDPLITE":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "VMTP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "VRRP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "WESP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "XNS_IDP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	case "XTP":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolDefaultDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4NamedProtocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4NamedProtocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFirewallPolicyIPv4ProtocolNumberIPv4Base returns the union data inside the FirewallPolicyIPv4Protocol as a FirewallPolicyIPv4ProtocolNumberIPv4Base
+func (t FirewallPolicyIPv4Protocol) AsFirewallPolicyIPv4ProtocolNumberIPv4Base() (FirewallPolicyIPv4ProtocolNumberIPv4Base, error) {
+	var body FirewallPolicyIPv4ProtocolNumberIPv4Base
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFirewallPolicyIPv4ProtocolNumberIPv4Base overwrites any union data inside the FirewallPolicyIPv4Protocol as the provided FirewallPolicyIPv4ProtocolNumberIPv4Base
+func (t *FirewallPolicyIPv4Protocol) FromFirewallPolicyIPv4ProtocolNumberIPv4Base(v FirewallPolicyIPv4ProtocolNumberIPv4Base) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFirewallPolicyIPv4ProtocolNumberIPv4Base performs a merge with any union data inside the FirewallPolicyIPv4Protocol, using the provided FirewallPolicyIPv4ProtocolNumberIPv4Base
+func (t *FirewallPolicyIPv4Protocol) MergeFirewallPolicyIPv4ProtocolNumberIPv4Base(v FirewallPolicyIPv4ProtocolNumberIPv4Base) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4NamedProtocolFilterDto returns the union data inside the FirewallPolicyIPv4Protocol as a IntegrationFirewallPolicyIpv4NamedProtocolFilterDto
+func (t FirewallPolicyIPv4Protocol) AsIntegrationFirewallPolicyIpv4NamedProtocolFilterDto() (IntegrationFirewallPolicyIpv4NamedProtocolFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv4NamedProtocolFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4NamedProtocolFilterDto overwrites any union data inside the FirewallPolicyIPv4Protocol as the provided IntegrationFirewallPolicyIpv4NamedProtocolFilterDto
+func (t *FirewallPolicyIPv4Protocol) FromIntegrationFirewallPolicyIpv4NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv4NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4NamedProtocolFilterDto performs a merge with any union data inside the FirewallPolicyIPv4Protocol, using the provided IntegrationFirewallPolicyIpv4NamedProtocolFilterDto
+func (t *FirewallPolicyIPv4Protocol) MergeIntegrationFirewallPolicyIpv4NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv4NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto returns the union data inside the FirewallPolicyIPv4Protocol as a IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto
+func (t FirewallPolicyIPv4Protocol) AsIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto() (IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto overwrites any union data inside the FirewallPolicyIPv4Protocol as the provided IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv4Protocol) FromIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto performs a merge with any union data inside the FirewallPolicyIPv4Protocol, using the provided IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv4Protocol) MergeIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4Protocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4Protocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "NAMED_PROTOCOL":
+		return t.AsIntegrationFirewallPolicyIpv4NamedProtocolFilterDto()
+	case "PRESET":
+		return t.AsIntegrationFirewallPolicyIpv4ProtocolPresetFilterDto()
+	case "PROTOCOL_NUMBER":
+		return t.AsFirewallPolicyIPv4ProtocolNumberIPv4Base()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto returns the union data inside the FirewallPolicyIPv4ProtocolPreset as a IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto
+func (t FirewallPolicyIPv4ProtocolPreset) AsIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto() (IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto, error) {
+	var body IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto overwrites any union data inside the FirewallPolicyIPv4ProtocolPreset as the provided IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv4ProtocolPreset) FromIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto performs a merge with any union data inside the FirewallPolicyIPv4ProtocolPreset, using the provided IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv4ProtocolPreset) MergeIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv4ProtocolPreset) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv4ProtocolPreset) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "TCP_UDP":
+		return t.AsIntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv4ProtocolPreset) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv4ProtocolPreset) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto returns the union data inside the FirewallPolicyIPv6NamedProtocol as a IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto
+func (t FirewallPolicyIPv6NamedProtocol) AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto() (IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto, error) {
+	var body IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto overwrites any union data inside the FirewallPolicyIPv6NamedProtocol as the provided IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv6NamedProtocol) FromIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto performs a merge with any union data inside the FirewallPolicyIPv6NamedProtocol, using the provided IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto
+func (t *FirewallPolicyIPv6NamedProtocol) MergeIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto(v IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto returns the union data inside the FirewallPolicyIPv6NamedProtocol as a IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto
+func (t FirewallPolicyIPv6NamedProtocol) AsIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto() (IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto, error) {
+	var body IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto overwrites any union data inside the FirewallPolicyIPv6NamedProtocol as the provided IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto
+func (t *FirewallPolicyIPv6NamedProtocol) FromIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto(v IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto performs a merge with any union data inside the FirewallPolicyIPv6NamedProtocol, using the provided IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto
+func (t *FirewallPolicyIPv6NamedProtocol) MergeIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto(v IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv6NamedProtocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv6NamedProtocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "AH":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "DCCP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "EIGRP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "ESP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "GRE":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "ICMPV6":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto()
+	case "IPCOMP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "IPV6":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "IPV6_FRAG":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "IPV6_NONXT":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "IPV6_OPTS":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "IPV6_ROUTE":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "ISIS":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "L2TP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "MANET":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "MOBILITY_HEADER":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "MPLS_IN_IP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "OSPF":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "PIM":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "RSVP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "SCTP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "SHIM6":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "TCP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "UDP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	case "VRRP":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolDefaultDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv6NamedProtocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv6NamedProtocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsFirewallPolicyIPv4ProtocolNumber returns the union data inside the FirewallPolicyIPv6Protocol as a FirewallPolicyIPv4ProtocolNumber
+func (t FirewallPolicyIPv6Protocol) AsFirewallPolicyIPv4ProtocolNumber() (FirewallPolicyIPv4ProtocolNumber, error) {
+	var body FirewallPolicyIPv4ProtocolNumber
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromFirewallPolicyIPv4ProtocolNumber overwrites any union data inside the FirewallPolicyIPv6Protocol as the provided FirewallPolicyIPv4ProtocolNumber
+func (t *FirewallPolicyIPv6Protocol) FromFirewallPolicyIPv4ProtocolNumber(v FirewallPolicyIPv4ProtocolNumber) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeFirewallPolicyIPv4ProtocolNumber performs a merge with any union data inside the FirewallPolicyIPv6Protocol, using the provided FirewallPolicyIPv4ProtocolNumber
+func (t *FirewallPolicyIPv6Protocol) MergeFirewallPolicyIPv4ProtocolNumber(v FirewallPolicyIPv4ProtocolNumber) error {
+	v.Type = "PROTOCOL_NUMBER"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6NamedProtocolFilterDto returns the union data inside the FirewallPolicyIPv6Protocol as a IntegrationFirewallPolicyIpv6NamedProtocolFilterDto
+func (t FirewallPolicyIPv6Protocol) AsIntegrationFirewallPolicyIpv6NamedProtocolFilterDto() (IntegrationFirewallPolicyIpv6NamedProtocolFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv6NamedProtocolFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6NamedProtocolFilterDto overwrites any union data inside the FirewallPolicyIPv6Protocol as the provided IntegrationFirewallPolicyIpv6NamedProtocolFilterDto
+func (t *FirewallPolicyIPv6Protocol) FromIntegrationFirewallPolicyIpv6NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv6NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6NamedProtocolFilterDto performs a merge with any union data inside the FirewallPolicyIPv6Protocol, using the provided IntegrationFirewallPolicyIpv6NamedProtocolFilterDto
+func (t *FirewallPolicyIPv6Protocol) MergeIntegrationFirewallPolicyIpv6NamedProtocolFilterDto(v IntegrationFirewallPolicyIpv6NamedProtocolFilterDto) error {
+	v.Type = "NAMED_PROTOCOL"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto returns the union data inside the FirewallPolicyIPv6Protocol as a IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto
+func (t FirewallPolicyIPv6Protocol) AsIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto() (IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto, error) {
+	var body IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto overwrites any union data inside the FirewallPolicyIPv6Protocol as the provided IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv6Protocol) FromIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto performs a merge with any union data inside the FirewallPolicyIPv6Protocol, using the provided IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto
+func (t *FirewallPolicyIPv6Protocol) MergeIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto(v IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto) error {
+	v.Type = "PRESET"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv6Protocol) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv6Protocol) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "NAMED_PROTOCOL":
+		return t.AsIntegrationFirewallPolicyIpv6NamedProtocolFilterDto()
+	case "PRESET":
+		return t.AsIntegrationFirewallPolicyIpv6ProtocolPresetFilterDto()
+	case "PROTOCOL_NUMBER":
+		return t.AsFirewallPolicyIPv4ProtocolNumber()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv6Protocol) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv6Protocol) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto returns the union data inside the FirewallPolicyIPv6ProtocolPreset as a IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto
+func (t FirewallPolicyIPv6ProtocolPreset) AsIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto() (IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto, error) {
+	var body IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto overwrites any union data inside the FirewallPolicyIPv6ProtocolPreset as the provided IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv6ProtocolPreset) FromIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto performs a merge with any union data inside the FirewallPolicyIPv6ProtocolPreset, using the provided IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto
+func (t *FirewallPolicyIPv6ProtocolPreset) MergeIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto(v IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto) error {
+	v.Name = "TCP_UDP"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyIPv6ProtocolPreset) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"name"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyIPv6ProtocolPreset) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "TCP_UDP":
+		return t.AsIntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyIPv6ProtocolPreset) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyIPv6ProtocolPreset) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyActionAllowDto returns the union data inside the FirewallPolicyAction as a IntegrationFirewallPolicyActionAllowDto
+func (t FirewallPolicyAction) AsIntegrationFirewallPolicyActionAllowDto() (IntegrationFirewallPolicyActionAllowDto, error) {
+	var body IntegrationFirewallPolicyActionAllowDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyActionAllowDto overwrites any union data inside the FirewallPolicyAction as the provided IntegrationFirewallPolicyActionAllowDto
+func (t *FirewallPolicyAction) FromIntegrationFirewallPolicyActionAllowDto(v IntegrationFirewallPolicyActionAllowDto) error {
+	v.Type = "ALLOW"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyActionAllowDto performs a merge with any union data inside the FirewallPolicyAction, using the provided IntegrationFirewallPolicyActionAllowDto
+func (t *FirewallPolicyAction) MergeIntegrationFirewallPolicyActionAllowDto(v IntegrationFirewallPolicyActionAllowDto) error {
+	v.Type = "ALLOW"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyActionBlockDto returns the union data inside the FirewallPolicyAction as a IntegrationFirewallPolicyActionBlockDto
+func (t FirewallPolicyAction) AsIntegrationFirewallPolicyActionBlockDto() (IntegrationFirewallPolicyActionBlockDto, error) {
+	var body IntegrationFirewallPolicyActionBlockDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyActionBlockDto overwrites any union data inside the FirewallPolicyAction as the provided IntegrationFirewallPolicyActionBlockDto
+func (t *FirewallPolicyAction) FromIntegrationFirewallPolicyActionBlockDto(v IntegrationFirewallPolicyActionBlockDto) error {
+	v.Type = "BLOCK"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyActionBlockDto performs a merge with any union data inside the FirewallPolicyAction, using the provided IntegrationFirewallPolicyActionBlockDto
+func (t *FirewallPolicyAction) MergeIntegrationFirewallPolicyActionBlockDto(v IntegrationFirewallPolicyActionBlockDto) error {
+	v.Type = "BLOCK"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyActionRejectDto returns the union data inside the FirewallPolicyAction as a IntegrationFirewallPolicyActionRejectDto
+func (t FirewallPolicyAction) AsIntegrationFirewallPolicyActionRejectDto() (IntegrationFirewallPolicyActionRejectDto, error) {
+	var body IntegrationFirewallPolicyActionRejectDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyActionRejectDto overwrites any union data inside the FirewallPolicyAction as the provided IntegrationFirewallPolicyActionRejectDto
+func (t *FirewallPolicyAction) FromIntegrationFirewallPolicyActionRejectDto(v IntegrationFirewallPolicyActionRejectDto) error {
+	v.Type = "REJECT"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyActionRejectDto performs a merge with any union data inside the FirewallPolicyAction, using the provided IntegrationFirewallPolicyActionRejectDto
+func (t *FirewallPolicyAction) MergeIntegrationFirewallPolicyActionRejectDto(v IntegrationFirewallPolicyActionRejectDto) error {
+	v.Type = "REJECT"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyAction) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyAction) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "ALLOW":
+		return t.AsIntegrationFirewallPolicyActionAllowDto()
+	case "BLOCK":
+		return t.AsIntegrationFirewallPolicyActionBlockDto()
+	case "REJECT":
+		return t.AsIntegrationFirewallPolicyActionRejectDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyAction) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyAction) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto() (IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto(v IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto) error {
+	v.Type = "APPLICATION_CATEGORY"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto(v IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto) error {
+	v.Type = "APPLICATION_CATEGORY"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationApplicationFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationApplicationFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationApplicationFilterDto() (IntegrationFirewallPolicyDestinationApplicationFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationApplicationFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationApplicationFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationApplicationFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationApplicationFilterDto(v IntegrationFirewallPolicyDestinationApplicationFilterDto) error {
+	v.Type = "APPLICATION"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationApplicationFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationApplicationFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationApplicationFilterDto(v IntegrationFirewallPolicyDestinationApplicationFilterDto) error {
+	v.Type = "APPLICATION"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationDomainFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationDomainFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationDomainFilterDto() (IntegrationFirewallPolicyDestinationDomainFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationDomainFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationDomainFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationDomainFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationDomainFilterDto(v IntegrationFirewallPolicyDestinationDomainFilterDto) error {
+	v.Type = "DOMAIN"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationDomainFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationDomainFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationDomainFilterDto(v IntegrationFirewallPolicyDestinationDomainFilterDto) error {
+	v.Type = "DOMAIN"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationIpAddressFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationIpAddressFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationIpAddressFilterDto() (IntegrationFirewallPolicyDestinationIpAddressFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationIpAddressFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationIpAddressFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationIpAddressFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationIpAddressFilterDto(v IntegrationFirewallPolicyDestinationIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESS"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationIpAddressFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationIpAddressFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationIpAddressFilterDto(v IntegrationFirewallPolicyDestinationIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESS"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationIpv6IidFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationIpv6IidFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationIpv6IidFilterDto() (IntegrationFirewallPolicyDestinationIpv6IidFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationIpv6IidFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationIpv6IidFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationIpv6IidFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationIpv6IidFilterDto(v IntegrationFirewallPolicyDestinationIpv6IidFilterDto) error {
+	v.Type = "IPV6_IID"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationIpv6IidFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationIpv6IidFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationIpv6IidFilterDto(v IntegrationFirewallPolicyDestinationIpv6IidFilterDto) error {
+	v.Type = "IPV6_IID"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationNetworkFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationNetworkFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationNetworkFilterDto() (IntegrationFirewallPolicyDestinationNetworkFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationNetworkFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationNetworkFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationNetworkFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationNetworkFilterDto(v IntegrationFirewallPolicyDestinationNetworkFilterDto) error {
+	v.Type = "NETWORK"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationNetworkFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationNetworkFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationNetworkFilterDto(v IntegrationFirewallPolicyDestinationNetworkFilterDto) error {
+	v.Type = "NETWORK"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationPortFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationPortFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationPortFilterDto() (IntegrationFirewallPolicyDestinationPortFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationPortFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationPortFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationPortFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationPortFilterDto(v IntegrationFirewallPolicyDestinationPortFilterDto) error {
+	v.Type = "PORT"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationPortFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationPortFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationPortFilterDto(v IntegrationFirewallPolicyDestinationPortFilterDto) error {
+	v.Type = "PORT"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationRegionFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationRegionFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationRegionFilterDto() (IntegrationFirewallPolicyDestinationRegionFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationRegionFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationRegionFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationRegionFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationRegionFilterDto(v IntegrationFirewallPolicyDestinationRegionFilterDto) error {
+	v.Type = "REGION"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationRegionFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationRegionFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationRegionFilterDto(v IntegrationFirewallPolicyDestinationRegionFilterDto) error {
+	v.Type = "REGION"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto() (IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto(v IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto) error {
+	v.Type = "SITE_TO_SITE_VPN_TUNNEL"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto(v IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto) error {
+	v.Type = "SITE_TO_SITE_VPN_TUNNEL"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyDestinationVpnServerFilterDto returns the union data inside the FirewallPolicyDestinationTrafficFilter as a IntegrationFirewallPolicyDestinationVpnServerFilterDto
+func (t FirewallPolicyDestinationTrafficFilter) AsIntegrationFirewallPolicyDestinationVpnServerFilterDto() (IntegrationFirewallPolicyDestinationVpnServerFilterDto, error) {
+	var body IntegrationFirewallPolicyDestinationVpnServerFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyDestinationVpnServerFilterDto overwrites any union data inside the FirewallPolicyDestinationTrafficFilter as the provided IntegrationFirewallPolicyDestinationVpnServerFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) FromIntegrationFirewallPolicyDestinationVpnServerFilterDto(v IntegrationFirewallPolicyDestinationVpnServerFilterDto) error {
+	v.Type = "VPN_SERVER"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyDestinationVpnServerFilterDto performs a merge with any union data inside the FirewallPolicyDestinationTrafficFilter, using the provided IntegrationFirewallPolicyDestinationVpnServerFilterDto
+func (t *FirewallPolicyDestinationTrafficFilter) MergeIntegrationFirewallPolicyDestinationVpnServerFilterDto(v IntegrationFirewallPolicyDestinationVpnServerFilterDto) error {
+	v.Type = "VPN_SERVER"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyDestinationTrafficFilter) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyDestinationTrafficFilter) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "APPLICATION":
+		return t.AsIntegrationFirewallPolicyDestinationApplicationFilterDto()
+	case "APPLICATION_CATEGORY":
+		return t.AsIntegrationFirewallPolicyDestinationApplicationCategoryFilterDto()
+	case "DOMAIN":
+		return t.AsIntegrationFirewallPolicyDestinationDomainFilterDto()
+	case "IPV6_IID":
+		return t.AsIntegrationFirewallPolicyDestinationIpv6IidFilterDto()
+	case "IP_ADDRESS":
+		return t.AsIntegrationFirewallPolicyDestinationIpAddressFilterDto()
+	case "NETWORK":
+		return t.AsIntegrationFirewallPolicyDestinationNetworkFilterDto()
+	case "PORT":
+		return t.AsIntegrationFirewallPolicyDestinationPortFilterDto()
+	case "REGION":
+		return t.AsIntegrationFirewallPolicyDestinationRegionFilterDto()
+	case "SITE_TO_SITE_VPN_TUNNEL":
+		return t.AsIntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto()
+	case "VPN_SERVER":
+		return t.AsIntegrationFirewallPolicyDestinationVpnServerFilterDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyDestinationTrafficFilter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyDestinationTrafficFilter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicyPortReferenceFilterDto returns the union data inside the FirewallPolicyPortFilter as a IntegrationFirewallPolicyPortReferenceFilterDto
+func (t FirewallPolicyPortFilter) AsIntegrationFirewallPolicyPortReferenceFilterDto() (IntegrationFirewallPolicyPortReferenceFilterDto, error) {
+	var body IntegrationFirewallPolicyPortReferenceFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyPortReferenceFilterDto overwrites any union data inside the FirewallPolicyPortFilter as the provided IntegrationFirewallPolicyPortReferenceFilterDto
+func (t *FirewallPolicyPortFilter) FromIntegrationFirewallPolicyPortReferenceFilterDto(v IntegrationFirewallPolicyPortReferenceFilterDto) error {
+	v.Type = "TRAFFIC_MATCHING_LIST"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyPortReferenceFilterDto performs a merge with any union data inside the FirewallPolicyPortFilter, using the provided IntegrationFirewallPolicyPortReferenceFilterDto
+func (t *FirewallPolicyPortFilter) MergeIntegrationFirewallPolicyPortReferenceFilterDto(v IntegrationFirewallPolicyPortReferenceFilterDto) error {
+	v.Type = "TRAFFIC_MATCHING_LIST"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicyPortValueFilterDto returns the union data inside the FirewallPolicyPortFilter as a IntegrationFirewallPolicyPortValueFilterDto
+func (t FirewallPolicyPortFilter) AsIntegrationFirewallPolicyPortValueFilterDto() (IntegrationFirewallPolicyPortValueFilterDto, error) {
+	var body IntegrationFirewallPolicyPortValueFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicyPortValueFilterDto overwrites any union data inside the FirewallPolicyPortFilter as the provided IntegrationFirewallPolicyPortValueFilterDto
+func (t *FirewallPolicyPortFilter) FromIntegrationFirewallPolicyPortValueFilterDto(v IntegrationFirewallPolicyPortValueFilterDto) error {
+	v.Type = "PORTS"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicyPortValueFilterDto performs a merge with any union data inside the FirewallPolicyPortFilter, using the provided IntegrationFirewallPolicyPortValueFilterDto
+func (t *FirewallPolicyPortFilter) MergeIntegrationFirewallPolicyPortValueFilterDto(v IntegrationFirewallPolicyPortValueFilterDto) error {
+	v.Type = "PORTS"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicyPortFilter) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicyPortFilter) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "PORTS":
+		return t.AsIntegrationFirewallPolicyPortValueFilterDto()
+	case "TRAFFIC_MATCHING_LIST":
+		return t.AsIntegrationFirewallPolicyPortReferenceFilterDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicyPortFilter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicyPortFilter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceIpAddressFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceIpAddressFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceIpAddressFilterDto() (IntegrationFirewallPolicySourceIpAddressFilterDto, error) {
+	var body IntegrationFirewallPolicySourceIpAddressFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceIpAddressFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceIpAddressFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceIpAddressFilterDto(v IntegrationFirewallPolicySourceIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESS"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceIpAddressFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceIpAddressFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceIpAddressFilterDto(v IntegrationFirewallPolicySourceIpAddressFilterDto) error {
+	v.Type = "IP_ADDRESS"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceIpv6IidFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceIpv6IidFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceIpv6IidFilterDto() (IntegrationFirewallPolicySourceIpv6IidFilterDto, error) {
+	var body IntegrationFirewallPolicySourceIpv6IidFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceIpv6IidFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceIpv6IidFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceIpv6IidFilterDto(v IntegrationFirewallPolicySourceIpv6IidFilterDto) error {
+	v.Type = "IPV6_IID"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceIpv6IidFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceIpv6IidFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceIpv6IidFilterDto(v IntegrationFirewallPolicySourceIpv6IidFilterDto) error {
+	v.Type = "IPV6_IID"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceMacAddressFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceMacAddressFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceMacAddressFilterDto() (IntegrationFirewallPolicySourceMacAddressFilterDto, error) {
+	var body IntegrationFirewallPolicySourceMacAddressFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceMacAddressFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceMacAddressFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceMacAddressFilterDto(v IntegrationFirewallPolicySourceMacAddressFilterDto) error {
+	v.Type = "MAC_ADDRESS"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceMacAddressFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceMacAddressFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceMacAddressFilterDto(v IntegrationFirewallPolicySourceMacAddressFilterDto) error {
+	v.Type = "MAC_ADDRESS"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceNetworkFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceNetworkFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceNetworkFilterDto() (IntegrationFirewallPolicySourceNetworkFilterDto, error) {
+	var body IntegrationFirewallPolicySourceNetworkFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceNetworkFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceNetworkFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceNetworkFilterDto(v IntegrationFirewallPolicySourceNetworkFilterDto) error {
+	v.Type = "NETWORK"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceNetworkFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceNetworkFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceNetworkFilterDto(v IntegrationFirewallPolicySourceNetworkFilterDto) error {
+	v.Type = "NETWORK"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourcePortFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourcePortFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourcePortFilterDto() (IntegrationFirewallPolicySourcePortFilterDto, error) {
+	var body IntegrationFirewallPolicySourcePortFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourcePortFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourcePortFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourcePortFilterDto(v IntegrationFirewallPolicySourcePortFilterDto) error {
+	v.Type = "PORT"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourcePortFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourcePortFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourcePortFilterDto(v IntegrationFirewallPolicySourcePortFilterDto) error {
+	v.Type = "PORT"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceRegionFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceRegionFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceRegionFilterDto() (IntegrationFirewallPolicySourceRegionFilterDto, error) {
+	var body IntegrationFirewallPolicySourceRegionFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceRegionFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceRegionFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceRegionFilterDto(v IntegrationFirewallPolicySourceRegionFilterDto) error {
+	v.Type = "REGION"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceRegionFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceRegionFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceRegionFilterDto(v IntegrationFirewallPolicySourceRegionFilterDto) error {
+	v.Type = "REGION"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto() (IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto, error) {
+	var body IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto(v IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto) error {
+	v.Type = "SITE_TO_SITE_VPN_TUNNEL"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto(v IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto) error {
+	v.Type = "SITE_TO_SITE_VPN_TUNNEL"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallPolicySourceVpnServerFilterDto returns the union data inside the FirewallPolicySourceTrafficFilter as a IntegrationFirewallPolicySourceVpnServerFilterDto
+func (t FirewallPolicySourceTrafficFilter) AsIntegrationFirewallPolicySourceVpnServerFilterDto() (IntegrationFirewallPolicySourceVpnServerFilterDto, error) {
+	var body IntegrationFirewallPolicySourceVpnServerFilterDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallPolicySourceVpnServerFilterDto overwrites any union data inside the FirewallPolicySourceTrafficFilter as the provided IntegrationFirewallPolicySourceVpnServerFilterDto
+func (t *FirewallPolicySourceTrafficFilter) FromIntegrationFirewallPolicySourceVpnServerFilterDto(v IntegrationFirewallPolicySourceVpnServerFilterDto) error {
+	v.Type = "VPN_SERVER"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallPolicySourceVpnServerFilterDto performs a merge with any union data inside the FirewallPolicySourceTrafficFilter, using the provided IntegrationFirewallPolicySourceVpnServerFilterDto
+func (t *FirewallPolicySourceTrafficFilter) MergeIntegrationFirewallPolicySourceVpnServerFilterDto(v IntegrationFirewallPolicySourceVpnServerFilterDto) error {
+	v.Type = "VPN_SERVER"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallPolicySourceTrafficFilter) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"type"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallPolicySourceTrafficFilter) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "IPV6_IID":
+		return t.AsIntegrationFirewallPolicySourceIpv6IidFilterDto()
+	case "IP_ADDRESS":
+		return t.AsIntegrationFirewallPolicySourceIpAddressFilterDto()
+	case "MAC_ADDRESS":
+		return t.AsIntegrationFirewallPolicySourceMacAddressFilterDto()
+	case "NETWORK":
+		return t.AsIntegrationFirewallPolicySourceNetworkFilterDto()
+	case "PORT":
+		return t.AsIntegrationFirewallPolicySourcePortFilterDto()
+	case "REGION":
+		return t.AsIntegrationFirewallPolicySourceRegionFilterDto()
+	case "SITE_TO_SITE_VPN_TUNNEL":
+		return t.AsIntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto()
+	case "VPN_SERVER":
+		return t.AsIntegrationFirewallPolicySourceVpnServerFilterDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallPolicySourceTrafficFilter) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallPolicySourceTrafficFilter) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsIntegrationFirewallScheduleCustomDto returns the union data inside the FirewallSchedule as a IntegrationFirewallScheduleCustomDto
+func (t FirewallSchedule) AsIntegrationFirewallScheduleCustomDto() (IntegrationFirewallScheduleCustomDto, error) {
+	var body IntegrationFirewallScheduleCustomDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallScheduleCustomDto overwrites any union data inside the FirewallSchedule as the provided IntegrationFirewallScheduleCustomDto
+func (t *FirewallSchedule) FromIntegrationFirewallScheduleCustomDto(v IntegrationFirewallScheduleCustomDto) error {
+	v.Mode = "CUSTOM"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallScheduleCustomDto performs a merge with any union data inside the FirewallSchedule, using the provided IntegrationFirewallScheduleCustomDto
+func (t *FirewallSchedule) MergeIntegrationFirewallScheduleCustomDto(v IntegrationFirewallScheduleCustomDto) error {
+	v.Mode = "CUSTOM"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallScheduleEveryDayDto returns the union data inside the FirewallSchedule as a IntegrationFirewallScheduleEveryDayDto
+func (t FirewallSchedule) AsIntegrationFirewallScheduleEveryDayDto() (IntegrationFirewallScheduleEveryDayDto, error) {
+	var body IntegrationFirewallScheduleEveryDayDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallScheduleEveryDayDto overwrites any union data inside the FirewallSchedule as the provided IntegrationFirewallScheduleEveryDayDto
+func (t *FirewallSchedule) FromIntegrationFirewallScheduleEveryDayDto(v IntegrationFirewallScheduleEveryDayDto) error {
+	v.Mode = "EVERY_DAY"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallScheduleEveryDayDto performs a merge with any union data inside the FirewallSchedule, using the provided IntegrationFirewallScheduleEveryDayDto
+func (t *FirewallSchedule) MergeIntegrationFirewallScheduleEveryDayDto(v IntegrationFirewallScheduleEveryDayDto) error {
+	v.Mode = "EVERY_DAY"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallScheduleEveryWeekDto returns the union data inside the FirewallSchedule as a IntegrationFirewallScheduleEveryWeekDto
+func (t FirewallSchedule) AsIntegrationFirewallScheduleEveryWeekDto() (IntegrationFirewallScheduleEveryWeekDto, error) {
+	var body IntegrationFirewallScheduleEveryWeekDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallScheduleEveryWeekDto overwrites any union data inside the FirewallSchedule as the provided IntegrationFirewallScheduleEveryWeekDto
+func (t *FirewallSchedule) FromIntegrationFirewallScheduleEveryWeekDto(v IntegrationFirewallScheduleEveryWeekDto) error {
+	v.Mode = "EVERY_WEEK"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallScheduleEveryWeekDto performs a merge with any union data inside the FirewallSchedule, using the provided IntegrationFirewallScheduleEveryWeekDto
+func (t *FirewallSchedule) MergeIntegrationFirewallScheduleEveryWeekDto(v IntegrationFirewallScheduleEveryWeekDto) error {
+	v.Mode = "EVERY_WEEK"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsIntegrationFirewallScheduleOneTimeOnlyDto returns the union data inside the FirewallSchedule as a IntegrationFirewallScheduleOneTimeOnlyDto
+func (t FirewallSchedule) AsIntegrationFirewallScheduleOneTimeOnlyDto() (IntegrationFirewallScheduleOneTimeOnlyDto, error) {
+	var body IntegrationFirewallScheduleOneTimeOnlyDto
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromIntegrationFirewallScheduleOneTimeOnlyDto overwrites any union data inside the FirewallSchedule as the provided IntegrationFirewallScheduleOneTimeOnlyDto
+func (t *FirewallSchedule) FromIntegrationFirewallScheduleOneTimeOnlyDto(v IntegrationFirewallScheduleOneTimeOnlyDto) error {
+	v.Mode = "ONE_TIME_ONLY"
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeIntegrationFirewallScheduleOneTimeOnlyDto performs a merge with any union data inside the FirewallSchedule, using the provided IntegrationFirewallScheduleOneTimeOnlyDto
+func (t *FirewallSchedule) MergeIntegrationFirewallScheduleOneTimeOnlyDto(v IntegrationFirewallScheduleOneTimeOnlyDto) error {
+	v.Mode = "ONE_TIME_ONLY"
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t FirewallSchedule) Discriminator() (string, error) {
+	var discriminator struct {
+		Discriminator string `json:"mode"`
+	}
+	err := json.Unmarshal(t.union, &discriminator)
+	return discriminator.Discriminator, err
+}
+
+func (t FirewallSchedule) ValueByDiscriminator() (interface{}, error) {
+	discriminator, err := t.Discriminator()
+	if err != nil {
+		return nil, err
+	}
+	switch discriminator {
+	case "CUSTOM":
+		return t.AsIntegrationFirewallScheduleCustomDto()
+	case "EVERY_DAY":
+		return t.AsIntegrationFirewallScheduleEveryDayDto()
+	case "EVERY_WEEK":
+		return t.AsIntegrationFirewallScheduleEveryWeekDto()
+	case "ONE_TIME_ONLY":
+		return t.AsIntegrationFirewallScheduleOneTimeOnlyDto()
+	default:
+		return nil, errors.New("unknown discriminator value: " + discriminator)
+	}
+}
+
+func (t FirewallSchedule) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *FirewallSchedule) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

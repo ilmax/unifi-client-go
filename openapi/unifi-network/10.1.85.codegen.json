@@ -1730,6 +1730,18 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySpecificIpAddressFilterDto"
+          }
+        ],
+        "type": "object"
+      },
+      "Firewall policy IP address filter base": {
+        "description": "Match traffic originating from, or destined to selected IP addresses.",
         "properties": {
           "matchOpposite": {
             "description": "Match on all IP addresses except the specified ones.",
@@ -1755,6 +1767,20 @@
           },
           "propertyName": "ipVersion"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4ProtocolScopeDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6ProtocolScopeDto"
+          }
+        ]
+      },
+      "Firewall policy IP protocol scope base": {
+        "description": "Defines rules for matching by IP version and protocol.",
         "properties": {
           "ipVersion": {
             "type": "string"
@@ -1790,6 +1816,15 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto"
+          }
+        ],
+        "type": "object"
+      },
+      "Firewall policy IPv4 and IPv6 named protocol base": {
+        "description": "Defines rules for matching by protocol name.",
         "properties": {
           "name": {
             "enum": [
@@ -1867,6 +1902,20 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol number"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto"
+          }
+        ]
+      },
+      "Firewall policy IPv4 and IPv6 protocol base": {
+        "description": "Defines protocol matching. If null, matches all protocols.",
         "properties": {
           "type": {
             "type": "string"
@@ -1879,7 +1928,7 @@
       "Firewall policy IPv4 and IPv6 protocol number": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol base"
           },
           {
             "properties": {
@@ -1912,6 +1961,14 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto"
+          }
+        ]
+      },
+      "Firewall policy IPv4 and IPv6 protocol preset base": {
+        "description": "Defines rules for matching by protocol preset.",
         "properties": {
           "name": {
             "type": "string"
@@ -1976,6 +2033,18 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto"
+          }
+        ],
+        "type": "object"
+      },
+      "Firewall policy IPv4 named protocol base": {
+        "description": "Defines rules for matching by protocol name.",
         "properties": {
           "name": {
             "enum": [
@@ -2046,10 +2115,24 @@
           "mapping": {
             "NAMED_PROTOCOL": "#/components/schemas/IntegrationFirewallPolicyIpv4NamedProtocolFilterDto",
             "PRESET": "#/components/schemas/IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto",
-            "PROTOCOL_NUMBER": "#/components/schemas/Firewall policy IPv4 protocol number"
+            "PROTOCOL_NUMBER": "#/components/schemas/Firewall policy IPv4 protocol number (IPv4 base)"
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol number (IPv4 base)"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4NamedProtocolFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto"
+          }
+        ]
+      },
+      "Firewall policy IPv4 protocol base": {
+        "description": "Defines protocol matching. If null, matches all protocols.",
         "properties": {
           "type": {
             "type": "string"
@@ -2062,7 +2145,35 @@
       "Firewall policy IPv4 protocol number": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol base"
+          },
+          {
+            "properties": {
+              "matchOpposite": {
+                "description": "Match on all protocols except the specified protocol.",
+                "type": "boolean"
+              },
+              "protocolNumber": {
+                "description": "Protocol number as defined by IANA.",
+                "format": "int32",
+                "maximum": 255,
+                "minimum": 0,
+                "type": "integer"
+              }
+            },
+            "type": "object"
+          }
+        ],
+        "description": "Defines rules for matching by protocol number.",
+        "required": [
+          "matchOpposite",
+          "protocolNumber"
+        ]
+      },
+      "Firewall policy IPv4 protocol number (IPv4 base)": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol base"
           },
           {
             "properties": {
@@ -2095,6 +2206,14 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto"
+          }
+        ]
+      },
+      "Firewall policy IPv4 protocol preset base": {
+        "description": "Defines rules for matching by protocol preset.",
         "properties": {
           "name": {
             "type": "string"
@@ -2155,6 +2274,18 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto"
+          }
+        ],
+        "type": "object"
+      },
+      "Firewall policy IPv6 named protocol base": {
+        "description": "Defines rules for matching by protocol name.",
         "properties": {
           "name": {
             "enum": [
@@ -2229,6 +2360,20 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol number"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6NamedProtocolFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto"
+          }
+        ]
+      },
+      "Firewall policy IPv6 protocol base": {
+        "description": "Defines protocol matching. If null, matches all protocols.",
         "properties": {
           "type": {
             "type": "string"
@@ -2246,6 +2391,14 @@
           },
           "propertyName": "name"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto"
+          }
+        ]
+      },
+      "Firewall policy IPv6 protocol preset base": {
+        "description": "Defines rules for matching by protocol preset.",
         "properties": {
           "name": {
             "type": "string"
@@ -2303,6 +2456,20 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyActionAllowDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyActionBlockDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyActionRejectDto"
+          }
+        ]
+      },
+      "Firewall policy action base": {
+        "description": "Defines action for matched traffic.",
         "properties": {
           "type": {
             "type": "string"
@@ -2381,6 +2548,40 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationApplicationFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationDomainFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationIpAddressFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationIpv6IidFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationNetworkFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationPortFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationRegionFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyDestinationVpnServerFilterDto"
+          }
+        ]
+      },
+      "Firewall policy destination traffic filter base": {
         "properties": {
           "type": {
             "type": "string"
@@ -2476,6 +2677,18 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyPortReferenceFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicyPortValueFilterDto"
+          }
+        ],
+        "type": "object"
+      },
+      "Firewall policy port filter base": {
+        "description": "Defines rules for matching traffic by port.",
         "properties": {
           "matchOpposite": {
             "description": "Match on all ports except the specified ones.",
@@ -2800,6 +3013,34 @@
           },
           "propertyName": "type"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceIpAddressFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceIpv6IidFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceMacAddressFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceNetworkFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourcePortFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceRegionFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallPolicySourceVpnServerFilterDto"
+          }
+        ]
+      },
+      "Firewall policy source traffic filter base": {
         "properties": {
           "type": {
             "type": "string"
@@ -2820,6 +3061,23 @@
           },
           "propertyName": "mode"
         },
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallScheduleCustomDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallScheduleEveryDayDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallScheduleEveryWeekDto"
+          },
+          {
+            "$ref": "#/components/schemas/IntegrationFirewallScheduleOneTimeOnlyDto"
+          }
+        ]
+      },
+      "Firewall schedule base": {
+        "description": "Defines date and time when the entity is active. If null, the entity is always active.",
         "properties": {
           "mode": {
             "type": "string"
@@ -4549,7 +4807,7 @@
       "IntegrationFirewallPolicyActionAllowDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy action"
+            "$ref": "#/components/schemas/Firewall policy action base"
           },
           {
             "properties": {
@@ -4568,21 +4826,21 @@
       "IntegrationFirewallPolicyActionBlockDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy action"
+            "$ref": "#/components/schemas/Firewall policy action base"
           }
         ]
       },
       "IntegrationFirewallPolicyActionRejectDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy action"
+            "$ref": "#/components/schemas/Firewall policy action base"
           }
         ]
       },
       "IntegrationFirewallPolicyDestinationApplicationCategoryFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4605,7 +4863,7 @@
       "IntegrationFirewallPolicyDestinationApplicationFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4628,7 +4886,7 @@
       "IntegrationFirewallPolicyDestinationDomainFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4651,7 +4909,7 @@
       "IntegrationFirewallPolicyDestinationIpAddressFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4674,7 +4932,7 @@
       "IntegrationFirewallPolicyDestinationIpv6IidFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4697,7 +4955,7 @@
       "IntegrationFirewallPolicyDestinationNetworkFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4720,7 +4978,7 @@
       "IntegrationFirewallPolicyDestinationPortFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4739,7 +4997,7 @@
       "IntegrationFirewallPolicyDestinationRegionFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4762,7 +5020,7 @@
       "IntegrationFirewallPolicyDestinationSiteToSiteVpnTunnelFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4785,7 +5043,7 @@
       "IntegrationFirewallPolicyDestinationVpnServerFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy destination traffic filter"
+            "$ref": "#/components/schemas/Firewall policy destination traffic filter base"
           },
           {
             "properties": {
@@ -4808,7 +5066,7 @@
       "IntegrationFirewallPolicyIpAddressTrafficMatchingListFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IP address filter"
+            "$ref": "#/components/schemas/Firewall policy IP address filter base"
           },
           {
             "properties": {
@@ -4891,7 +5149,7 @@
       "IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolDefaultDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 named protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 named protocol base"
           }
         ],
         "required": [
@@ -4901,7 +5159,7 @@
       "IntegrationFirewallPolicyIpv4AndIpv6NamedProtocolFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol base"
           },
           {
             "properties": {
@@ -4924,7 +5182,7 @@
       "IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol base"
           },
           {
             "properties": {
@@ -4942,14 +5200,14 @@
       "IntegrationFirewallPolicyIpv4AndIpv6ProtocolPresetTcpUdpDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol preset"
+            "$ref": "#/components/schemas/Firewall policy IPv4 and IPv6 protocol preset base"
           }
         ]
       },
       "IntegrationFirewallPolicyIpv4AndIpv6ProtocolScopeDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IP protocol scope"
+            "$ref": "#/components/schemas/Firewall policy IP protocol scope base"
           },
           {
             "properties": {
@@ -4964,14 +5222,14 @@
       "IntegrationFirewallPolicyIpv4NamedProtocolDefaultDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 named protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 named protocol base"
           }
         ]
       },
       "IntegrationFirewallPolicyIpv4NamedProtocolFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol base"
           },
           {
             "properties": {
@@ -4994,7 +5252,7 @@
       "IntegrationFirewallPolicyIpv4NamedProtocolIcmpDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 named protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 named protocol base"
           },
           {
             "properties": {
@@ -5048,7 +5306,7 @@
       "IntegrationFirewallPolicyIpv4ProtocolPresetFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol base"
           },
           {
             "properties": {
@@ -5066,14 +5324,14 @@
       "IntegrationFirewallPolicyIpv4ProtocolPresetTcpUdpDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv4 protocol preset"
+            "$ref": "#/components/schemas/Firewall policy IPv4 protocol preset base"
           }
         ]
       },
       "IntegrationFirewallPolicyIpv4ProtocolScopeDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IP protocol scope"
+            "$ref": "#/components/schemas/Firewall policy IP protocol scope base"
           },
           {
             "properties": {
@@ -5088,14 +5346,14 @@
       "IntegrationFirewallPolicyIpv6NamedProtocolDefaultDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 named protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv6 named protocol base"
           }
         ]
       },
       "IntegrationFirewallPolicyIpv6NamedProtocolFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol base"
           },
           {
             "properties": {
@@ -5118,7 +5376,7 @@
       "IntegrationFirewallPolicyIpv6NamedProtocolIcmpv6Dto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 named protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv6 named protocol base"
           },
           {
             "properties": {
@@ -5159,7 +5417,7 @@
       "IntegrationFirewallPolicyIpv6ProtocolPresetFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 protocol"
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol base"
           },
           {
             "properties": {
@@ -5177,14 +5435,14 @@
       "IntegrationFirewallPolicyIpv6ProtocolPresetTcpUdpDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IPv6 protocol preset"
+            "$ref": "#/components/schemas/Firewall policy IPv6 protocol preset base"
           }
         ]
       },
       "IntegrationFirewallPolicyIpv6ProtocolScopeDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IP protocol scope"
+            "$ref": "#/components/schemas/Firewall policy IP protocol scope base"
           },
           {
             "properties": {
@@ -5210,7 +5468,7 @@
       "IntegrationFirewallPolicyPortReferenceFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy port filter"
+            "$ref": "#/components/schemas/Firewall policy port filter base"
           },
           {
             "properties": {
@@ -5231,7 +5489,7 @@
       "IntegrationFirewallPolicyPortValueFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy port filter"
+            "$ref": "#/components/schemas/Firewall policy port filter base"
           },
           {
             "properties": {
@@ -5256,7 +5514,7 @@
       "IntegrationFirewallPolicySourceIpAddressFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5283,7 +5541,7 @@
       "IntegrationFirewallPolicySourceIpv6IidFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5310,7 +5568,7 @@
       "IntegrationFirewallPolicySourceMacAddressFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5333,7 +5591,7 @@
       "IntegrationFirewallPolicySourceNetworkFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5360,7 +5618,7 @@
       "IntegrationFirewallPolicySourcePortFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5379,7 +5637,7 @@
       "IntegrationFirewallPolicySourceRegionFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5402,7 +5660,7 @@
       "IntegrationFirewallPolicySourceSiteToSiteVpnTunnelFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5425,7 +5683,7 @@
       "IntegrationFirewallPolicySourceVpnServerFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy source traffic filter"
+            "$ref": "#/components/schemas/Firewall policy source traffic filter base"
           },
           {
             "properties": {
@@ -5472,7 +5730,7 @@
       "IntegrationFirewallPolicySpecificIpAddressFilterDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall policy IP address filter"
+            "$ref": "#/components/schemas/Firewall policy IP address filter base"
           },
           {
             "properties": {
@@ -5497,7 +5755,7 @@
       "IntegrationFirewallScheduleCustomDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall schedule"
+            "$ref": "#/components/schemas/Firewall schedule base"
           },
           {
             "properties": {
@@ -5546,7 +5804,7 @@
       "IntegrationFirewallScheduleEveryDayDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall schedule"
+            "$ref": "#/components/schemas/Firewall schedule base"
           },
           {
             "properties": {
@@ -5564,7 +5822,7 @@
       "IntegrationFirewallScheduleEveryWeekDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall schedule"
+            "$ref": "#/components/schemas/Firewall schedule base"
           },
           {
             "properties": {
@@ -5599,7 +5857,7 @@
       "IntegrationFirewallScheduleOneTimeOnlyDto": {
         "allOf": [
           {
-            "$ref": "#/components/schemas/Firewall schedule"
+            "$ref": "#/components/schemas/Firewall schedule base"
           },
           {
             "properties": {
