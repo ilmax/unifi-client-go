@@ -67,7 +67,7 @@ jobs:
 
           while true; do
             tag="v${version}"
-            release_branch="release/${tag}"
+            release_branch="release/sdk-${tag}-network-v${{ steps.api_version.outputs.normalized }}"
             tag_exists="$(git tag --list "$tag")"
             branch_exists="$(git ls-remote --heads origin "$release_branch")"
 
@@ -84,6 +84,7 @@ jobs:
 
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "tag=${tag}" >> "$GITHUB_OUTPUT"
+          echo "branch=${release_branch}" >> "$GITHUB_OUTPUT"
 
       - name: Determine previous API version
         id: prev_api_version
@@ -119,15 +120,17 @@ jobs:
 
       - name: Create release branch
         run: |
-          git checkout -B release/${{ steps.sdk_version.outputs.tag }}
+          git checkout -B "${{ steps.sdk_version.outputs.branch }}"
 
       - name: Download OpenAPI spec
         run: |
           echo "Downloading OpenAPI spec..."
+          mkdir -p ./openapi/unifi-network
+          spec_path="./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json"
           base_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network"
-          if curl -fsSL "${base_url}/${{ steps.api_version.outputs.normalized }}.json" -o /tmp/unifi-network-new.json; then
+          if curl -fsSL "${base_url}/${{ steps.api_version.outputs.normalized }}.json" -o "${spec_path}"; then
             echo "Downloaded OpenAPI spec using non-prefixed version."
-          elif curl -fsSL "${base_url}/${{ steps.api_version.outputs.prefixed }}.json" -o /tmp/unifi-network-new.json; then
+          elif curl -fsSL "${base_url}/${{ steps.api_version.outputs.prefixed }}.json" -o "${spec_path}"; then
             echo "Downloaded OpenAPI spec using v-prefixed version."
           else
             echo "Error: Unable to download OpenAPI spec for version ${{ inputs.api_version }}"
@@ -149,8 +152,8 @@ jobs:
             echo "Error: Unable to download previous OpenAPI spec for version ${old_version}"
             exit 1
           fi
-          oasdiff diff /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-diff.md
-          oasdiff breaking /tmp/unifi-network-old.json /tmp/unifi-network-new.json --format markdown > /tmp/openapi-breaking.md
+          oasdiff diff /tmp/unifi-network-old.json "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" --format markdown > /tmp/openapi-diff.md
+          oasdiff breaking /tmp/unifi-network-old.json "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" --format markdown > /tmp/openapi-breaking.md
 
       - name: Generate client
         run: |
@@ -160,7 +163,7 @@ jobs:
             -generate types,client \
             -package network \
             -o ./pkg/network/openapi.gen.go \
-            /tmp/unifi-network-new.json
+            "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json"
 
       - name: Format generated code
         run: |
@@ -202,14 +205,16 @@ jobs:
               "context"
               "log"
               
+              "github.com/ilmax/unifi-client-go/pkg/network"
               "github.com/ilmax/unifi-client-go/unifi"
           )
           
           func main() {
-              client, err := unifi.New(
-                  unifi.ConfigBaseURL("https://your-unifi-controller.com"),
-                  unifi.ConfigAPIKey("your-api-key"),
-              )
+              client, err := unifi.NewNetwork(network.Config{
+                  BaseURL:            "https://your-unifi-controller.com",
+                  Site:               "default",
+                  InsecureSkipVerify: true,
+              })
               if err != nil {
                   log.Fatal(err)
               }
@@ -262,7 +267,7 @@ jobs:
 
       - name: Push release branch
         run: |
-          git push --set-upstream origin release/${{ steps.sdk_version.outputs.tag }}
+          git push --set-upstream origin "${{ steps.sdk_version.outputs.branch }}"
 
       - name: Push changes to main
         run: |

@@ -10,7 +10,7 @@
 
 ## Plan
 - [x] Remove Site Manager code, top-level wiring, and examples/docs references.
-- [ ] Update release workflow to use spec-aware branch names and commit the spec file.
+- [x] Update release workflow to use spec-aware branch names and commit the spec file.
 - [ ] Rewrite docs to describe the Network-only generated SDK.
 - [ ] Verify with generation/build/tests and record results.
 
@@ -22,3 +22,4 @@
 
 ## Results
 - Removed handwritten Site Manager code, top-level cloud-client wiring, and the Site Manager example.
+- Updated the release workflow to use `release/sdk-vX.Y.Z-network-vA.B.C` branches and to commit the downloaded spec under `openapi/unifi-network/`.
