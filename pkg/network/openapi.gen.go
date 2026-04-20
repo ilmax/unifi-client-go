@@ -2284,6 +2284,24 @@ func (e IntegrationFirewallScheduleEveryWeekDtoRepeatOnDays) Valid() bool {
 	}
 }
 
+// Defines values for IntegrationMcLagPeerDtoRole.
+const (
+	BOTTOM IntegrationMcLagPeerDtoRole = "BOTTOM"
+	TOP    IntegrationMcLagPeerDtoRole = "TOP"
+)
+
+// Valid indicates whether the value is a known member of the IntegrationMcLagPeerDtoRole enum.
+func (e IntegrationMcLagPeerDtoRole) Valid() bool {
+	switch e {
+	case BOTTOM:
+		return true
+	case TOP:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for IntegrationWifiBasicDataRateConfigurationDto24.
 const (
 	IntegrationWifiBasicDataRateConfigurationDto24N1000  IntegrationWifiBasicDataRateConfigurationDto24 = 1000
@@ -2953,7 +2971,7 @@ type DeviceActionRequest struct {
 // DeviceFeatures defines model for Device features.
 type DeviceFeatures struct {
 	AccessPoint *AccessPointFeatureOverview `json:"accessPoint,omitempty"`
-	Switching   *SwitchFeatureOverview      `json:"switching,omitempty"`
+	Switching   *SwitchingFeatureOverview   `json:"switching,omitempty"`
 }
 
 // DevicePendingAdoption defines model for Device pending adoption.
@@ -4058,6 +4076,63 @@ type IntegrationFirewallScheduleOneTimeOnlyDto struct {
 	TimeFilter *FirewallScheduleTime `json:"timeFilter,omitempty"`
 }
 
+// IntegrationLagMemberDto defines model for IntegrationLagMemberDto.
+type IntegrationLagMemberDto struct {
+	DeviceId openapi_types.UUID `json:"deviceId"`
+	PortIdxs []int32            `json:"portIdxs"`
+}
+
+// IntegrationLagPageDto defines model for IntegrationLagPageDto.
+type IntegrationLagPageDto struct {
+	Count      int32        `json:"count"`
+	Data       []LAGDetails `json:"data"`
+	Limit      int32        `json:"limit"`
+	Offset     int64        `json:"offset"`
+	TotalCount int64        `json:"totalCount"`
+}
+
+// IntegrationLocalLagLocalDto defines model for IntegrationLocalLagLocalDto.
+type IntegrationLocalLagLocalDto struct {
+	Id       openapi_types.UUID        `json:"id"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+	PortIdxs []int32                   `json:"portIdxs"`
+}
+
+// IntegrationMcLagDomainDto defines model for IntegrationMcLagDomainDto.
+type IntegrationMcLagDomainDto struct {
+	Id       openapi_types.UUID         `json:"id"`
+	Lags     []IntegrationMcLagLocalDto `json:"lags"`
+	Metadata UserDefinedEntityMetadata  `json:"metadata"`
+	Name     string                     `json:"name"`
+	Peers    []IntegrationMcLagPeerDto  `json:"peers"`
+}
+
+// IntegrationMcLagDomainDtoPageDto defines model for IntegrationMcLagDomainDtoPageDto.
+type IntegrationMcLagDomainDtoPageDto struct {
+	Count      int32                       `json:"count"`
+	Data       []IntegrationMcLagDomainDto `json:"data"`
+	Limit      int32                       `json:"limit"`
+	Offset     int64                       `json:"offset"`
+	TotalCount int64                       `json:"totalCount"`
+}
+
+// IntegrationMcLagLocalDto defines model for IntegrationMcLagLocalDto.
+type IntegrationMcLagLocalDto struct {
+	Id       openapi_types.UUID        `json:"id"`
+	Members  []IntegrationLagMemberDto `json:"members"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+}
+
+// IntegrationMcLagPeerDto defines model for IntegrationMcLagPeerDto.
+type IntegrationMcLagPeerDto struct {
+	DeviceId     openapi_types.UUID          `json:"deviceId"`
+	LinkPortIdxs []int32                     `json:"linkPortIdxs"`
+	Role         IntegrationMcLagPeerDtoRole `json:"role"`
+}
+
+// IntegrationMcLagPeerDtoRole defines model for IntegrationMcLagPeerDto.Role.
+type IntegrationMcLagPeerDtoRole string
+
 // IntegrationSiteToSiteVpnTunnelOverviewPageDto defines model for IntegrationSiteToSiteVpnTunnelOverviewPageDto.
 type IntegrationSiteToSiteVpnTunnelOverviewPageDto struct {
 	Count      int32                         `json:"count"`
@@ -4065,6 +4140,36 @@ type IntegrationSiteToSiteVpnTunnelOverviewPageDto struct {
 	Limit      int32                         `json:"limit"`
 	Offset     int64                         `json:"offset"`
 	TotalCount int64                         `json:"totalCount"`
+}
+
+// IntegrationSwitchStackDto defines model for IntegrationSwitchStackDto.
+type IntegrationSwitchStackDto struct {
+	Id       openapi_types.UUID                  `json:"id"`
+	Lags     []IntegrationSwitchStackLagLocalDto `json:"lags"`
+	Members  []IntegrationSwitchStackMemberDto   `json:"members"`
+	Metadata UserDefinedEntityMetadata           `json:"metadata"`
+	Name     string                              `json:"name"`
+}
+
+// IntegrationSwitchStackDtoPageDto defines model for IntegrationSwitchStackDtoPageDto.
+type IntegrationSwitchStackDtoPageDto struct {
+	Count      int32                       `json:"count"`
+	Data       []IntegrationSwitchStackDto `json:"data"`
+	Limit      int32                       `json:"limit"`
+	Offset     int64                       `json:"offset"`
+	TotalCount int64                       `json:"totalCount"`
+}
+
+// IntegrationSwitchStackLagLocalDto defines model for IntegrationSwitchStackLagLocalDto.
+type IntegrationSwitchStackLagLocalDto struct {
+	Id       openapi_types.UUID        `json:"id"`
+	Members  []IntegrationLagMemberDto `json:"members"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+}
+
+// IntegrationSwitchStackMemberDto defines model for IntegrationSwitchStackMemberDto.
+type IntegrationSwitchStackMemberDto struct {
+	DeviceId openapi_types.UUID `json:"deviceId"`
 }
 
 // IntegrationVoucherCreationResultDto defines model for IntegrationVoucherCreationResultDto.
@@ -4110,6 +4215,14 @@ type IntegrationWifiClientFilteringPolicyDto struct {
 
 // IntegrationWifiClientFilteringPolicyDtoAction defines model for IntegrationWifiClientFilteringPolicyDto.Action.
 type IntegrationWifiClientFilteringPolicyDtoAction string
+
+// LAGDetails defines model for LAG details.
+type LAGDetails struct {
+	Id       openapi_types.UUID        `json:"id"`
+	Members  []IntegrationLagMemberDto `json:"members"`
+	Metadata UserDefinedEntityMetadata `json:"metadata"`
+	Type     string                    `json:"type"`
+}
 
 // LatestStatisticsForADevice defines model for Latest statistics for a device.
 type LatestStatisticsForADevice struct {
@@ -4322,8 +4435,10 @@ type SiteToSiteVPNTunnelOverview struct {
 	Type     string                      `json:"type"`
 }
 
-// SwitchFeatureOverview defines model for Switch feature overview.
-type SwitchFeatureOverview = interface{}
+// SwitchingFeatureOverview defines model for Switching feature overview.
+type SwitchingFeatureOverview struct {
+	Lags []IntegrationLocalLagLocalDto `json:"lags"`
+}
 
 // TrafficMatchingList defines model for Traffic matching list.
 type TrafficMatchingList struct {
@@ -4618,6 +4733,27 @@ type DeleteNetworkParams struct {
 
 // GetRadiusProfileOverviewPageParams defines parameters for GetRadiusProfileOverviewPage.
 type GetRadiusProfileOverviewPageParams struct {
+	Offset *int32  `form:"offset,omitempty" json:"offset,omitempty"`
+	Limit  *int32  `form:"limit,omitempty" json:"limit,omitempty"`
+	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
+}
+
+// GetLagPageParams defines parameters for GetLagPage.
+type GetLagPageParams struct {
+	Offset *int32  `form:"offset,omitempty" json:"offset,omitempty"`
+	Limit  *int32  `form:"limit,omitempty" json:"limit,omitempty"`
+	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
+}
+
+// GetMcLagDomainPageParams defines parameters for GetMcLagDomainPage.
+type GetMcLagDomainPageParams struct {
+	Offset *int32  `form:"offset,omitempty" json:"offset,omitempty"`
+	Limit  *int32  `form:"limit,omitempty" json:"limit,omitempty"`
+	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
+}
+
+// GetSwitchStackPageParams defines parameters for GetSwitchStackPage.
+type GetSwitchStackPageParams struct {
 	Offset *int32  `form:"offset,omitempty" json:"offset,omitempty"`
 	Limit  *int32  `form:"limit,omitempty" json:"limit,omitempty"`
 	Filter *string `form:"filter,omitempty" json:"filter,omitempty"`
@@ -7575,6 +7711,24 @@ type ClientInterface interface {
 	// GetRadiusProfileOverviewPage request
 	GetRadiusProfileOverviewPage(ctx context.Context, siteId openapi_types.UUID, params *GetRadiusProfileOverviewPageParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetLagPage request
+	GetLagPage(ctx context.Context, siteId openapi_types.UUID, params *GetLagPageParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetLag request
+	GetLag(ctx context.Context, siteId openapi_types.UUID, lagId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetMcLagDomainPage request
+	GetMcLagDomainPage(ctx context.Context, siteId openapi_types.UUID, params *GetMcLagDomainPageParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetMcLagDomain request
+	GetMcLagDomain(ctx context.Context, siteId openapi_types.UUID, mcLagDomainId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSwitchStackPage request
+	GetSwitchStackPage(ctx context.Context, siteId openapi_types.UUID, params *GetSwitchStackPageParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSwitchStack request
+	GetSwitchStack(ctx context.Context, siteId openapi_types.UUID, switchStackId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetTrafficMatchingLists request
 	GetTrafficMatchingLists(ctx context.Context, siteId openapi_types.UUID, params *GetTrafficMatchingListsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -8477,6 +8631,78 @@ func (c *Client) GetNetworkReferences(ctx context.Context, siteId openapi_types.
 
 func (c *Client) GetRadiusProfileOverviewPage(ctx context.Context, siteId openapi_types.UUID, params *GetRadiusProfileOverviewPageParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetRadiusProfileOverviewPageRequest(c.Server, siteId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetLagPage(ctx context.Context, siteId openapi_types.UUID, params *GetLagPageParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetLagPageRequest(c.Server, siteId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetLag(ctx context.Context, siteId openapi_types.UUID, lagId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetLagRequest(c.Server, siteId, lagId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetMcLagDomainPage(ctx context.Context, siteId openapi_types.UUID, params *GetMcLagDomainPageParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMcLagDomainPageRequest(c.Server, siteId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetMcLagDomain(ctx context.Context, siteId openapi_types.UUID, mcLagDomainId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetMcLagDomainRequest(c.Server, siteId, mcLagDomainId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSwitchStackPage(ctx context.Context, siteId openapi_types.UUID, params *GetSwitchStackPageParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSwitchStackPageRequest(c.Server, siteId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSwitchStack(ctx context.Context, siteId openapi_types.UUID, switchStackId openapi_types.UUID, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSwitchStackRequest(c.Server, siteId, switchStackId)
 	if err != nil {
 		return nil, err
 	}
@@ -11818,6 +12044,393 @@ func NewGetRadiusProfileOverviewPageRequest(server string, siteId openapi_types.
 	return req, nil
 }
 
+// NewGetLagPageRequest generates requests for GetLagPage
+func NewGetLagPageRequest(server string, siteId openapi_types.UUID, params *GetLagPageParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/lags", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offset", *params.Offset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Filter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filter", *params.Filter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetLagRequest generates requests for GetLag
+func NewGetLagRequest(server string, siteId openapi_types.UUID, lagId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "lagId", lagId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/lags/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetMcLagDomainPageRequest generates requests for GetMcLagDomainPage
+func NewGetMcLagDomainPageRequest(server string, siteId openapi_types.UUID, params *GetMcLagDomainPageParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/mc-lag-domains", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offset", *params.Offset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Filter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filter", *params.Filter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetMcLagDomainRequest generates requests for GetMcLagDomain
+func NewGetMcLagDomainRequest(server string, siteId openapi_types.UUID, mcLagDomainId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "mcLagDomainId", mcLagDomainId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/mc-lag-domains/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSwitchStackPageRequest generates requests for GetSwitchStackPage
+func NewGetSwitchStackPageRequest(server string, siteId openapi_types.UUID, params *GetSwitchStackPageParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/switch-stacks", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.Offset != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "offset", *params.Offset, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Limit != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "limit", *params.Limit, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: "int32"}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Filter != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "filter", *params.Filter, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSwitchStackRequest generates requests for GetSwitchStack
+func NewGetSwitchStackRequest(server string, siteId openapi_types.UUID, switchStackId openapi_types.UUID) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "siteId", siteId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "switchStackId", switchStackId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: "uuid"})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/v1/sites/%s/switching/switch-stacks/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetTrafficMatchingListsRequest generates requests for GetTrafficMatchingLists
 func NewGetTrafficMatchingListsRequest(server string, siteId openapi_types.UUID, params *GetTrafficMatchingListsParams) (*http.Request, error) {
 	var err error
@@ -12870,6 +13483,24 @@ type ClientWithResponsesInterface interface {
 
 	// GetRadiusProfileOverviewPageWithResponse request
 	GetRadiusProfileOverviewPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetRadiusProfileOverviewPageParams, reqEditors ...RequestEditorFn) (*GetRadiusProfileOverviewPageResponse, error)
+
+	// GetLagPageWithResponse request
+	GetLagPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetLagPageParams, reqEditors ...RequestEditorFn) (*GetLagPageResponse, error)
+
+	// GetLagWithResponse request
+	GetLagWithResponse(ctx context.Context, siteId openapi_types.UUID, lagId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetLagResponse, error)
+
+	// GetMcLagDomainPageWithResponse request
+	GetMcLagDomainPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetMcLagDomainPageParams, reqEditors ...RequestEditorFn) (*GetMcLagDomainPageResponse, error)
+
+	// GetMcLagDomainWithResponse request
+	GetMcLagDomainWithResponse(ctx context.Context, siteId openapi_types.UUID, mcLagDomainId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMcLagDomainResponse, error)
+
+	// GetSwitchStackPageWithResponse request
+	GetSwitchStackPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetSwitchStackPageParams, reqEditors ...RequestEditorFn) (*GetSwitchStackPageResponse, error)
+
+	// GetSwitchStackWithResponse request
+	GetSwitchStackWithResponse(ctx context.Context, siteId openapi_types.UUID, switchStackId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetSwitchStackResponse, error)
 
 	// GetTrafficMatchingListsWithResponse request
 	GetTrafficMatchingListsWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetTrafficMatchingListsParams, reqEditors ...RequestEditorFn) (*GetTrafficMatchingListsResponse, error)
@@ -14099,6 +14730,138 @@ func (r GetRadiusProfileOverviewPageResponse) StatusCode() int {
 	return 0
 }
 
+type GetLagPageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IntegrationLagPageDto
+}
+
+// Status returns HTTPResponse.Status
+func (r GetLagPageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetLagPageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetLagResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *LAGDetails
+}
+
+// Status returns HTTPResponse.Status
+func (r GetLagResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetLagResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetMcLagDomainPageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IntegrationMcLagDomainDtoPageDto
+}
+
+// Status returns HTTPResponse.Status
+func (r GetMcLagDomainPageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetMcLagDomainPageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetMcLagDomainResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IntegrationMcLagDomainDto
+}
+
+// Status returns HTTPResponse.Status
+func (r GetMcLagDomainResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetMcLagDomainResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetSwitchStackPageResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IntegrationSwitchStackDtoPageDto
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSwitchStackPageResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSwitchStackPageResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetSwitchStackResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *IntegrationSwitchStackDto
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSwitchStackResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSwitchStackResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetTrafficMatchingListsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -15011,6 +15774,60 @@ func (c *ClientWithResponses) GetRadiusProfileOverviewPageWithResponse(ctx conte
 		return nil, err
 	}
 	return ParseGetRadiusProfileOverviewPageResponse(rsp)
+}
+
+// GetLagPageWithResponse request returning *GetLagPageResponse
+func (c *ClientWithResponses) GetLagPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetLagPageParams, reqEditors ...RequestEditorFn) (*GetLagPageResponse, error) {
+	rsp, err := c.GetLagPage(ctx, siteId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetLagPageResponse(rsp)
+}
+
+// GetLagWithResponse request returning *GetLagResponse
+func (c *ClientWithResponses) GetLagWithResponse(ctx context.Context, siteId openapi_types.UUID, lagId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetLagResponse, error) {
+	rsp, err := c.GetLag(ctx, siteId, lagId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetLagResponse(rsp)
+}
+
+// GetMcLagDomainPageWithResponse request returning *GetMcLagDomainPageResponse
+func (c *ClientWithResponses) GetMcLagDomainPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetMcLagDomainPageParams, reqEditors ...RequestEditorFn) (*GetMcLagDomainPageResponse, error) {
+	rsp, err := c.GetMcLagDomainPage(ctx, siteId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetMcLagDomainPageResponse(rsp)
+}
+
+// GetMcLagDomainWithResponse request returning *GetMcLagDomainResponse
+func (c *ClientWithResponses) GetMcLagDomainWithResponse(ctx context.Context, siteId openapi_types.UUID, mcLagDomainId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetMcLagDomainResponse, error) {
+	rsp, err := c.GetMcLagDomain(ctx, siteId, mcLagDomainId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetMcLagDomainResponse(rsp)
+}
+
+// GetSwitchStackPageWithResponse request returning *GetSwitchStackPageResponse
+func (c *ClientWithResponses) GetSwitchStackPageWithResponse(ctx context.Context, siteId openapi_types.UUID, params *GetSwitchStackPageParams, reqEditors ...RequestEditorFn) (*GetSwitchStackPageResponse, error) {
+	rsp, err := c.GetSwitchStackPage(ctx, siteId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSwitchStackPageResponse(rsp)
+}
+
+// GetSwitchStackWithResponse request returning *GetSwitchStackResponse
+func (c *ClientWithResponses) GetSwitchStackWithResponse(ctx context.Context, siteId openapi_types.UUID, switchStackId openapi_types.UUID, reqEditors ...RequestEditorFn) (*GetSwitchStackResponse, error) {
+	rsp, err := c.GetSwitchStack(ctx, siteId, switchStackId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSwitchStackResponse(rsp)
 }
 
 // GetTrafficMatchingListsWithResponse request returning *GetTrafficMatchingListsResponse
@@ -16476,6 +17293,162 @@ func ParseGetRadiusProfileOverviewPageResponse(rsp *http.Response) (*GetRadiusPr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RadiusProfileOverviewPage
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetLagPageResponse parses an HTTP response from a GetLagPageWithResponse call
+func ParseGetLagPageResponse(rsp *http.Response) (*GetLagPageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetLagPageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IntegrationLagPageDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetLagResponse parses an HTTP response from a GetLagWithResponse call
+func ParseGetLagResponse(rsp *http.Response) (*GetLagResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetLagResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest LAGDetails
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetMcLagDomainPageResponse parses an HTTP response from a GetMcLagDomainPageWithResponse call
+func ParseGetMcLagDomainPageResponse(rsp *http.Response) (*GetMcLagDomainPageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetMcLagDomainPageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IntegrationMcLagDomainDtoPageDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetMcLagDomainResponse parses an HTTP response from a GetMcLagDomainWithResponse call
+func ParseGetMcLagDomainResponse(rsp *http.Response) (*GetMcLagDomainResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetMcLagDomainResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IntegrationMcLagDomainDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSwitchStackPageResponse parses an HTTP response from a GetSwitchStackPageWithResponse call
+func ParseGetSwitchStackPageResponse(rsp *http.Response) (*GetSwitchStackPageResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSwitchStackPageResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IntegrationSwitchStackDtoPageDto
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSwitchStackResponse parses an HTTP response from a GetSwitchStackWithResponse call
+func ParseGetSwitchStackResponse(rsp *http.Response) (*GetSwitchStackResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSwitchStackResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest IntegrationSwitchStackDto
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
