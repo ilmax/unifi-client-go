@@ -76,7 +76,9 @@ unifi-go-sdk/
 
 Types and client methods in this SDK are auto-generated from the UniFi Network OpenAPI spec:
 
-`https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/{version}.json`
+`https://developer.ui.com/network/v{version}/openapi.json`
+
+The generator is pinned to `oapi-codegen` v2.8.0, which supports OpenAPI 3.1. The current UniFi document still contains an entity-metadata `allOf` aggregate that the generator rejects when it merges discriminator-bearing schemas, so preprocessing remains limited to that one schema. The closest upstream tracking issue for removing this workaround is [configurable OpenAPI engines](https://github.com/oapi-codegen/oapi-codegen/issues/1593); the broader OpenAPI 3.1 effort is tracked in [#373](https://github.com/oapi-codegen/oapi-codegen/issues/373), completed by v2.8.0.
 
 ## Release Workflow
 
@@ -95,7 +97,7 @@ To release an SDK for a new API version, use GitHub Actions `workflow_dispatch`.
 1. Determine the next free SDK version by starting from [VERSION](VERSION) and incrementing until both tag and branch names are available
 2. Create a release branch named `release/sdk-vX.Y.Z-network-vA.B.C`
 3. Download the OpenAPI spec into `openapi/unifi-network/<version>.json`
-4. Rewrite the known discriminator-only schema families needed for code generation (currently DNS policy and firewall policy unions) into `oneOf` unions and commit the patched codegen input as `openapi/unifi-network/<version>.codegen.json`
+4. Apply the minimal compatibility rewrite needed by `oapi-codegen` to the UniFi entity-metadata schema and commit the patched codegen input as `openapi/unifi-network/<version>.codegen.json`
 5. If `unifi-network-version` contains a valid version, compute OpenAPI diffs via `oasdiff` and include them in the release notes
 6. Generate `pkg/network/openapi.gen.go` from the committed patched spec via `oapi-codegen`
 7. Format, build, and test code
@@ -147,14 +149,14 @@ client, err := unifi.NewNetwork(network.Config{
 
 ```bash
 curl -fsSL \
-    "https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network/10.0.162.json" \
+    "https://developer.ui.com/network/v10.0.162/openapi.json" \
     -o ./openapi/unifi-network/10.0.162.json
 
 go run ./cmd/openapi-preprocess \
     -in ./openapi/unifi-network/10.0.162.json \
     -out ./openapi/unifi-network/10.0.162.codegen.json
 
-go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest \
+go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.8.0 \
     -generate types,client \
     -package network \
     -o ./pkg/network/openapi.gen.go \

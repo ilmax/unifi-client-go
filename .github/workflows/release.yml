@@ -43,7 +43,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.25.x'
+          go-version: '1.27.x'
 
       - name: Install oasdiff
         run: |
@@ -123,27 +123,9 @@ jobs:
         run: |
           git checkout -B "${{ steps.sdk_version.outputs.branch }}"
 
-      - name: Download OpenAPI spec
+      - name: Generate OpenAPI spec and client
         run: |
-          echo "Downloading OpenAPI spec..."
-          mkdir -p ./openapi/unifi-network
-          spec_path="./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json"
-          base_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network"
-          if curl -fsSL "${base_url}/${{ steps.api_version.outputs.normalized }}.json" -o "${spec_path}"; then
-            echo "Downloaded OpenAPI spec using non-prefixed version."
-          elif curl -fsSL "${base_url}/${{ steps.api_version.outputs.prefixed }}.json" -o "${spec_path}"; then
-            echo "Downloaded OpenAPI spec using v-prefixed version."
-          else
-            echo "Error: Unable to download OpenAPI spec for version ${{ inputs.api_version }}"
-            exit 1
-          fi
-
-      - name: Prepare codegen spec
-        run: |
-          echo "Rewriting DNS unions for code generation..."
-          go run ./cmd/openapi-preprocess \
-            -in "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" \
-            -out "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.codegen.json"
+          make generate-openapi API_VERSION="${{ steps.api_version.outputs.normalized }}"
 
       - name: Generate OpenAPI diff
         if: steps.prev_api_version.outputs.version != '' && steps.prev_api_version.outputs.version != steps.api_version.outputs.normalized
@@ -151,27 +133,15 @@ jobs:
           old_version="${{ steps.prev_api_version.outputs.version }}"
           new_version="${{ steps.api_version.outputs.normalized }}"
           echo "Generating OpenAPI diff: ${old_version} -> ${new_version}"
-          base_url="https://raw.githubusercontent.com/beezly/unifi-apis/main/unifi-network"
-          if curl -fsSL "${base_url}/${old_version}.json" -o /tmp/unifi-network-old.json; then
-            echo "Downloaded previous OpenAPI spec using non-prefixed version."
-          elif curl -fsSL "${base_url}/v${old_version}.json" -o /tmp/unifi-network-old.json; then
-            echo "Downloaded previous OpenAPI spec using v-prefixed version."
+          base_url="https://developer.ui.com/network"
+          if curl -fsSL "${base_url}/v${old_version}/openapi.json" -o /tmp/unifi-network-old.json; then
+            echo "Downloaded previous OpenAPI spec."
           else
             echo "Error: Unable to download previous OpenAPI spec for version ${old_version}"
             exit 1
           fi
           oasdiff diff /tmp/unifi-network-old.json "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" --format markdown > /tmp/openapi-diff.md
           oasdiff breaking /tmp/unifi-network-old.json "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.json" --format markdown > /tmp/openapi-breaking.md
-
-      - name: Generate client
-        run: |
-          echo "Generating client from OpenAPI spec..."
-          find ./pkg/network -maxdepth 1 -type f -name '*.go' ! -name 'network.go' -delete
-          go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest \
-            -generate types,client \
-            -package network \
-            -o ./pkg/network/openapi.gen.go \
-            "./openapi/unifi-network/${{ steps.api_version.outputs.normalized }}.codegen.json"
 
       - name: Format generated code
         run: |
