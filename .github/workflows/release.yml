@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -41,9 +41,10 @@ jobs:
           echo "prefixed=v${normalized}" >> "$GITHUB_OUTPUT"
 
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v7
         with:
           go-version: '1.27.x'
+          check-latest: true
 
       - name: Install oasdiff
         run: |
@@ -259,7 +260,7 @@ jobs:
           git push origin ${{ steps.sdk_version.outputs.tag }}
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ steps.sdk_version.outputs.tag }}
           name: Release ${{ steps.sdk_version.outputs.tag }}
