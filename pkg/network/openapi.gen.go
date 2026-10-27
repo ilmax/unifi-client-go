@@ -644,6 +644,7 @@ func (e IntegrationWifiClientFilteringPolicyDtoAction) Valid() bool {
 
 // Defines values for LatestStatisticsForWirelessRadioFrequencyGHz.
 const (
+	LatestStatisticsForWirelessRadioFrequencyGHzN09 LatestStatisticsForWirelessRadioFrequencyGHz = 0.9
 	LatestStatisticsForWirelessRadioFrequencyGHzN24 LatestStatisticsForWirelessRadioFrequencyGHz = 2.4
 	LatestStatisticsForWirelessRadioFrequencyGHzN5  LatestStatisticsForWirelessRadioFrequencyGHz = 5
 	LatestStatisticsForWirelessRadioFrequencyGHzN6  LatestStatisticsForWirelessRadioFrequencyGHz = 6
@@ -653,6 +654,8 @@ const (
 // Valid indicates whether the value is a known member of the LatestStatisticsForWirelessRadioFrequencyGHz enum.
 func (e LatestStatisticsForWirelessRadioFrequencyGHz) Valid() bool {
 	switch e {
+	case LatestStatisticsForWirelessRadioFrequencyGHzN09:
+		return true
 	case LatestStatisticsForWirelessRadioFrequencyGHzN24:
 		return true
 	case LatestStatisticsForWirelessRadioFrequencyGHzN5:
@@ -821,6 +824,7 @@ func (e PortOverviewState) Valid() bool {
 
 // Defines values for WirelessRadioOverviewFrequencyGHz.
 const (
+	WirelessRadioOverviewFrequencyGHzN09 WirelessRadioOverviewFrequencyGHz = 0.9
 	WirelessRadioOverviewFrequencyGHzN24 WirelessRadioOverviewFrequencyGHz = 2.4
 	WirelessRadioOverviewFrequencyGHzN5  WirelessRadioOverviewFrequencyGHz = 5
 	WirelessRadioOverviewFrequencyGHzN6  WirelessRadioOverviewFrequencyGHz = 6
@@ -830,6 +834,8 @@ const (
 // Valid indicates whether the value is a known member of the WirelessRadioOverviewFrequencyGHz enum.
 func (e WirelessRadioOverviewFrequencyGHz) Valid() bool {
 	switch e {
+	case WirelessRadioOverviewFrequencyGHzN09:
+		return true
 	case WirelessRadioOverviewFrequencyGHzN24:
 		return true
 	case WirelessRadioOverviewFrequencyGHzN5:
@@ -843,10 +849,41 @@ func (e WirelessRadioOverviewFrequencyGHz) Valid() bool {
 	}
 }
 
+// Defines values for WirelessRadioOverviewTxPowerMode.
+const (
+	AUTO     WirelessRadioOverviewTxPowerMode = "AUTO"
+	CUSTOM   WirelessRadioOverviewTxPowerMode = "CUSTOM"
+	DISABLED WirelessRadioOverviewTxPowerMode = "DISABLED"
+	HIGH     WirelessRadioOverviewTxPowerMode = "HIGH"
+	LOW      WirelessRadioOverviewTxPowerMode = "LOW"
+	MEDIUM   WirelessRadioOverviewTxPowerMode = "MEDIUM"
+)
+
+// Valid indicates whether the value is a known member of the WirelessRadioOverviewTxPowerMode enum.
+func (e WirelessRadioOverviewTxPowerMode) Valid() bool {
+	switch e {
+	case AUTO:
+		return true
+	case CUSTOM:
+		return true
+	case DISABLED:
+		return true
+	case HIGH:
+		return true
+	case LOW:
+		return true
+	case MEDIUM:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for WirelessRadioOverviewWlanStandard.
 const (
 	N80211a  WirelessRadioOverviewWlanStandard = "802.11a"
 	N80211ac WirelessRadioOverviewWlanStandard = "802.11ac"
+	N80211ah WirelessRadioOverviewWlanStandard = "802.11ah"
 	N80211ax WirelessRadioOverviewWlanStandard = "802.11ax"
 	N80211b  WirelessRadioOverviewWlanStandard = "802.11b"
 	N80211be WirelessRadioOverviewWlanStandard = "802.11be"
@@ -860,6 +897,8 @@ func (e WirelessRadioOverviewWlanStandard) Valid() bool {
 	case N80211a:
 		return true
 	case N80211ac:
+		return true
+	case N80211ah:
 		return true
 	case N80211ax:
 		return true
@@ -1160,6 +1199,9 @@ type CreateOrUpdateFirewallPolicy struct {
 	LoggingEnabled bool   `json:"loggingEnabled"`
 	Name           string `json:"name"`
 
+	// ReportFlowEnabled Report traffic matched by this policy in Insights Flows. Defaults to true when omitted.
+	ReportFlowEnabled *bool `json:"reportFlowEnabled,omitempty"`
+
 	// Schedule Defines date and time when the entity is active. If null, the entity is always active.
 	Schedule *FirewallSchedule    `json:"schedule,omitempty"`
 	Source   FirewallPolicySource `json:"source"`
@@ -1355,6 +1397,9 @@ type FirewallPolicy struct {
 	LoggingEnabled bool                                       `json:"loggingEnabled"`
 	Metadata       UserOrSystemDefinedOrDerivedEntityMetadata `json:"metadata"`
 	Name           string                                     `json:"name"`
+
+	// ReportFlowEnabled Report traffic matched by this policy in Insights Flows. Always false for the predefined Allow Return Traffic policies and the predefined policies allowing only multicast or IPv6 neighbor discovery traffic, which are never reported.
+	ReportFlowEnabled bool `json:"reportFlowEnabled"`
 
 	// Schedule Defines date and time when the entity is active. If null, the entity is always active.
 	Schedule *FirewallSchedule    `json:"schedule,omitempty"`
@@ -1837,6 +1882,9 @@ type OrderedFirewallPolicyIDs struct {
 // PatchFirewallPolicy defines model for Patch_firewall_policy.
 type PatchFirewallPolicy struct {
 	LoggingEnabled *bool `json:"loggingEnabled,omitempty"`
+
+	// ReportFlowEnabled Report traffic matched by this policy in Insights Flows. Ignored for the predefined Allow Return Traffic policies and the predefined policies allowing only multicast or IPv6 neighbor discovery traffic, which are never reported.
+	ReportFlowEnabled *bool `json:"reportFlowEnabled,omitempty"`
 }
 
 // PortPoEOverview defines model for Port_PoE_overview.
@@ -2108,11 +2156,15 @@ type WirelessRadioOverview struct {
 	Channel         *int32                            `json:"channel,omitempty"`
 	ChannelWidthMHz int32                             `json:"channelWidthMHz"`
 	FrequencyGHz    WirelessRadioOverviewFrequencyGHz `json:"frequencyGHz"`
+	TxPowerMode     WirelessRadioOverviewTxPowerMode  `json:"txPowerMode"`
 	WlanStandard    WirelessRadioOverviewWlanStandard `json:"wlanStandard"`
 }
 
 // WirelessRadioOverviewFrequencyGHz defines model for WirelessRadioOverview.FrequencyGHz.
 type WirelessRadioOverviewFrequencyGHz float32
+
+// WirelessRadioOverviewTxPowerMode defines model for WirelessRadioOverview.TxPowerMode.
+type WirelessRadioOverviewTxPowerMode string
 
 // WirelessRadioOverviewWlanStandard defines model for WirelessRadioOverview.WlanStandard.
 type WirelessRadioOverviewWlanStandard string
