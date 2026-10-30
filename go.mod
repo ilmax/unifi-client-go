@@ -3,7 +3,7 @@ module github.com/ilmax/unifi-client-go
 go 1.27.1
 
 require (
-	github.com/oapi-codegen/runtime v1.7.0
+	github.com/oapi-codegen/runtime v1.8.0
 	github.com/pb33f/libopenapi v0.41.6
 )
 
